@@ -1,0 +1,52 @@
+commit 03f6c6aa7b2f119373b7e9e4624a376f2456b896
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Mon Oct 5 00:55:12 2020 -0600
+
+    Created method stubs for each class, added 9 JUnit tests, 4 that test adjacency lists and 5 that test calcTarget. All tests fail with no errors.
+
+commit e26d6c615bad663c2b4a6c8da49c2fec6df02fca
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Sun Oct 4 21:47:56 2020 -0600
+
+    Added blank classes
+
+commit b4042c929a3081434f3770a48c7e72f811cdc74d
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Sun Oct 4 21:43:35 2020 -0600
+
+    Initial commit
+
+commit fdc7a88f37d7a4a4cb34e26bca7ff64287de3887
+Author: rbarmstrong <71060527+rbarmstrong@users.noreply.github.com>
+Date:   Sun Oct 4 21:36:14 2020 -0600
+
+    Initial commit
+commit b46b1f1fe15487796103dbe970607e6bf473f9e7
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Mon Oct 5 01:00:31 2020 -0600
+
+    Updated README
+
+commit 03f6c6aa7b2f119373b7e9e4624a376f2456b896
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Mon Oct 5 00:55:12 2020 -0600
+
+    Created method stubs for each class, added 9 JUnit tests, 4 that test adjacency lists and 5 that test calcTarget. All tests fail with no errors.
+
+commit e26d6c615bad663c2b4a6c8da49c2fec6df02fca
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Sun Oct 4 21:47:56 2020 -0600
+
+    Added blank classes
+
+commit b4042c929a3081434f3770a48c7e72f811cdc74d
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Sun Oct 4 21:43:35 2020 -0600
+
+    Initial commit
+
+commit fdc7a88f37d7a4a4cb34e26bca7ff64287de3887
+Author: rbarmstrong <71060527+rbarmstrong@users.noreply.github.com>
+Date:   Sun Oct 4 21:36:14 2020 -0600
+
+    Initial commit
