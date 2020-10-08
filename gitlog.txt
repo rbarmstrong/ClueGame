@@ -1,3 +1,15 @@
+commit d348ea9ef2dede2dde4e504b4d04ad78c6d6513a
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Thu Oct 8 17:46:58 2020 -0600
+
+    All tests passed and gitlog added
+
+commit 2cb49c9fcd60e001e15e658c58aaf5f33fd27584
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Thu Oct 8 17:39:57 2020 -0600
+
+    All tests passed
+
 commit b422172dd47e7f1e6cd9727777c5fecec4bfaeb0
 Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
 Date:   Thu Oct 8 17:25:33 2020 -0600
