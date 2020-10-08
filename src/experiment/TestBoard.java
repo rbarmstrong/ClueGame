@@ -42,6 +42,9 @@ public class TestBoard {
 	
 	public void calcTargets(TestBoardCell startCell, int pathlength) {
 		//calculates legal targets for a move from startCell of length pathlength
+		visited = new HashSet<TestBoardCell>();
+		targets = new HashSet<TestBoardCell>();
+		visited.add(startCell);
 	}
 	
 	public Set<TestBoardCell> getTargets() {
