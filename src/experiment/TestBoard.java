@@ -6,20 +6,19 @@ public class TestBoard {
 	final static int ROWS = 4;
 	final static int COLS = 4;
 	private TestBoardCell[][] grid;
-	private Set<TestBoardCell> targets ;
+	private Set<TestBoardCell> targets;
 	private Set<TestBoardCell> visited;
 
-	
+	//sets up the board
 	public TestBoard() {
-		//sets up the board
-		grid = new TestBoardCell[ROWS][COLS];
-		
+		grid = new TestBoardCell[ROWS][COLS]; //initialize grid to the provided dimensions
+		//fill grid with empty cells
 		for(int i = 0; i < ROWS; i++) {
 			for(int j = 0; j < COLS; j++) {
 				grid[i][j] = new TestBoardCell(i,j);
 			}
 		}
-		
+		//create adjacency list for each cell in the grid
 		for(int i = 0; i < ROWS; i++) {
 			for(int j = 0; j < COLS; j++) {
 				if(i - 1 >= 0) {
@@ -40,17 +39,33 @@ public class TestBoard {
 		
 	}
 	
+	private void findAllTargets(TestBoardCell thisCell, int numSteps) {
+		for (TestBoardCell adjCell : thisCell.getAdjList()) { //loop through each adj cell
+			if (!visited.contains(adjCell) && !adjCell.getOccupied()) {//as long as not visited or occupied
+				visited.add(adjCell); //add cell to visited
+				if (numSteps == 1 || adjCell.getIsRoom()) { //if no steps remaining or in a room
+					targets.add(adjCell); //add cell to targets
+				}
+				else {
+					findAllTargets(adjCell, numSteps-1); //else call recursive function
+				}
+				visited.remove(adjCell);
+			}
+		}
+	}
+	
+	//calculates legal targets for a move from startCell of length pathlength 
 	public void calcTargets(TestBoardCell startCell, int pathlength) {
-		//calculates legal targets for a move from startCell of length pathlength
+		//first initialize visited list and targets list, add the cell the character is currently on to the visited list
 		visited = new HashSet<TestBoardCell>();
 		targets = new HashSet<TestBoardCell>();
 		visited.add(startCell);
+		findAllTargets(startCell, pathlength);
 	}
 	
 	public Set<TestBoardCell> getTargets() {
 		//gets the targets last created by calcTargets()
-		Set<TestBoardCell> emptySet = Collections.<TestBoardCell>emptySet();  
-		return emptySet;
+		return targets;
 	}
 	
 	public TestBoardCell getCell(int row, int col){

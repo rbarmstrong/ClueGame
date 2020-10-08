@@ -1,3 +1,33 @@
+commit d348ea9ef2dede2dde4e504b4d04ad78c6d6513a
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Thu Oct 8 17:46:58 2020 -0600
+
+    All tests passed and gitlog added
+
+commit 2cb49c9fcd60e001e15e658c58aaf5f33fd27584
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Thu Oct 8 17:39:57 2020 -0600
+
+    All tests passed
+
+commit b422172dd47e7f1e6cd9727777c5fecec4bfaeb0
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Thu Oct 8 17:25:33 2020 -0600
+
+    Started work on calcTargets
+
+commit 7a5039e476740d7d3a12499b2a5d4d793f9df359
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Thu Oct 8 17:15:30 2020 -0600
+
+    Successfully implemented creation of adjacency lists
+
+commit 89c6f8cf430161c643ce9ffcfccee36ccb71feb7
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Mon Oct 5 01:07:02 2020 -0600
+
+    Fixed gitlog.txt
+
 commit b6c175742504b986989199cc441c16a10c161b50
 Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
 Date:   Mon Oct 5 01:01:54 2020 -0600

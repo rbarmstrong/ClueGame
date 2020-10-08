@@ -34,12 +34,12 @@ public class TestBoardCell {
 		this.occupied = occupied;
 	}
 	
-	public boolean getOccupied(boolean occupied) {
+	public boolean getOccupied() {
 		return occupied;
 	}
 
 	@Override
-	public String toString() {
+	public String toString() { //used this for some debugging
 		return "ROW:" + row + " COL:"+ col;
 	}
 	
