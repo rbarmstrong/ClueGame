@@ -40,17 +40,33 @@ public class TestBoard {
 		
 	}
 	
+	private void findAllTargets(TestBoardCell thisCell, int numSteps) {
+		for (TestBoardCell adjCell : thisCell.getAdjList()) {
+			if (!visited.contains(adjCell) && !adjCell.getOccupied()) {
+				visited.add(adjCell);
+				if (numSteps == 1 || adjCell.getIsRoom()) {
+					targets.add(adjCell);
+				}
+				else {
+					findAllTargets(adjCell, numSteps-1);
+				}
+				visited.remove(adjCell);
+			}
+		}
+	}
+	
+	
 	public void calcTargets(TestBoardCell startCell, int pathlength) {
 		//calculates legal targets for a move from startCell of length pathlength
 		visited = new HashSet<TestBoardCell>();
 		targets = new HashSet<TestBoardCell>();
 		visited.add(startCell);
+		findAllTargets(startCell, pathlength);
 	}
 	
 	public Set<TestBoardCell> getTargets() {
 		//gets the targets last created by calcTargets()
-		Set<TestBoardCell> emptySet = Collections.<TestBoardCell>emptySet();  
-		return emptySet;
+		return targets;
 	}
 	
 	public TestBoardCell getCell(int row, int col){
