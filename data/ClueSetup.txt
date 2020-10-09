@@ -1,0 +1,13 @@
+// Rooms and room cards
+Room, TV Room, T
+Room, Kitchen, K
+Room, Master Bedroom, B
+Room, Game Room, R
+Room, Laundry Room, L
+Room, Guest Room, G
+Room, Dining Room, D
+Room, Office, O
+Room, Sun Room, S
+//other spaces on board
+Space, Unused, X
+Space, Walkway, W
