@@ -40,7 +40,6 @@ public class TestBoard {
 	}
 	
 	private void findAllTargets(TestBoardCell thisCell, int numSteps) {
-<<<<<<< HEAD
 		for (TestBoardCell adjCell : thisCell.getAdjList()) { //loop through each adj cell
 			if (!visited.contains(adjCell) && !adjCell.getOccupied()) {//as long as not visited or occupied
 				visited.add(adjCell); //add cell to visited
@@ -49,31 +48,15 @@ public class TestBoard {
 				}
 				else {
 					findAllTargets(adjCell, numSteps-1); //else call recursive function
-=======
-		for (TestBoardCell adjCell : thisCell.getAdjList()) {
-			if (!visited.contains(adjCell) && !adjCell.getOccupied()) {
-				visited.add(adjCell);
-				if (numSteps == 1 || adjCell.getIsRoom()) {
-					targets.add(adjCell);
-				}
-				else {
-					findAllTargets(adjCell, numSteps-1);
->>>>>>> 4d4222f4992aaa19202e58cfd72aa1625757d2e3
 				}
 				visited.remove(adjCell);
 			}
 		}
 	}
 	
-<<<<<<< HEAD
 	//calculates legal targets for a move from startCell of length pathlength 
 	public void calcTargets(TestBoardCell startCell, int pathlength) {
 		//first initialize visited list and targets list, add the cell the character is currently on to the visited list
-=======
-	
-	public void calcTargets(TestBoardCell startCell, int pathlength) {
-		//calculates legal targets for a move from startCell of length pathlength 
->>>>>>> 4d4222f4992aaa19202e58cfd72aa1625757d2e3
 		visited = new HashSet<TestBoardCell>();
 		targets = new HashSet<TestBoardCell>();
 		visited.add(startCell);
