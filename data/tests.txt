@@ -1,0 +1,22 @@
+Test Room Labels:
+TV room was selected because its the first room in clue setup 
+Walkway is the last room
+Other rooms chosen at random
+
+Four Direction Test:
+Game room has a left door
+Guest room has an up door
+Dining room has a right door
+Kitchen has a down door
+
+Test Room Cells:
+	Standard test:
+		Dining room is the largest room, easy to test, lots of open space
+	Label Test:
+		TV Room has a label thats near a secret passage and the room center
+	Secret Passage Test:
+		Kitchen was chosen because I'm hungry
+		
+Rooms were somewhat selected so that multiple aspects of a room are tested.
+	
+	
