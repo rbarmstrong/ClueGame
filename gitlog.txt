@@ -1,3 +1,5 @@
+Pair programmed for assignment C11A-1
+
 commit e502f5cf0489ba76c189c9d716e65d0865a6b31f
 Merge: e3284e5 4d4222f
 Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
