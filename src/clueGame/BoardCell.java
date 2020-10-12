@@ -4,7 +4,7 @@ import java.util.*;
 public class BoardCell {
 
 	private int row, col;
-	private char initial, secretPassage, roomChar;
+	private char secretPassage, roomChar;
 	private DoorDirection doorDirection;
 	private boolean roomLabel, roomCenter, isDoorway, occupied, isRoom;
 	private Set<BoardCell> adjList;
@@ -13,6 +13,12 @@ public class BoardCell {
 		adjList = new HashSet<BoardCell>();
 		this.row = row;
 		this.col = col;
+		roomLabel = false;
+		roomCenter = false;
+		isDoorway = false;
+		occupied = false;
+		isRoom = false;
+		doorDirection = DoorDirection.NONE;
 	}
 
 	public void addToAdjList(BoardCell cell) {
@@ -75,6 +81,21 @@ public class BoardCell {
 	
 	public char getRoomChar() {
 		return roomChar;
+	}
+
+	public void setIsRoomCenter(boolean isRoomCenter) {
+		this.roomCenter = isRoomCenter;
+		
+	}
+
+	public void setIsRoomLabel(boolean isRoomLabel) {
+		this.roomLabel = isRoomLabel;
+		
+	}
+
+	public void setDoorDirection(DoorDirection direction) {
+		this.doorDirection = direction;
+		
 	}
 
 }

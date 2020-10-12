@@ -3,6 +3,7 @@ package clueGame;
 public class Room {
 	private String name;
 	private char letter;
+	private boolean isRoom;
 	private BoardCell centerCell;
 	private BoardCell labelCell;
 	
@@ -12,10 +13,11 @@ public class Room {
 		super();
 	}
 
-	public Room(String name, char letter) {
+	public Room(String name, char letter, boolean isRoom) {
 		super();
 		this.name = name;
 		this.letter = letter;
+		this.isRoom = isRoom;
 	}
 	
 	public void setCenterCell(BoardCell cell) {
@@ -38,6 +40,10 @@ public class Room {
 	public BoardCell getCenterCell() {
 		
 		return null;
+	}
+
+	public boolean getIsRoom() {
+		return isRoom;
 	}
 
 }

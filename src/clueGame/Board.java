@@ -31,13 +31,7 @@ public class Board {
 	 */
 	public void initialize()
 	{
-		grid = new BoardCell[ROWS][COLS]; //initialize grid to the provided dimensions
-		//fill grid with empty cells
-		for(int i = 0; i < ROWS; i++) {
-			for(int j = 0; j < COLS; j++) {
-				grid[i][j] = new BoardCell(i,j);
-			}
-		}
+		loadConfigFiles();
 		//create adjacency list for each cell in the grid
 		for(int i = 0; i < ROWS; i++) {
 			for(int j = 0; j < COLS; j++) {
@@ -55,7 +49,7 @@ public class Board {
 				}
 			}
 		}
-		loadConfigFiles();
+		
 	}
 	
 	public void setConfigFiles(String csv, String txt) {
@@ -86,11 +80,11 @@ public class Board {
 				if(currLine.contains("Room")){
 					char tempChar = currLine.charAt(currLine.length() - 1);
 					String tempLabel = currLine.substring(6, currLine.lastIndexOf(","));
-					rooms.put(tempChar, new Room(tempLabel,tempChar));
+					rooms.put(tempChar, new Room(tempLabel,tempChar,true));
 				}else {
 					char tempChar = currLine.charAt(currLine.length() - 1);
 					String tempLabel = currLine.substring(7, currLine.lastIndexOf(","));
-					rooms.put(tempChar, new Room(tempLabel,tempChar));
+					rooms.put(tempChar, new Room(tempLabel,tempChar,false));
 				}
 			}
 		}
@@ -100,12 +94,12 @@ public class Board {
 	public void loadLayoutConfig() throws FileNotFoundException {
 		Scanner scan;
 		int numLines = 0;
-		int numColumns = -1;
+		int numCols = -1;
 		scan = new Scanner(new File(layoutConfigFile));
 		while(scan.hasNext()) {
 			String temp = scan.next();
 			if(temp != "/n") {
-				numColumns++;
+				numCols++;
 			}else {
 				break;
 			}
@@ -116,8 +110,60 @@ public class Board {
 			numLines++;
 		}
 		ROWS = numLines;
-		COLS = numColumns;
+		COLS = numCols;
 		
+		grid = new BoardCell[ROWS][COLS]; //initialize grid to the provided dimensions
+		//fill grid with empty cells
+		for(int i = 0; i < ROWS; i++) {
+			for(int j = 0; j < COLS; j++) {
+				grid[i][j] = new BoardCell(i,j);
+			}
+		}
+		
+		numLines = 0;
+		numCols = 0;
+		scan = new Scanner(new File(layoutConfigFile));
+		scan.useDelimiter(",");
+		while(scan.hasNext()) {
+			System.out.println(COLS + " " + numCols + " " + ROWS + " " + numLines); //DEBUG STATEMENT
+			String currVal = scan.next();
+			if(currVal.length() == 1) {
+				char currChar = currVal.charAt(0);
+				grid[numLines][numCols].setRoomChar(currChar); //sets the character in the created grid
+				grid[numLines][numCols].setIsRoom(rooms.get(currChar).getIsRoom()); //sets whether each cell is a room
+			}else {
+				char currChar = currVal.charAt(0);
+				grid[numLines][numCols].setRoomChar(currChar); //sets the character in the created grid
+				grid[numLines][numCols].setIsRoom(rooms.get(currChar).getIsRoom()); //sets whether each cell is a room
+				switch(currVal.charAt(1)) {
+				case '*':
+					grid[numLines][numCols].setIsRoomCenter(true);
+					break;
+				case '#':
+					grid[numLines][numCols].setIsRoomLabel(true);
+					break;
+				case '^':
+					grid[numLines][numCols].setDoorDirection(DoorDirection.UP);
+					break;
+				case '>':
+					grid[numLines][numCols].setDoorDirection(DoorDirection.RIGHT);
+					break;
+				case '<':
+					grid[numLines][numCols].setDoorDirection(DoorDirection.LEFT);
+					break;
+				case 'v':
+					grid[numLines][numCols].setDoorDirection(DoorDirection.DOWN);
+					break;
+				}
+			}
+			if(numCols < COLS - 1) {
+				numCols++;
+			}else {
+				numCols = 0;
+				numLines++;
+			}
+		}
+
 	}
 
 	private void findAllTargets(BoardCell thisCell, int numSteps) {
@@ -162,11 +208,11 @@ public class Board {
 	}
 	
 	public int getNumRows() {
-		return 0;
+		return ROWS;
 	}
 	public int getNumColumns() {
 		
-		return 0;
+		return COLS;
 	}
 	
 }
