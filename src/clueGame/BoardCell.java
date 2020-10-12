@@ -6,7 +6,7 @@ public class BoardCell {
 	private int row, col;
 	private char secretPassage, roomChar;
 	private DoorDirection doorDirection;
-	private boolean roomLabel, roomCenter, isDoorway, occupied, isRoom;
+	private boolean roomLabel, roomCenter, isDoorway, occupied, isRoom, isSecretPassage;
 	private Set<BoardCell> adjList;
 
 	public BoardCell(int row, int col) {
@@ -19,6 +19,7 @@ public class BoardCell {
 		occupied = false;
 		isRoom = false;
 		doorDirection = DoorDirection.NONE;
+		isSecretPassage = false;
 	}
 
 	public void addToAdjList(BoardCell cell) {
@@ -95,6 +96,16 @@ public class BoardCell {
 
 	public void setDoorDirection(DoorDirection direction) {
 		this.doorDirection = direction;
+		
+	}
+
+	public void setIsSecretPassage(boolean isSecretPassage) {
+		this.isSecretPassage = isSecretPassage;
+		
+	}
+
+	public void setSecretPassage(char secretPassage) {
+		this.secretPassage = secretPassage;
 		
 	}
 

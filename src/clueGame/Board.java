@@ -94,8 +94,17 @@ public class Board {
 	public void loadLayoutConfig() throws FileNotFoundException {
 		Scanner scan;
 		int numLines = 0;
-		int numCols = -1;
+		int numCols = 0;
 		scan = new Scanner(new File(layoutConfigFile));
+		while(scan.hasNextLine()) {
+			scan.nextLine();
+			numLines++;
+		}
+		scan = new Scanner(new File(layoutConfigFile));
+		for(int i = 0; i < numLines - 1; i++) {
+			scan.nextLine();
+		}
+		scan.useDelimiter(",");
 		while(scan.hasNext()) {
 			String temp = scan.next();
 			if(temp != "/n") {
@@ -103,11 +112,6 @@ public class Board {
 			}else {
 				break;
 			}
-		}
-		scan = new Scanner(new File(layoutConfigFile));
-		while(scan.hasNextLine()) {
-			scan.nextLine();
-			numLines++;
 		}
 		ROWS = numLines;
 		COLS = numCols;
@@ -127,6 +131,9 @@ public class Board {
 		while(scan.hasNext()) {
 			System.out.println(COLS + " " + numCols + " " + ROWS + " " + numLines); //DEBUG STATEMENT
 			String currVal = scan.next();
+//			if(numLines == 0 && numCols == 23) {
+//				System.out.println(currVal);
+//			}
 			if(currVal.length() == 1) {
 				char currChar = currVal.charAt(0);
 				grid[numLines][numCols].setRoomChar(currChar); //sets the character in the created grid
@@ -154,6 +161,9 @@ public class Board {
 				case 'v':
 					grid[numLines][numCols].setDoorDirection(DoorDirection.DOWN);
 					break;
+				default:
+					grid[numLines][numCols].setIsSecretPassage(true);
+					grid[numLines][numCols].setSecretPassage(currVal.charAt(1));
 				}
 			}
 			if(numCols < COLS - 1) {
