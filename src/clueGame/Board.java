@@ -1,13 +1,15 @@
 package clueGame;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Board {
-
 	final static int ROWS = 26;
 	final static int COLS = 27;
 	private BoardCell[][] grid;
 	private Set<BoardCell> targets;
 	private Set<BoardCell> visited;
+	private static HashMap<Character, Room> rooms;
 	private static String layoutConfigFile;
 	private static String setupConfigFile;
 	//private static map<Character, Room>;
@@ -53,6 +55,7 @@ public class Board {
 				}
 			}
 		}
+		loadConfigFiles();
 	}
 	
 	public void setConfigFiles(String csv, String txt) {
@@ -61,16 +64,48 @@ public class Board {
 	}
 	
 	public void loadConfigFiles() {
+		try {
+			loadSetupConfig();
+		} catch (FileNotFoundException e) {
+			System.out.println("Error. Can't find file: " + setupConfigFile);
+		}
+		//loadLayoutConfig();
+		
+		
+		
+		
+			
 		
 	}
 	
-	public void loadSetupConfig() {
-		
+	public void loadSetupConfig() throws FileNotFoundException {
+		rooms = new HashMap<Character, Room>();
+		Scanner scan;
+		scan = new Scanner(new File(setupConfigFile));
+		while(scan.hasNextLine()) {
+			String currLine = scan.nextLine();
+			if(!currLine.contains("//")) {
+				if(currLine.contains("Room")){
+					char tempChar = currLine.charAt(currLine.length() - 1);
+					String tempLabel = currLine.substring(6, currLine.lastIndexOf(","));
+					rooms.put(tempChar, new Room(tempLabel,tempChar));
+				}else {
+					char tempChar = currLine.charAt(currLine.length() - 1);
+					String tempLabel = currLine.substring(7, currLine.lastIndexOf(","));
+					rooms.put(tempChar, new Room(tempLabel,tempChar));
+				}
+			}
+		}
+
 	}
 	
-	public void loadLayoutConfig() {
-		
-	}
+//	public void loadLayoutConfig() {
+//		Scanner scan;
+//		scan = new Scanner(new File("layoutConfigFile"));
+//
+//		scan.useDelimiter(",");
+//		while(scan.hasNext()) {
+//	}
 
 	private void findAllTargets(BoardCell thisCell, int numSteps) {
 		for (BoardCell adjCell : thisCell.getAdjList()) { //loop through each adj cell
@@ -107,12 +142,10 @@ public class Board {
 	}
 	
 	public Room getRoom(BoardCell cell) {
-		Room room = new Room();
-		return room;
+		return rooms.get(cell.getRoomChar());
 	}
 	public Room getRoom(char letter) {
-		Room room = new Room();
-		return room;
+		return rooms.get(letter);
 	}
 	
 	public int getNumRows() {

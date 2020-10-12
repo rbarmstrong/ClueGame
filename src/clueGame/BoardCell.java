@@ -4,7 +4,7 @@ import java.util.*;
 public class BoardCell {
 
 	private int row, col;
-	private char initial, secretPassage;
+	private char initial, secretPassage, roomChar;
 	private DoorDirection doorDirection;
 	private boolean roomLabel, roomCenter, isDoorway, occupied, isRoom;
 	private Set<BoardCell> adjList;
@@ -68,8 +68,14 @@ public class BoardCell {
 		
 		return 0;
 	}
-
 	
+	public void setRoomChar(char roomChar) {
+		this.roomChar = roomChar;
+	}
+	
+	public char getRoomChar() {
+		return roomChar;
+	}
 
 }
 
