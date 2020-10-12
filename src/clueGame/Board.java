@@ -115,7 +115,7 @@ public class Board {
 		}
 		ROWS = numLines;
 		COLS = numCols;
-		
+
 		grid = new BoardCell[ROWS][COLS]; //initialize grid to the provided dimensions
 		//fill grid with empty cells
 		for(int i = 0; i < ROWS; i++) {
@@ -123,54 +123,73 @@ public class Board {
 				grid[i][j] = new BoardCell(i,j);
 			}
 		}
-		
+
 		numLines = 0;
 		numCols = 0;
 		scan = new Scanner(new File(layoutConfigFile));
 		scan.useDelimiter(",");
 		while(scan.hasNext()) {
-			System.out.println(COLS + " " + numCols + " " + ROWS + " " + numLines); //DEBUG STATEMENT
 			String currVal = scan.next();
-//			if(numLines == 0 && numCols == 23) {
-//				System.out.println(currVal);
-//			}
-			if(currVal.length() == 1) {
+
+			if(currVal.contains("\n")) {
 				char currChar = currVal.charAt(0);
 				grid[numLines][numCols].setRoomChar(currChar); //sets the character in the created grid
 				grid[numLines][numCols].setIsRoom(rooms.get(currChar).getIsRoom()); //sets whether each cell is a room
-			}else {
-				char currChar = currVal.charAt(0);
+				if(currVal.charAt(1) != '\n' && currVal.charAt(1) != '\r') {
+					grid[numLines][numCols].setIsSecretPassage(true);
+					grid[numLines][numCols].setSecretPassage(currVal.charAt(1));
+					currVal = currVal.substring(1);
+				}
+				currVal = currVal.replaceAll("\\r|\\n", "");
+				numLines++;
+				numCols = 0;
+				currVal = currVal.substring(1);
+				System.out.println(currVal); //DEBUG
+				if(numLines == ROWS) {
+					break;
+				}
+				currChar = currVal.charAt(0);
 				grid[numLines][numCols].setRoomChar(currChar); //sets the character in the created grid
 				grid[numLines][numCols].setIsRoom(rooms.get(currChar).getIsRoom()); //sets whether each cell is a room
-				switch(currVal.charAt(1)) {
-				case '*':
-					grid[numLines][numCols].setIsRoomCenter(true);
-					break;
-				case '#':
-					grid[numLines][numCols].setIsRoomLabel(true);
-					break;
-				case '^':
-					grid[numLines][numCols].setDoorDirection(DoorDirection.UP);
-					break;
-				case '>':
-					grid[numLines][numCols].setDoorDirection(DoorDirection.RIGHT);
-					break;
-				case '<':
-					grid[numLines][numCols].setDoorDirection(DoorDirection.LEFT);
-					break;
-				case 'v':
-					grid[numLines][numCols].setDoorDirection(DoorDirection.DOWN);
-					break;
-				default:
+				if(currVal.length() > 1) {
 					grid[numLines][numCols].setIsSecretPassage(true);
 					grid[numLines][numCols].setSecretPassage(currVal.charAt(1));
 				}
-			}
-			if(numCols < COLS - 1) {
-				numCols++;
 			}else {
-				numCols = 0;
-				numLines++;
+				//System.out.println(currVal + " is in Row: " + numLines + " and Col: " + numCols);
+				if(currVal.length() == 1) {
+					char currChar = currVal.charAt(0);
+					grid[numLines][numCols].setRoomChar(currChar); //sets the character in the created grid
+					grid[numLines][numCols].setIsRoom(rooms.get(currChar).getIsRoom()); //sets whether each cell is a room
+				}else {
+					char currChar = currVal.charAt(0);
+					grid[numLines][numCols].setRoomChar(currChar); //sets the character in the created grid
+					grid[numLines][numCols].setIsRoom(rooms.get(currChar).getIsRoom()); //sets whether each cell is a room
+					switch(currVal.charAt(1)) {
+					case '*':
+						grid[numLines][numCols].setIsRoomCenter(true);
+						break;
+					case '#':
+						grid[numLines][numCols].setIsRoomLabel(true);
+						break;
+					case '^':
+						grid[numLines][numCols].setDoorDirection(DoorDirection.UP);
+						break;
+					case '>':
+						grid[numLines][numCols].setDoorDirection(DoorDirection.RIGHT);
+						break;
+					case '<':
+						grid[numLines][numCols].setDoorDirection(DoorDirection.LEFT);
+						break;
+					case 'v':
+						grid[numLines][numCols].setDoorDirection(DoorDirection.DOWN);
+						break;
+					default:
+						grid[numLines][numCols].setIsSecretPassage(true);
+						grid[numLines][numCols].setSecretPassage(currVal.charAt(1));
+					}
+				}
+				numCols++;
 			}
 		}
 
