@@ -155,8 +155,9 @@ public class Board {
 					grid[numLines][numCols].setIsSecretPassage(true);
 					grid[numLines][numCols].setSecretPassage(currVal.charAt(1));
 				}
+
 			}else {
-				//System.out.println(currVal + " is in Row: " + numLines + " and Col: " + numCols);
+				System.out.println(currVal + " is in Row: " + numLines + " and Col: " + numCols);
 				if(currVal.length() == 1) {
 					char currChar = currVal.charAt(0);
 					grid[numLines][numCols].setRoomChar(currChar); //sets the character in the created grid
@@ -194,7 +195,10 @@ public class Board {
 		}
 
 	}
-
+	private void populateGrid() {
+		
+	}
+	
 	private void findAllTargets(BoardCell thisCell, int numSteps) {
 		for (BoardCell adjCell : thisCell.getAdjList()) { //loop through each adj cell
 			if (!visited.contains(adjCell) && !adjCell.getOccupied()) {//as long as not visited or occupied
