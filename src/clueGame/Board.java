@@ -4,8 +4,8 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Board {
-	final static int ROWS = 26;
-	final static int COLS = 27;
+	private static int ROWS;
+	private static int COLS;
 	private BoardCell[][] grid;
 	private Set<BoardCell> targets;
 	private Set<BoardCell> visited;
@@ -69,13 +69,11 @@ public class Board {
 		} catch (FileNotFoundException e) {
 			System.out.println("Error. Can't find file: " + setupConfigFile);
 		}
-		//loadLayoutConfig();
-		
-		
-		
-		
-			
-		
+		try {
+			loadLayoutConfig();
+		} catch (FileNotFoundException e) {
+			System.out.println("Error. Can't find file: " + setupConfigFile);
+		}
 	}
 	
 	public void loadSetupConfig() throws FileNotFoundException {
@@ -99,13 +97,28 @@ public class Board {
 
 	}
 	
-//	public void loadLayoutConfig() {
-//		Scanner scan;
-//		scan = new Scanner(new File("layoutConfigFile"));
-//
-//		scan.useDelimiter(",");
-//		while(scan.hasNext()) {
-//	}
+	public void loadLayoutConfig() throws FileNotFoundException {
+		Scanner scan;
+		int numLines = 0;
+		int numColumns = -1;
+		scan = new Scanner(new File(layoutConfigFile));
+		while(scan.hasNext()) {
+			String temp = scan.next();
+			if(temp != "/n") {
+				numColumns++;
+			}else {
+				break;
+			}
+		}
+		scan = new Scanner(new File(layoutConfigFile));
+		while(scan.hasNextLine()) {
+			scan.nextLine();
+			numLines++;
+		}
+		ROWS = numLines;
+		COLS = numColumns;
+		
+	}
 
 	private void findAllTargets(BoardCell thisCell, int numSteps) {
 		for (BoardCell adjCell : thisCell.getAdjList()) { //loop through each adj cell
