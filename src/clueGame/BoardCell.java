@@ -57,23 +57,20 @@ public class BoardCell {
 	}
 
 	public boolean isDoorway() {
-		
 		return isDoorway;
 	}
 
 	public boolean isLabel() {
-		
-		return false;
+		return roomLabel;
 	}
 
 	public boolean isRoomCenter() {
 		
-		return false;
+		return roomCenter;
 	}
 
 	public char getSecretPassage() {
-		
-		return 0;
+		return secretPassage;
 	}
 	
 	public void setRoomChar(char roomChar) {
@@ -106,6 +103,10 @@ public class BoardCell {
 
 	public void setSecretPassage(char secretPassage) {
 		this.secretPassage = secretPassage;
+		
+	}
+	public void setisDoorway(boolean isDoorway) {
+		this.isDoorway = isDoorway;
 		
 	}
 

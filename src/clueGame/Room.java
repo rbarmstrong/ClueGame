@@ -33,17 +33,17 @@ public class Room {
 	}
 
 	public BoardCell getLabelCell() {
-		
-		return null;
+		return labelCell;
 	}
 
 	public BoardCell getCenterCell() {
-		
-		return null;
+		return centerCell;
 	}
 
 	public boolean getIsRoom() {
 		return isRoom;
 	}
+
+	
 
 }

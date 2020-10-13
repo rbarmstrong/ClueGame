@@ -62,56 +62,42 @@ public class Board {
 			loadSetupConfig();
 		} catch (FileNotFoundException e) {
 			System.out.println("Error. Can't find file: " + setupConfigFile);
+		}catch (BadConfigFormatException f) {
+			System.out.println("Error. BadConfigFormatException in: " + setupConfigFile);
 		}
 		try {
 			loadLayoutConfig();
 		} catch (FileNotFoundException e) {
-			System.out.println("Error. Can't find file: " + setupConfigFile);
+			System.out.println("Error. Can't find file: " + layoutConfigFile);
+		} catch (BadConfigFormatException f) {
+			System.out.println("Error. BadConfigFormatException in: " + layoutConfigFile);
 		}
 	}
 	
-	public void loadSetupConfig() throws FileNotFoundException {
+	public void loadSetupConfig() throws FileNotFoundException, BadConfigFormatException {
 		rooms = new HashMap<Character, Room>();
 		Scanner scan;
 		scan = new Scanner(new File(setupConfigFile));
 		while(scan.hasNextLine()) {
 			String currLine = scan.nextLine();
+			System.out.println(currLine);
 			if(!currLine.contains("//")) {
 				if(currLine.contains("Room")){
 					char tempChar = currLine.charAt(currLine.length() - 1);
 					String tempLabel = currLine.substring(6, currLine.lastIndexOf(","));
 					rooms.put(tempChar, new Room(tempLabel,tempChar,true));
-				}else {
+				}else if(currLine.contains("Space")){
 					char tempChar = currLine.charAt(currLine.length() - 1);
 					String tempLabel = currLine.substring(7, currLine.lastIndexOf(","));
 					rooms.put(tempChar, new Room(tempLabel,tempChar,false));
+				}else {
+					throw new BadConfigFormatException();
 				}
 			}
 		}
 
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	public void loadLayoutConfig() throws FileNotFoundException {
+	public void loadLayoutConfig() throws FileNotFoundException, BadConfigFormatException {
 		ArrayList<String> lines = new ArrayList<String>();
 		Scanner scan;
 		int numLines = 0;
@@ -128,11 +114,7 @@ public class Board {
 		scan.useDelimiter(",");
 		while(scan.hasNext()) {
 			String temp = scan.next();
-			if(temp != "/n") {
-				numCols++;
-			}else {
-				break;
-			}
+			numCols++;
 		}
 		ROWS = numLines;
 		COLS = numCols;
@@ -148,51 +130,71 @@ public class Board {
 		while(scan.hasNext()) {
 			lines.add(scan.next());
 		}
+		int column = 0;
 		for(String i: lines) {
-			readLine(i);
+			readLine(i,column);
+			column++;
 		}
 
 	}
-	private void readLine(String currLine) {
+	
+	private void readLine(String currLine, int i) throws BadConfigFormatException {
+
 		Scanner scan = new Scanner(currLine);
 		scan.useDelimiter(",");
-		String currVal = scan.next(); 
-		for(int i = 0; i < ROWS; i++) {
-			for(int j = 0; j < COLS; j++) {
-				if(currVal.length() == 1) {
-					char currChar = currVal.charAt(0);
-					grid[i][j].setRoomChar(currChar); //sets the character in the created grid
-					grid[i][j].setIsRoom(rooms.get(currChar).getIsRoom()); //sets whether each cell is a room
-				}else {
-					char currChar = currVal.charAt(0);
-					grid[i][j].setRoomChar(currChar); //sets the character in the created grid
-					grid[i][j].setIsRoom(rooms.get(currChar).getIsRoom()); //sets whether each cell is a room
-					switch(currVal.charAt(1)) {
-					case '*':
-						grid[i][j].setIsRoomCenter(true);
-						break;
-					case '#':
-						grid[i][j].setIsRoomLabel(true);
-						break;
-					case '^':
-						grid[i][j].setDoorDirection(DoorDirection.UP);
-						break;
-					case '>':
-						grid[i][j].setDoorDirection(DoorDirection.RIGHT);
-						break;
-					case '<':
-						grid[i][j].setDoorDirection(DoorDirection.LEFT);
-						break;
-					case 'v':
-						grid[i][j].setDoorDirection(DoorDirection.DOWN);
-						break;
-					default:
-						grid[i][j].setIsSecretPassage(true);
-						grid[i][j].setSecretPassage(currVal.charAt(1));
-					}
+		int columnCount = 0;
+		while(scan.hasNext()) {
+			scan.next();
+			columnCount++;
+		}
+		if(columnCount != COLS) {
+			throw new BadConfigFormatException();
+		}
+		
+		scan = new Scanner(currLine);
+		scan.useDelimiter(",");
+		for(int j = 0; j < COLS; j++) {
+			String currVal = scan.next();
+			char currChar = currVal.charAt(0);
+			if(!rooms.containsKey(currChar)) {
+				throw new BadConfigFormatException();
+			}
+			grid[i][j].setRoomChar(currChar); //sets the character in the created grid
+			grid[i][j].setIsRoom(rooms.get(currChar).getIsRoom()); //sets whether each cell is a room
+			if(currVal.length() > 1) {
+				switch(currVal.charAt(1)) {
+				case '*':
+					grid[i][j].setIsRoomCenter(true);
+					rooms.get(currVal.charAt(0)).setCenterCell(grid[i][j]);
+					break;
+				case '#':
+					grid[i][j].setIsRoomLabel(true);
+					rooms.get(currVal.charAt(0)).setLabelCell(grid[i][j]);
+					break;
+				case '^':
+					grid[i][j].setisDoorway(true);
+					grid[i][j].setDoorDirection(DoorDirection.UP);
+					break;
+				case '>':
+					grid[i][j].setisDoorway(true);
+					grid[i][j].setDoorDirection(DoorDirection.RIGHT);
+					break;
+				case '<':
+					grid[i][j].setisDoorway(true);
+					grid[i][j].setDoorDirection(DoorDirection.LEFT);
+					break;
+				case 'v':
+					grid[i][j].setisDoorway(true);
+					grid[i][j].setDoorDirection(DoorDirection.DOWN);
+					break;
+				default:
+					grid[i][j].setIsSecretPassage(true);
+					grid[i][j].setSecretPassage(currVal.charAt(1));
 				}
+
 			}
 		}
+
 	}
 
 	
