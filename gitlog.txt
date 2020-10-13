@@ -1,3 +1,127 @@
+commit 5319c77ba3059fa252873d9e55f212ce04e890a0
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Mon Oct 12 22:37:26 2020 -0600
+
+    Finished clue layout with test plans as well as all target tests
+
+commit 5e970a94cb5605e2649cbb89e38405fee5a843e5
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Mon Oct 12 22:08:30 2020 -0600
+
+    Finished adjacency tests, working on target tests
+
+commit 0b31fc645dc555ee4356c326a23a70ad8ecae14e
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Oct 12 16:10:24 2020 -0600
+
+    Where I left off
+
+commit 6883d9f6e20d547b80d26ceedc518669087fdb9d
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Oct 12 16:04:46 2020 -0600
+
+    Checkpoint. Fixed an error with CSV and newlines
+
+commit ca69480e807aad1aae69b9451cd9210f16115c26
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Oct 12 15:02:39 2020 -0600
+
+    Changed loadLayoutConfig a bit. Debugging test rooms
+
+commit 75433c27e8bbdc408b7d3716989d3cbbcb0c2366
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Oct 12 14:36:50 2020 -0600
+
+    testBoardDimensions working
+
+commit 3fb73cbf584a6dc6b6b3b719c97490389ea0ac24
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Oct 12 12:50:33 2020 -0600
+
+    Got read functions working
+
+commit 32f21cfd8eb66d613d425df28e4002e6145b1896
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Oct 12 00:21:19 2020 -0600
+
+    Got testRoomLabels test working
+
+commit a3cf7c51a54055ee0c361d04b8076fb962ad0156
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Oct 9 18:00:15 2020 -0600
+
+    Fixed some mistakes in test code. All working now
+
+commit 95e7505d881a05c33d50098c4fd4311238b75a40
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Oct 9 17:54:10 2020 -0600
+
+    tests.txt file finished
+
+commit 4b135e4577b9e9f34bbc93b486f952b6fd4f7b46
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Oct 9 17:39:28 2020 -0600
+
+    Added and completed FileInitTests. Started tracking files
+
+commit 17b26720ae15eba423f84b8ac28e932ba26192c4
+Merge: 0b8c535 8fef347
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Fri Oct 9 16:27:36 2020 -0600
+
+    Merge branch 'main' of https://github.com/rbarmstrong/ClueGame into main
+
+commit 0b8c53553c0d5a823aaa2e4377b7415d4587f952
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Fri Oct 9 16:27:20 2020 -0600
+
+    Reverted changes
+
+commit 8fef3475e66213600fa5e5a90f3fe6c8c0b331e2
+Author: astaylor347 <70915974+astaylor347@users.noreply.github.com>
+Date:   Fri Oct 9 16:19:42 2020 -0600
+
+    Update README.md
+    
+    Added comment about paired programming
+
+commit 48866f148c548523248824592d9c4eea256f3a12
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Fri Oct 9 16:14:07 2020 -0600
+
+    Added data folder and two new test classes
+
+commit e4fc5c48b1ea5f623e070ac07b6dd1e188f2839b
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Thu Oct 8 18:01:32 2020 -0600
+
+    Mentioned pair programming in gitlog.txt
+
+commit 4aa92eb4d5da88031cc8e4dffb0561f2e2eb3f62
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Thu Oct 8 17:59:26 2020 -0600
+
+    Updated gitlog.txt
+
+commit e502f5cf0489ba76c189c9d716e65d0865a6b31f
+Merge: e3284e5 4d4222f
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Thu Oct 8 17:58:39 2020 -0600
+
+    Added comments
+
+commit e3284e5d315b93ede9612857834a7624d2434446
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Thu Oct 8 17:57:16 2020 -0600
+
+    Added comments
+
+commit 4d4222f4992aaa19202e58cfd72aa1625757d2e3
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Thu Oct 8 17:51:41 2020 -0600
+
+    Updated gitlog
+
 commit d348ea9ef2dede2dde4e504b4d04ad78c6d6513a
 Author: Andrew Taylor <astaylor@mines.edu>
 Date:   Thu Oct 8 17:46:58 2020 -0600
