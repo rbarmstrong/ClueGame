@@ -247,5 +247,10 @@ public class Board {
 		
 		return COLS;
 	}
+	public Set<BoardCell> getAdjList(int i, int j) {
+		return grid[i][j].getAdjList();
+	}
+	
+	
 	
 }
