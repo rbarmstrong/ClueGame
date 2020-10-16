@@ -1,3 +1,28 @@
+commit 08f0f1046bafc29289de048755b0ef16a7f86517
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Oct 12 23:55:12 2020 -0600
+
+    Got most tests working
+
+commit 104abc27374b3c041e2e7d9ceec41c69c0fa6fb1
+Merge: c66cd6f c153558
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Oct 12 22:45:00 2020 -0600
+
+    Merge branch 'main' of https://github.com/rbarmstrong/ClueGame into main
+
+commit c66cd6f59671014b6c94d0fd94d4a596e391b21d
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Oct 12 22:44:41 2020 -0600
+
+    Redesigned loadLayoutConfig into two seperate functions
+
+commit c15355830a9102d4216d80c5f538d00500a58fad
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Mon Oct 12 22:44:23 2020 -0600
+
+    updated gitlog.txt
+
 commit 5319c77ba3059fa252873d9e55f212ce04e890a0
 Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
 Date:   Mon Oct 12 22:37:26 2020 -0600

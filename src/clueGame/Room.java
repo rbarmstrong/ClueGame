@@ -1,11 +1,14 @@
 package clueGame;
 
+import java.util.ArrayList;
+
 public class Room {
 	private String name;
 	private char letter;
 	private boolean isRoom;
 	private BoardCell centerCell;
 	private BoardCell labelCell;
+	private ArrayList<BoardCell> entrances; 
 	
 	
 	

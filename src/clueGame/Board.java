@@ -36,22 +36,58 @@ public class Board {
 		for(int i = 0; i < ROWS; i++) {
 			for(int j = 0; j < COLS; j++) {
 				if(i - 1 >= 0) {
-					grid[i][j].addToAdjList(this.getCell(i - 1,j));
+					if(grid[i - 1][j].isDoorway()) {
+						grid[i][j].addToAdjList(doorCalc(this.getCell(i - 1, j)));
+						doorCalc(this.getCell(i - 1, j)).addToAdjList(grid[i][j]);
+					}else if(grid[i - 1][j].getRoomChar() == 'W') {
+						grid[i][j].addToAdjList(this.getCell(i - 1,j));
+					}
 				}
 				if(j - 1 >= 0) {
-					grid[i][j].addToAdjList(this.getCell(i,j - 1));
+					if(grid[i][j - 1].isDoorway()) {
+						grid[i][j].addToAdjList(doorCalc(this.getCell(i, j - 1)));
+						doorCalc(this.getCell(i, j - 1)).addToAdjList(grid[i][j]);
+					}else if(grid[i][j - 1].getRoomChar() == 'W') {
+						grid[i][j].addToAdjList(this.getCell(i,j - 1));
+					}
 				}
 				if(i + 1 < ROWS) {
-					grid[i][j].addToAdjList(this.getCell(i + 1,j));
+					if(grid[i + 1][j].isDoorway()) {
+						grid[i][j].addToAdjList(doorCalc(this.getCell(i + 1, j)));
+						doorCalc(this.getCell(i + 1, j)).addToAdjList(grid[i][j]);
+					}else if(grid[i + 1][j].getRoomChar() == 'W') {
+						grid[i][j].addToAdjList(this.getCell(i + 1,j));
+					}
 				}
 				if(j + 1 < COLS) {
-					grid[i][j].addToAdjList(this.getCell(i,j + 1));
+					if(grid[i][j + 1].isDoorway()) {
+						grid[i][j].addToAdjList(doorCalc(this.getCell(i, j + 1)));
+						doorCalc(this.getCell(i, j + 1)).addToAdjList(grid[i][j]);
+					}else if(grid[i][j + 1].getRoomChar() == 'W') {
+						grid[i][j].addToAdjList(this.getCell(i,j + 1));
+					}
 				}
 			}
 		}
-		
+
 	}
 	
+	private BoardCell doorCalc(BoardCell cell) {
+		DoorDirection direction = cell.getDoorDirection();
+		int row = cell.getRow();
+		int col = cell.getCol();
+		if(direction == DoorDirection.UP) {
+			row--;
+		}if(direction == DoorDirection.DOWN) {
+			row++;
+		}if(direction == DoorDirection.LEFT) {
+			col--;
+		}if(direction == DoorDirection.RIGHT) {
+			col++;
+		}
+		return(rooms.get(this.getCell(row, col).getRoomChar()).getCenterCell());
+	}
+
 	public void setConfigFiles(String csv, String txt) {
 		layoutConfigFile = csv;
 		setupConfigFile = txt;
@@ -80,9 +116,8 @@ public class Board {
 		scan = new Scanner(new File(setupConfigFile));
 		while(scan.hasNextLine()) {
 			String currLine = scan.nextLine();
-			System.out.println(currLine);
 			if(!currLine.contains("//")) {
-				if(currLine.contains("Room")){
+				if(currLine.substring(0, currLine.indexOf(",")).contains("Room")){
 					char tempChar = currLine.charAt(currLine.length() - 1);
 					String tempLabel = currLine.substring(6, currLine.lastIndexOf(","));
 					rooms.put(tempChar, new Room(tempLabel,tempChar,true));
@@ -197,45 +232,6 @@ public class Board {
 
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	private void findAllTargets(BoardCell thisCell, int numSteps) {
 		for (BoardCell adjCell : thisCell.getAdjList()) { //loop through each adj cell
