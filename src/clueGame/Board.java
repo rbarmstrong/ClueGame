@@ -60,7 +60,6 @@ public class Board {
 					doorCalc(this.getCell(i, j)).addToAdjList(grid[i][j]);
 				}
 				if(grid[i][j].isSecretPassage()) {
-					System.out.println(rooms.get(grid[i][j].getRoomChar()).getCenterCell());
 					rooms.get(grid[i][j].getRoomChar()).getCenterCell().addToAdjList(secretPassageCalc(grid[i][j]));
 				}
 			}
@@ -236,7 +235,7 @@ public class Board {
 	
 	private void findAllTargets(BoardCell thisCell, int numSteps) {
 		for (BoardCell adjCell : thisCell.getAdjList()) { //loop through each adj cell
-			if (!visited.contains(adjCell) && !adjCell.getOccupied()) {//as long as not visited or occupied
+			if (!visited.contains(adjCell) && (!adjCell.getOccupied() || adjCell.getIsRoom())) {//as long as not visited or occupied
 				visited.add(adjCell); //add cell to visited
 				if (numSteps == 1 || adjCell.getIsRoom()) { //if no steps remaining or in a room
 					targets.add(adjCell); //add cell to targets
@@ -279,7 +278,6 @@ public class Board {
 		return ROWS;
 	}
 	public int getNumColumns() {
-		
 		return COLS;
 	}
 	public Set<BoardCell> getAdjList(int i, int j) {

@@ -1,6 +1,6 @@
 G,G,G,G,G,G,X,W,X,X,X,X,X,X,X,X,W,X,OT,O,O,O,O,O,O,O
-G,G,G,G,G,G,G,W,W,S,S,S,S,S,S,W,W,W,O,O,O,O,O,O,O,O
-G,G,G,G,G,G,G,W,W,S,S,S#,S,S,S,W,W,W,O,O#,O,O,O,O,O,O
+G,G#,G,G,G,G,G,W,W,S,S,S,S,S,S,W,W,W,O,O,O,O,O,O,O,O
+G,G,G*,G,G,G,G,W,W,S,S,S#,S,S,S,W,W,W,O,O#,O,O,O,O,O,O
 GK,G,G,G,G,G,G,W,W,S,S,S,S,S,S,W,W,W,O,O,O*,O,O,O,O,O
 X,W,W,W,W,W,W^,W,W>,S,S,S*,S,S,S,W,W,W,O,O,O,O,O,O,O,O
 W,W,W,Wv,W,W,W,W,W,S,S,S,S,S,S,W,W,W,O,O,O,O,O,O,O,O
