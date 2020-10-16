@@ -117,5 +117,9 @@ public class BoardCell {
 		return col;
 	}
 
+	public boolean isSecretPassage() {
+		return isSecretPassage;
+	}
+
 }
 

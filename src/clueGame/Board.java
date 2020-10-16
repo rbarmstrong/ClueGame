@@ -36,40 +36,39 @@ public class Board {
 		for(int i = 0; i < ROWS; i++) {
 			for(int j = 0; j < COLS; j++) {
 				if(i - 1 >= 0) {
-					if(grid[i - 1][j].isDoorway()) {
-						grid[i][j].addToAdjList(doorCalc(this.getCell(i - 1, j)));
-						doorCalc(this.getCell(i - 1, j)).addToAdjList(grid[i][j]);
-					}else if(grid[i - 1][j].getRoomChar() == 'W') {
+					if(grid[i - 1][j].getRoomChar() == 'W') {
 						grid[i][j].addToAdjList(this.getCell(i - 1,j));
 					}
 				}
 				if(j - 1 >= 0) {
-					if(grid[i][j - 1].isDoorway()) {
-						grid[i][j].addToAdjList(doorCalc(this.getCell(i, j - 1)));
-						doorCalc(this.getCell(i, j - 1)).addToAdjList(grid[i][j]);
-					}else if(grid[i][j - 1].getRoomChar() == 'W') {
+					if(grid[i][j - 1].getRoomChar() == 'W') {
 						grid[i][j].addToAdjList(this.getCell(i,j - 1));
 					}
 				}
 				if(i + 1 < ROWS) {
-					if(grid[i + 1][j].isDoorway()) {
-						grid[i][j].addToAdjList(doorCalc(this.getCell(i + 1, j)));
-						doorCalc(this.getCell(i + 1, j)).addToAdjList(grid[i][j]);
-					}else if(grid[i + 1][j].getRoomChar() == 'W') {
+					if(grid[i + 1][j].getRoomChar() == 'W') {
 						grid[i][j].addToAdjList(this.getCell(i + 1,j));
 					}
 				}
 				if(j + 1 < COLS) {
-					if(grid[i][j + 1].isDoorway()) {
-						grid[i][j].addToAdjList(doorCalc(this.getCell(i, j + 1)));
-						doorCalc(this.getCell(i, j + 1)).addToAdjList(grid[i][j]);
-					}else if(grid[i][j + 1].getRoomChar() == 'W') {
+					if(grid[i][j + 1].getRoomChar() == 'W') {
 						grid[i][j].addToAdjList(this.getCell(i,j + 1));
 					}
+				}
+				if(grid[i][j].isDoorway()) {
+					grid[i][j].addToAdjList(doorCalc(this.getCell(i, j)));
+					doorCalc(this.getCell(i, j)).addToAdjList(grid[i][j]);
+				}
+				if(grid[i][j].isSecretPassage()) {
+					System.out.println(rooms.get(grid[i][j].getRoomChar()).getCenterCell());
+					rooms.get(grid[i][j].getRoomChar()).getCenterCell().addToAdjList(secretPassageCalc(grid[i][j]));
 				}
 			}
 		}
 
+	}
+	private BoardCell secretPassageCalc(BoardCell cell) {
+		return rooms.get(cell.getSecretPassage()).getCenterCell();
 	}
 	
 	private BoardCell doorCalc(BoardCell cell) {
@@ -223,8 +222,10 @@ public class Board {
 					grid[i][j].setDoorDirection(DoorDirection.DOWN);
 					break;
 				default:
-					grid[i][j].setIsSecretPassage(true);
-					grid[i][j].setSecretPassage(currVal.charAt(1));
+					if(currVal.charAt(1) != '\n' && currVal.charAt(1) != '\r') {
+						grid[i][j].setIsSecretPassage(true);
+						grid[i][j].setSecretPassage(currVal.charAt(1));
+					}
 				}
 
 			}
