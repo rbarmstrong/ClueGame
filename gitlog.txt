@@ -1,3 +1,27 @@
+commit 13dd01098f7414cb848414f62f19c17d553df61e
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Fri Oct 16 19:55:20 2020 -0600
+
+    Fixed BoardAdjTargetTest.java tests to test for the correct things. All tests in the tests package now pass.
+
+commit 5d07b88dbe8e1bad8bc192a186f554ed55871250
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Oct 16 14:34:32 2020 -0600
+
+    All BoardAdjTargetTest306 passed. Non 306 still has errors
+
+commit 7406f66aeaf342561d55ee6f00de1e07a620964e
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Oct 16 14:21:01 2020 -0600
+
+    8 of 9 tests working on test306
+
+commit 040b92a455ffaaa680b1ec7034949ad5942c2e54
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Oct 16 13:05:13 2020 -0600
+
+    Created doorCalc function
+
 commit 08f0f1046bafc29289de048755b0ef16a7f86517
 Author: Andrew Taylor <astaylor@mines.edu>
 Date:   Mon Oct 12 23:55:12 2020 -0600
