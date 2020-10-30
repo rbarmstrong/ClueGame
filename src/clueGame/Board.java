@@ -141,12 +141,12 @@ public class Board {
 			numLines++;
 		}
 		scan = new Scanner(new File(layoutConfigFile));
-		for(int i = 0; i < numLines - 1; i++) {
-			scan.nextLine();
-		}
+//		for(int i = 0; i < numLines - 1; i++) {
+//			scan.nextLine();
+//		}
 		scan.useDelimiter(",");
 		while(scan.hasNext()) {
-			String temp = scan.next();
+			scan.next();
 			numCols++;
 		}
 		ROWS = numLines;
@@ -194,6 +194,8 @@ public class Board {
 			}
 			grid[i][j].setRoomChar(currChar); //sets the character in the created grid
 			grid[i][j].setIsRoom(rooms.get(currChar).getIsRoom()); //sets whether each cell is a room
+			
+			//TODO add tempCell = grid[i][j];
 			if(currVal.length() > 1) {
 				switch(currVal.charAt(1)) {
 				case '*':
@@ -283,7 +285,4 @@ public class Board {
 	public Set<BoardCell> getAdjList(int i, int j) {
 		return grid[i][j].getAdjList();
 	}
-	
-	
-	
 }
