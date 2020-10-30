@@ -4,8 +4,8 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Board {
-	private static int ROWS;
-	private static int COLS;
+	private static int rows;
+	private static int cols;
 	private BoardCell[][] grid;
 	private Set<BoardCell> targets;
 	private Set<BoardCell> visited;
@@ -33,8 +33,8 @@ public class Board {
 	{
 		loadConfigFiles();
 		//create adjacency list for each cell in the grid
-		for(int i = 0; i < ROWS; i++) {
-			for(int j = 0; j < COLS; j++) {
+		for(int i = 0; i < rows; i++) {
+			for(int j = 0; j < cols; j++) {
 				if(i - 1 >= 0) {
 					if(grid[i - 1][j].getRoomChar() == 'W') {
 						grid[i][j].addToAdjList(this.getCell(i - 1,j));
@@ -45,12 +45,12 @@ public class Board {
 						grid[i][j].addToAdjList(this.getCell(i,j - 1));
 					}
 				}
-				if(i + 1 < ROWS) {
+				if(i + 1 < rows) {
 					if(grid[i + 1][j].getRoomChar() == 'W') {
 						grid[i][j].addToAdjList(this.getCell(i + 1,j));
 					}
 				}
-				if(j + 1 < COLS) {
+				if(j + 1 < cols) {
 					if(grid[i][j + 1].getRoomChar() == 'W') {
 						grid[i][j].addToAdjList(this.getCell(i,j + 1));
 					}
@@ -141,20 +141,20 @@ public class Board {
 			numLines++;
 		}
 		scan = new Scanner(new File(layoutConfigFile));
-//		for(int i = 0; i < numLines - 1; i++) {
-//			scan.nextLine();
-//		}
+		for(int i = 0; i < numLines - 1; i++) {
+			scan.nextLine();
+		}
 		scan.useDelimiter(",");
 		while(scan.hasNext()) {
 			scan.next();
 			numCols++;
 		}
-		ROWS = numLines;
-		COLS = numCols;
-		grid = new BoardCell[ROWS][COLS]; //initialize grid to the provided dimensions
+		rows = numLines;
+		cols = numCols;
+		grid = new BoardCell[rows][cols]; //initialize grid to the provided dimensions
 		//fill grid with empty cells
-		for(int i = 0; i < ROWS; i++) {
-			for(int j = 0; j < COLS; j++) {
+		for(int i = 0; i < rows; i++) {
+			for(int j = 0; j < cols; j++) {
 				grid[i][j] = new BoardCell(i,j);
 			}
 		}
@@ -180,13 +180,13 @@ public class Board {
 			scan.next();
 			columnCount++;
 		}
-		if(columnCount != COLS) {
+		if(columnCount != cols) {
 			throw new BadConfigFormatException();
 		}
 		
 		scan = new Scanner(currLine);
 		scan.useDelimiter(",");
-		for(int j = 0; j < COLS; j++) {
+		for(int j = 0; j < cols; j++) {
 			String currVal = scan.next();
 			char currChar = currVal.charAt(0);
 			if(!rooms.containsKey(currChar)) {
@@ -277,10 +277,10 @@ public class Board {
 	}
 	
 	public int getNumRows() {
-		return ROWS;
+		return rows;
 	}
 	public int getNumColumns() {
-		return COLS;
+		return cols;
 	}
 	public Set<BoardCell> getAdjList(int i, int j) {
 		return grid[i][j].getAdjList();
