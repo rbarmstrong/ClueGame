@@ -193,40 +193,41 @@ public class Board {
 				scan.close();
 				throw new BadConfigFormatException();
 			}
-			grid[i][j].setRoomChar(currChar); //sets the character in the created grid
-			grid[i][j].setIsRoom(rooms.get(currChar).getIsRoom()); //sets whether each cell is a room
 			
-			//TODO add tempCell = grid[i][j];
+			BoardCell tempCell = grid[i][j];
+			tempCell.setRoomChar(currChar); //sets the character in the created grid
+			tempCell.setIsRoom(rooms.get(currChar).getIsRoom()); //sets whether each cell is a room
+			
 			if(currVal.length() > 1) {
 				switch(currVal.charAt(1)) {
 				case '*':
-					grid[i][j].setIsRoomCenter(true);
-					rooms.get(currVal.charAt(0)).setCenterCell(grid[i][j]);
+					tempCell.setIsRoomCenter(true);
+					rooms.get(currVal.charAt(0)).setCenterCell(tempCell);
 					break;
 				case '#':
-					grid[i][j].setIsRoomLabel(true);
-					rooms.get(currVal.charAt(0)).setLabelCell(grid[i][j]);
+					tempCell.setIsRoomLabel(true);
+					rooms.get(currVal.charAt(0)).setLabelCell(tempCell);
 					break;
 				case '^':
-					grid[i][j].setisDoorway(true);
-					grid[i][j].setDoorDirection(DoorDirection.UP);
+					tempCell.setisDoorway(true);
+					tempCell.setDoorDirection(DoorDirection.UP);
 					break;
 				case '>':
-					grid[i][j].setisDoorway(true);
-					grid[i][j].setDoorDirection(DoorDirection.RIGHT);
+					tempCell.setisDoorway(true);
+					tempCell.setDoorDirection(DoorDirection.RIGHT);
 					break;
 				case '<':
-					grid[i][j].setisDoorway(true);
-					grid[i][j].setDoorDirection(DoorDirection.LEFT);
+					tempCell.setisDoorway(true);
+					tempCell.setDoorDirection(DoorDirection.LEFT);
 					break;
 				case 'v':
-					grid[i][j].setisDoorway(true);
-					grid[i][j].setDoorDirection(DoorDirection.DOWN);
+					tempCell.setisDoorway(true);
+					tempCell.setDoorDirection(DoorDirection.DOWN);
 					break;
 				default:
 					if(currVal.charAt(1) != '\n' && currVal.charAt(1) != '\r') {
-						grid[i][j].setIsSecretPassage(true);
-						grid[i][j].setSecretPassage(currVal.charAt(1));
+						tempCell.setIsSecretPassage(true);
+						tempCell.setSecretPassage(currVal.charAt(1));
 					}
 				}
 			}
