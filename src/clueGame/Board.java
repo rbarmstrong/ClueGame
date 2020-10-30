@@ -180,16 +180,17 @@ public class Board {
 			scan.next();
 			columnCount++;
 		}
+		scan.close();
 		if(columnCount != cols) {
 			throw new BadConfigFormatException();
 		}
-		
 		scan = new Scanner(currLine);
 		scan.useDelimiter(",");
 		for(int j = 0; j < cols; j++) {
 			String currVal = scan.next();
 			char currChar = currVal.charAt(0);
 			if(!rooms.containsKey(currChar)) {
+				scan.close();
 				throw new BadConfigFormatException();
 			}
 			grid[i][j].setRoomChar(currChar); //sets the character in the created grid
@@ -228,10 +229,9 @@ public class Board {
 						grid[i][j].setSecretPassage(currVal.charAt(1));
 					}
 				}
-
 			}
 		}
-
+		scan.close();
 	}
 
 	
