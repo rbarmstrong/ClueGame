@@ -7,7 +7,6 @@ public class Room {
 	private boolean isRoom;
 	private BoardCell centerCell;
 	private BoardCell labelCell;
-	private ArrayList<BoardCell> entrances; 
 	
 	
 	
