@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Room {
 	private String name;
-	private char letter;
 	private boolean isRoom;
 	private BoardCell centerCell;
 	private BoardCell labelCell;
@@ -19,7 +18,6 @@ public class Room {
 	public Room(String name, char letter, boolean isRoom) {
 		super();
 		this.name = name;
-		this.letter = letter;
 		this.isRoom = isRoom;
 	}
 	
