@@ -1,3 +1,63 @@
+commit fd5c110aa3e6b18a5b66ae1b056894e63c9e640e
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Oct 30 17:08:07 2020 -0600
+
+    instead of hard refrencing, changed to variable for redability
+
+commit 524d7f9a4d40ade41d26ecdf791ccda6edaca2d8
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Oct 30 17:04:06 2020 -0600
+
+    Removed unused imports from files
+
+commit 530872ac082dd48fe2cb09bac14c10fa4ffdec6f
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Oct 30 17:02:40 2020 -0600
+
+    changed ROWS and COLS to rows and cols, not final anymore
+
+commit ece892ebaca07927729bb20a8506641d23d57fa4
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Oct 30 16:55:02 2020 -0600
+
+    removed unused entrances array in room.java
+
+commit ee6eb238b5e747c988522ea0f97753ab7f96952b
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Oct 30 16:54:05 2020 -0600
+
+    Removed unused letter variable in room.java
+
+commit 7dc9a593d5c36b68d10e87fc1f036c2366de90a5
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Oct 30 16:52:13 2020 -0600
+
+    added serial version ID to fix an error
+
+commit 73726a1380903f66583edd2081aa68c1521724c2
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Oct 30 16:47:09 2020 -0600
+
+    Closed scanner to fix resource leak
+
+commit 396ddaf5dfddcdb4d67d61da7b27d13a71e65ec9
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Oct 30 16:42:07 2020 -0600
+
+    added some code to fix a reader error
+
+commit f16bd126045ae936e1e9710531364d8a8abeb136
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Oct 30 14:00:54 2020 -0600
+
+    Removed unnessary section of code
+
+commit 28ab6a67e8977d684d27ff25c9f27f5bd15a1ca9
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Fri Oct 16 19:56:35 2020 -0600
+
+    Updated gitlog.txt
+
 commit 13dd01098f7414cb848414f62f19c17d553df61e
 Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
 Date:   Fri Oct 16 19:55:20 2020 -0600
