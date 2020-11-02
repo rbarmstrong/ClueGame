@@ -13,8 +13,8 @@ public class Board {
 	private static String layoutConfigFile;
 	private static String setupConfigFile;
 	private static ArrayList<Card> deck;
-	
-	//private static map<Character, Room>;
+	private static ArrayList<Player> players;
+	private Solution theAnswer;
 
 	/*
 	 * variable and methods used for singleton pattern
@@ -33,6 +33,7 @@ public class Board {
 	 */
 	public void initialize()
 	{
+		deck = new ArrayList<>();
 		loadConfigFiles();
 		//create adjacency list for each cell in the grid
 		for(int i = 0; i < rows; i++) {
@@ -66,10 +67,6 @@ public class Board {
 				}
 			}
 		}
-		deck = new ArrayList<>();
-		
-		
-
 	}
 	private BoardCell secretPassageCalc(BoardCell cell) {
 		return rooms.get(cell.getSecretPassage()).getCenterCell();
@@ -117,17 +114,42 @@ public class Board {
 		rooms = new HashMap<Character, Room>();
 		Scanner scan;
 		scan = new Scanner(new File(setupConfigFile));
+		char tempChar;
+		String tempLabel;
 		while(scan.hasNextLine()) {
 			String currLine = scan.nextLine();
 			if(!currLine.contains("//")) {
 				if(currLine.substring(0, currLine.indexOf(",")).contains("Room")){
-					char tempChar = currLine.charAt(currLine.length() - 1);
-					String tempLabel = currLine.substring(6, currLine.lastIndexOf(","));
+					tempChar = currLine.charAt(currLine.length() - 1);
+					tempLabel = currLine.substring(6, currLine.lastIndexOf(","));
 					rooms.put(tempChar, new Room(tempLabel,tempChar,true));
 				}else if(currLine.contains("Space")){
-					char tempChar = currLine.charAt(currLine.length() - 1);
-					String tempLabel = currLine.substring(7, currLine.lastIndexOf(","));
+					tempChar = currLine.charAt(currLine.length() - 1);
+					tempLabel = currLine.substring(7, currLine.lastIndexOf(","));
 					rooms.put(tempChar, new Room(tempLabel,tempChar,false));
+				}else if(currLine.contains("Weapon")){
+					tempLabel = currLine.substring(8);
+					Card tempCard = new Card();
+					tempCard.setCardName(tempLabel);
+					tempCard.setType(CardType.WEAPON);
+					deck.add(tempCard);
+				}else if(currLine.contains("Player")) {
+					currLine = currLine.substring(8);
+					if(currLine.contains("Human")) {
+						Human tempPlayer;
+						currLine = currLine.substring(7);
+					}else if(currLine.contains("Computer")){
+						Computer tempPlayer;
+						currLine = currLine.substring(10);
+					}else {
+						throw new BadConfigFormatException();
+					}
+					tempLabel = currLine.substring(0, currLine.indexOf(","));
+					currLine = currLine.substring(tempLabel.length() - 1, currLine.length() - 1);
+					System.out.println(currLine); //TODO
+					
+					
+					
 				}else {
 					throw new BadConfigFormatException();
 				}
@@ -294,5 +316,11 @@ public class Board {
 	}
 	public Set<BoardCell> getAdjList(int i, int j) {
 		return grid[i][j].getAdjList();
+	}
+	public ArrayList<Player> getPlayers() {
+		return players;
+	}
+	public ArrayList<Card> getDeck() {
+		return deck;
 	}
 }

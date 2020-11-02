@@ -19,9 +19,9 @@ Weapon, Bat
 Weapon, Sword
 Weapon, Taser
 //players
-George, Red, Human, 1, 7
-Henry, Blue, Computer, 1, 16
-Kathy, Yellow, Computer, 11, 3
-Jordan, Green, Computer, 16, 20
-Bartholomew, Purple, Computer, 22, 7
-Philip, Orange, Computer, 18, 13
+Player, Human, You, Red, 1, 7
+Player, Computer, Henry, Blue, 1, 16
+Player, Computer, Kathy, Yellow, 11, 3
+Player, Computer, Jordan, Green, 16, 20
+Player, Computer, Bartholomew, Purple, 22, 7
+Player, Computer, Philip, Orange, 18, 13
