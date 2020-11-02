@@ -317,7 +317,6 @@ public class Board {
 		Card tempCard;
 		while(needPerson || needWeapon || needRoom) {
 			tempCard = dealer.get(rand.nextInt(dealer.size()));
-			System.out.println(tempCard.getCardName());
 			if((tempCard.getType() == CardType.PERSON) && needPerson) {
 				theAnswer.setPerson(tempCard);
 				needPerson = false;
