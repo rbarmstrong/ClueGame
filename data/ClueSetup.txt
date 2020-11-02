@@ -1,4 +1,4 @@
-// Rooms and room cards
+// Rooms, room cards, weapons, players
 Room, TV Room, T
 Room, Kitchen, K
 Room, Master Bedroom, B
@@ -11,3 +11,17 @@ Room, Sun Room, S
 //other spaces on board
 Space, Unused, X
 Space, Walkway, W
+//weapons
+Weapon, Gun
+Weapon, Knife
+Weapon, Hammer
+Weapon, Bat
+Weapon, Sword
+Weapon, Taser
+//players
+George, Red, Human, 1, 7
+Henry, Blue, Computer, 1, 16
+Kathy, Yellow, Computer, 11, 3
+Jordan, Green, Computer, 16, 20
+Bartholomew, Purple, Computer, 22, 7
+Philip, Orange, Computer, 18, 13

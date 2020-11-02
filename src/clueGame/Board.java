@@ -12,6 +12,8 @@ public class Board {
 	private static HashMap<Character, Room> rooms;
 	private static String layoutConfigFile;
 	private static String setupConfigFile;
+	private static ArrayList<Card> deck;
+	
 	//private static map<Character, Room>;
 
 	/*
@@ -64,6 +66,9 @@ public class Board {
 				}
 			}
 		}
+		deck = new ArrayList<>();
+		
+		
 
 	}
 	private BoardCell secretPassageCalc(BoardCell cell) {
@@ -258,6 +263,10 @@ public class Board {
 		targets = new HashSet<BoardCell>();
 		visited.add(startCell);
 		findAllTargets(startCell, pathlength);
+	}
+	//TODO
+	public void deal() {
+		
 	}
 
 	public Set<BoardCell> getTargets() {
