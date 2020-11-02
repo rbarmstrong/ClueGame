@@ -304,11 +304,17 @@ public class Board {
 			players.get(playerCounter).updateHand(currCard);
 			dealer.remove(currCard);
 			playerCounter++;
+			if(playerCounter >= players.size()) {
+				playerCounter = 0;
+			}
 		}
 	}
 	
 	public void generateSolution() {
-		dealer = deck;
+		dealer = new ArrayList<Card>();
+		for (Card card : deck) {
+			dealer.add(card);
+		}
 		theAnswer = new Solution();
 		Random rand = new Random();
 		boolean needPerson = true;
