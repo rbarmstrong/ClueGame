@@ -295,7 +295,7 @@ public class Board {
 		findAllTargets(startCell, pathlength);
 	}
 	//TODO
-	public void deal() {
+	public void deal() { //deals cards not in solution to the players
 		generateSolution();
 		Random rand = new Random();
 		int playerCounter = 0;
@@ -310,7 +310,7 @@ public class Board {
 		}
 	}
 	
-	public void generateSolution() {
+	public void generateSolution() { //copies the deck to be used for dealing, chose 3 random cards for the solution
 		dealer = new ArrayList<Card>();
 		for (Card card : deck) {
 			dealer.add(card);
@@ -339,7 +339,7 @@ public class Board {
 		}
 	}
 	
-	public Color calcColor(String input) throws BadConfigFormatException {
+	public Color calcColor(String input) throws BadConfigFormatException { //changes a color string to a color type
 		switch(input) {
 		case "Red":
 			return Color.RED;
@@ -359,7 +359,7 @@ public class Board {
 			throw new BadConfigFormatException();
 		}
 	}
-	public void addToDeck(String name, CardType type) {
+	public void addToDeck(String name, CardType type) { //creates a new card and adds to deck.
 		Card tempCard = new Card();
 		tempCard.setCardName(name);
 		tempCard.setType(type);
