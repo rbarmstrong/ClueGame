@@ -16,6 +16,7 @@ public class Board {
 	private static String setupConfigFile;
 	private static ArrayList<Card> deck;
 	private static ArrayList<Player> players;
+	private static ArrayList<Card> dealer;
 	private Solution theAnswer;
 
 	/*
@@ -68,6 +69,7 @@ public class Board {
 				}
 			}
 		}
+		deal();
 	}
 	private BoardCell secretPassageCalc(BoardCell cell) {
 		return rooms.get(cell.getSecretPassage()).getCenterCell();
@@ -295,20 +297,41 @@ public class Board {
 	//TODO
 	public void deal() {
 		generateSolution();
-		for(int i = 0; i < players.size(); i++) {
-			
+		Random rand = new Random();
+		int playerCounter = 0;
+		while(dealer.size() != 0) {
+			Card currCard = dealer.get(rand.nextInt(dealer.size()));
+			players.get(playerCounter).updateHand(currCard);
+			dealer.remove(currCard);
+			playerCounter++;
 		}
 	}
 	
 	public void generateSolution() {
+		dealer = deck;
+		theAnswer = new Solution();
 		Random rand = new Random();
-		boolean hasPerson, hasWeapon, hasRoom;
-		while(!hasPerson && !hasWeapon && !hasRoom) {
-			rand.nextInt()
+		boolean needPerson = true;
+		boolean needWeapon = true;
+		boolean needRoom = true;
+		Card tempCard;
+		while(needPerson || needWeapon || needRoom) {
+			tempCard = dealer.get(rand.nextInt(dealer.size()));
+			System.out.println(tempCard.getCardName());
+			if((tempCard.getType() == CardType.PERSON) && needPerson) {
+				theAnswer.setPerson(tempCard);
+				needPerson = false;
+				dealer.remove(tempCard);
+			}else if((tempCard.getType() == CardType.WEAPON) && needWeapon) {
+				theAnswer.setWeapon(tempCard);
+				needWeapon = false;
+				dealer.remove(tempCard);
+			}else if((tempCard.getType() == CardType.ROOM) && needRoom) {
+				theAnswer.setRoom(tempCard);
+				needRoom = false;
+				dealer.remove(tempCard);
+			}
 		}
-		theAnswer.person;
-		theAnswer.weapon;
-		theAnswer.room;
 	}
 	
 	public Color calcColor(String input) throws BadConfigFormatException {
@@ -369,5 +392,11 @@ public class Board {
 	}
 	public ArrayList<Card> getDeck() {
 		return deck;
+	}
+	public Solution getSolution() {
+		return theAnswer;
+	}
+	public ArrayList<Card> getDealer() {
+		return dealer;
 	}
 }
