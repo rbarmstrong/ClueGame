@@ -1,7 +1,9 @@
 package clueGame;
+import java.awt.Color;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
+
 
 public class Board {
 	private static int rows;
@@ -33,7 +35,6 @@ public class Board {
 	 */
 	public void initialize()
 	{
-		deck = new ArrayList<>();
 		loadConfigFiles();
 		//create adjacency list for each cell in the grid
 		for(int i = 0; i < rows; i++) {
@@ -112,6 +113,8 @@ public class Board {
 	
 	public void loadSetupConfig() throws FileNotFoundException, BadConfigFormatException {
 		rooms = new HashMap<Character, Room>();
+		deck = new ArrayList<>();
+		players = new ArrayList<>();
 		Scanner scan;
 		scan = new Scanner(new File(setupConfigFile));
 		char tempChar;
@@ -123,32 +126,35 @@ public class Board {
 					tempChar = currLine.charAt(currLine.length() - 1);
 					tempLabel = currLine.substring(6, currLine.lastIndexOf(","));
 					rooms.put(tempChar, new Room(tempLabel,tempChar,true));
+					addToDeck(tempLabel, CardType.ROOM);
 				}else if(currLine.contains("Space")){
 					tempChar = currLine.charAt(currLine.length() - 1);
 					tempLabel = currLine.substring(7, currLine.lastIndexOf(","));
 					rooms.put(tempChar, new Room(tempLabel,tempChar,false));
 				}else if(currLine.contains("Weapon")){
 					tempLabel = currLine.substring(8);
-					Card tempCard = new Card();
-					tempCard.setCardName(tempLabel);
-					tempCard.setType(CardType.WEAPON);
-					deck.add(tempCard);
+					addToDeck(tempLabel, CardType.WEAPON);
 				}else if(currLine.contains("Player")) {
+					Player tempPlayer;
 					currLine = currLine.substring(8);
 					if(currLine.contains("Human")) {
-						Human tempPlayer;
+						tempPlayer = new Human();
 						currLine = currLine.substring(7);
 					}else if(currLine.contains("Computer")){
-						Computer tempPlayer;
+						tempPlayer = new Computer();
 						currLine = currLine.substring(10);
 					}else {
 						throw new BadConfigFormatException();
 					}
 					tempLabel = currLine.substring(0, currLine.indexOf(","));
-					currLine = currLine.substring(tempLabel.length() - 1, currLine.length() - 1);
-					System.out.println(currLine); //TODO
-					
-					
+					currLine = currLine.substring(tempLabel.length() + 2, currLine.length());
+					String colorString = currLine.substring(0, currLine.indexOf(","));
+					currLine = currLine.substring(currLine.indexOf(",") + 2);
+					tempPlayer.setColor(calcColor(colorString));
+					tempPlayer.setName(tempLabel);
+					tempPlayer.setLocation(Integer.parseInt(currLine.substring(0,currLine.indexOf(","))),Integer.parseInt(currLine.substring(currLine.indexOf(",") + 2)));
+					addToDeck(tempLabel, CardType.PERSON);
+					players.add(tempPlayer);
 					
 				}else {
 					throw new BadConfigFormatException();
@@ -289,6 +295,33 @@ public class Board {
 	//TODO
 	public void deal() {
 		
+	}
+	
+	public Color calcColor(String input) throws BadConfigFormatException {
+		switch(input) {
+		case "Red":
+			return Color.RED;
+		case "Orange":
+			return Color.ORANGE;
+		case "Yellow":
+			return Color.YELLOW;
+		case "Green":
+			return Color.GREEN;
+		case "Blue":
+			return Color.BLUE;
+		case "Purple":
+			return Color.MAGENTA;
+		case "Magenta":
+			return Color.MAGENTA;
+		default:
+			throw new BadConfigFormatException();
+		}
+	}
+	public void addToDeck(String name, CardType type) {
+		Card tempCard = new Card();
+		tempCard.setCardName(name);
+		tempCard.setType(type);
+		deck.add(tempCard);
 	}
 
 	public Set<BoardCell> getTargets() {
