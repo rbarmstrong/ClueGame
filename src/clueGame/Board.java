@@ -294,7 +294,21 @@ public class Board {
 	}
 	//TODO
 	public void deal() {
-		
+		generateSolution();
+		for(int i = 0; i < players.size(); i++) {
+			
+		}
+	}
+	
+	public void generateSolution() {
+		Random rand = new Random();
+		boolean hasPerson, hasWeapon, hasRoom;
+		while(!hasPerson && !hasWeapon && !hasRoom) {
+			rand.nextInt()
+		}
+		theAnswer.person;
+		theAnswer.weapon;
+		theAnswer.room;
 	}
 	
 	public Color calcColor(String input) throws BadConfigFormatException {
