@@ -1,3 +1,57 @@
+commit dabfe9e487e900879e3624761e2b5a968aa34997
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Nov 2 15:03:09 2020 -0700
+
+    Code refactored into smaller functions for redability
+
+commit eba02143ab8f9356127146ccb03e5099c5807a06
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Nov 2 14:49:19 2020 -0700
+
+    All tests working and passed
+
+commit b8e6a23f3c8fe8612f9780713e430eccea8ce780
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Nov 2 14:38:25 2020 -0700
+
+    testSolutionDealt and testCardsDealt finished, failing.
+
+commit f2b78f845d47a290620cee883b8d7670db6adcdd
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Nov 2 14:34:50 2020 -0700
+
+    testCardLoad passed
+
+commit fc47e52d7e3bf6e5b65594a762e040d5a023c001
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Nov 2 14:13:09 2020 -0700
+
+    Test testCardLoad created
+
+commit 594045e8609d25725d2861bb03897d5cea139fe0
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Nov 2 13:59:46 2020 -0700
+
+    People and Weapons loaded in correctly, test passes.
+
+commit 9bcc0c7873f3d7a8ad08b533b570343f19b355ef
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Nov 2 13:11:25 2020 -0700
+
+    First test created, Fails
+
+commit 31924c84469beed595e3cbc3cfb96722b1ec196f
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Nov 2 12:29:53 2020 -0700
+
+    Weapons and Players added to clue setup. New classes made
+
+commit 9f64734afc22b763fe1c92810044d7f1ec389dee
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Oct 30 17:13:10 2020 -0600
+
+    updated gitlog
+
 commit fd5c110aa3e6b18a5b66ae1b056894e63c9e640e
 Author: Andrew Taylor <astaylor@mines.edu>
 Date:   Fri Oct 30 17:08:07 2020 -0600
