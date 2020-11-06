@@ -9,7 +9,7 @@ public abstract class Player {
 	protected int row, col;
 	private ArrayList<Card> hand;
 	private ArrayList<Card> cardsSeen;
-	private Card[] test = new Card[3];
+	private Solution suggestion;
 	
 	public Player() {
 		hand = new ArrayList<>();

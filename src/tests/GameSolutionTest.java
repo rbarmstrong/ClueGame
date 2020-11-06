@@ -1,6 +1,7 @@
 package tests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -30,6 +31,23 @@ public class GameSolutionTest {
 		
 		@Test
 		public void testCheckAccusation() {
-			board.setSolution("", weapon, room);
+			board.setSolution("Jordan", "Taser", "Office");
+			Card jordan = new Card("Jordan", CardType.PERSON);
+			Card kathy = new Card("Kathy", CardType.PERSON);
+			Card taser = new Card("Taser", CardType.WEAPON);
+			Card gun = new Card("Gun", CardType.WEAPON);
+			Card office = new Card("Office", CardType.ROOM);
+			Card kitchen = new Card("Kitchen", CardType.ROOM);
+			
+			Card[] trueCase = {jordan, taser, office};
+			Card[] falseCasePerson = {kathy, taser, office};
+			Card[] falseCaseWeapon = {jordan, gun, office};
+			Card[] falseCaseRoom = {jordan, taser, kitchen};
+			
+			assertTrue(board.checkAccusation(trueCase));
+			assertFalse(board.checkAccusation(falseCasePerson));
+			assertFalse(board.checkAccusation(falseCaseWeapon));
+			assertFalse(board.checkAccusation(falseCaseRoom));
+			
 		}
 }

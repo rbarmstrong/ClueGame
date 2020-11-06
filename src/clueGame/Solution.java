@@ -5,6 +5,15 @@ public class Solution {
 	public Card room;
 	public Card weapon;
 	
+	public Solution(Card person, Card room, Card weapon) {
+		this.person = person;
+		this.room = room;
+		this.weapon = weapon;
+	}
+	
+	public Solution() {
+		
+	}
 	public Card getPerson() {
 		return person;
 	}
