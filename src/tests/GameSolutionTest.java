@@ -75,4 +75,9 @@ public class GameSolutionTest {
 			Solution suggestion3 = new Solution(bat, philip, sunRoom);
 			assertEquals(philip, player.disproveSuggestion(suggestion3));
 		}
+		
+		@Test
+		public void testHandleSuggestion() {
+			
+		}
 }
