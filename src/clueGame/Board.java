@@ -370,7 +370,7 @@ public class Board {
 		boolean found = true;
 		for(int i = 0; i < 3; i++) {
 			if(!(accusation[i].equals(theAnswer.person) || accusation[i].equals(theAnswer.room) || accusation[i].equals(theAnswer.weapon))) {
-				found = false;
+				found = false;	
 			}
 		}
 		return found;
@@ -410,6 +410,20 @@ public class Board {
 	}
 	public Solution getSolution() {
 		return theAnswer;
+	}
+	public void setSolution(String person, String weapon, String room) {
+		Card personCard = new Card();
+		Card weaponCard = new Card();
+		Card roomCard = new Card();
+		personCard.setCardName(person);
+		personCard.setType(CardType.PERSON);
+		weaponCard.setCardName(weapon);
+		weaponCard.setType(CardType.WEAPON);
+		roomCard.setCardName(room);
+		roomCard.setType(CardType.ROOM);
+		theAnswer.setPerson(personCard);
+		theAnswer.setWeapon(weaponCard);
+		theAnswer.setRoom(roomCard);
 	}
 	public ArrayList<Card> getDealer() {
 		return dealer;
