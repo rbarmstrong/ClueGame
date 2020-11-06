@@ -375,6 +375,14 @@ public class Board {
 		}
 		return found;
 	}
+	
+	public boolean handleSuggestion(Solution suggestion) {
+		for(int i = 0; i < players.size(); i++) {
+			if()
+			for(int j = 0; j < players.get(i).getHand().size(); j++)
+				if(players.get(i).getHand().get(j)
+		}
+	}
 
 	public Set<BoardCell> getTargets() {
 		//gets the targets last created by calcTargets()
