@@ -1,4 +1,4 @@
-package clueGame;
+	package clueGame;
 
 import java.util.Random;
 
@@ -6,7 +6,7 @@ public class Computer extends Player {
 
 	public Computer() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 	
 	public void createSuggestion() {
@@ -14,8 +14,15 @@ public class Computer extends Player {
 		Random rand = new Random();
 		boolean needPerson = true;
 		boolean needWeapon = true;
-		boolean needRoom = true;
 		Card tempCard;
+		boolean needRoom = false;
+		
+		if(!needRoom) {
+			String name = Board.getInstance().getRoom(Board.getInstance().getCell(row, col)).getName();
+			tempCard = new Card(name, CardType.ROOM);
+			suggestion.setRoom(tempCard);
+		}
+		
 		while(needPerson || needWeapon || needRoom) {
 			tempCard = filtered.get(rand.nextInt(filtered.size()));
 			if((tempCard.getType() == CardType.PERSON) && needPerson) {
