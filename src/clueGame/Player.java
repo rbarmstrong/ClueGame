@@ -41,7 +41,9 @@ public abstract class Player {
 		if(hand.contains(suggestion.weapon)) {
 			temp.add(suggestion.weapon);
 		}
-		
+		if(temp.size() == 0) {
+			return null;
+		}
 		return temp.get(rand.nextInt(temp.size()));
 		
 	}

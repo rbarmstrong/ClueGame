@@ -74,6 +74,10 @@ public class GameSolutionTest {
 			
 			Solution suggestion3 = new Solution(philip, sunRoom, bat);
 			assertEquals(sunRoom, player.disproveSuggestion(suggestion3));
+			
+			Solution suggestion4 = new Solution(bart,diningRoom,bat);
+			assertEquals(null, player.disproveSuggestion(suggestion4));
+
 		}
 		
 		@Test
