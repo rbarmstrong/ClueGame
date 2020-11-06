@@ -11,7 +11,9 @@ import org.junit.jupiter.api.Test;
 import clueGame.Board;
 import clueGame.Card;
 import clueGame.CardType;
+import clueGame.Human;
 import clueGame.Player;
+import clueGame.Solution;
 
 public class GameSolutionTest {
 
@@ -49,6 +51,28 @@ public class GameSolutionTest {
 			assertFalse(board.checkAccusation(falseCasePerson));
 			assertFalse(board.checkAccusation(falseCaseWeapon));
 			assertFalse(board.checkAccusation(falseCaseRoom));
+		}
+		
+		@Test
+		public void testDisproveSuggestion() {
+			Player player = new Human();
+			Card bart = new Card("Bartholomew", CardType.PERSON);
+			Card bat = new Card("Bat", CardType.WEAPON);
+			Card diningRoom = new Card("Dining Room", CardType.ROOM);
+			Card philip = new Card("Philip", CardType.PERSON);
+			Card knife = new Card("Knife", CardType.WEAPON);
+			Card sunRoom = new Card("Sun Room", CardType.ROOM);
+			player.updateHand(philip);
+			player.updateHand(knife);
+			player.updateHand(sunRoom);
 			
+			Solution suggestion1 = new Solution(bart, bat, sunRoom);
+			assertEquals(sunRoom, player.disproveSuggestion(suggestion1));
+			
+			Solution suggestion2 = new Solution(knife, diningRoom, bart);
+			assertEquals(knife, player.disproveSuggestion(suggestion2));
+			
+			Solution suggestion3 = new Solution(bat, philip, sunRoom);
+			assertEquals(philip, player.disproveSuggestion(suggestion3));
 		}
 }

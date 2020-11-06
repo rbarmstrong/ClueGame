@@ -9,27 +9,44 @@ public abstract class Player {
 	protected int row, col;
 	private ArrayList<Card> hand;
 	private ArrayList<Card> cardsSeen;
-	private Solution suggestion;
+	protected ArrayList<Card> filtered;
+	protected Solution suggestion;
 	
 	public Player() {
 		hand = new ArrayList<>();
+		cardsSeen = new ArrayList<>();
 	}
 
 	public void updateHand(Card card) {
 		hand.add(card);
+		cardsSeen.add(card);
 	}
 	
 	public void updateSeen(Card card) {
 		cardsSeen.add(card);
 	}
 	
-	public Card disproveSuggestion(Card[] card) {
-		for(int i = 0; i < 3; i++) {
-			if(hand.contains(card[i])) {
-				return card[i];
-			}
+	public Card disproveSuggestion(Solution suggestion) {
+		if(hand.contains(suggestion.person)) {
+			return suggestion.person;
+		}else if(hand.contains(suggestion.room)) {
+			return suggestion.room;
+		}else if(hand.contains(suggestion.weapon)) {
+			return suggestion.weapon;
+		}else {
+			return null;
 		}
-		return null;
+	}
+	
+	public ArrayList<Card> filterChoices(){
+		filtered = new ArrayList<>();
+		for(int i = 0; i < Board.deck.size(); i++) {
+			filtered.add(Board.deck.get(i));
+		}
+		for(int i = 0; i < cardsSeen.size(); i++) {
+			filtered.remove(cardsSeen.get(i));
+		}
+		return filtered;
 	}
 	
 	public void setName(String name) {

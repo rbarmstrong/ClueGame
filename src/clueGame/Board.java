@@ -14,7 +14,7 @@ public class Board {
 	private static HashMap<Character, Room> rooms;
 	private static String layoutConfigFile;
 	private static String setupConfigFile;
-	private static ArrayList<Card> deck;
+	protected static ArrayList<Card> deck;
 	private static ArrayList<Player> players;
 	private static ArrayList<Card> dealer;
 	private Solution theAnswer;
