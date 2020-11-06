@@ -360,9 +360,9 @@ public class Board {
 		}
 	}
 	public void addToDeck(String name, CardType type) { //creates a new card and adds to deck.
-		Card tempCard = new Card();
-		tempCard.setCardName(name);
-		tempCard.setType(type);
+		Card tempCard = new Card(name, type);
+		//tempCard.setCardName(name);
+		//tempCard.setType(type);
 		deck.add(tempCard);
 	}
 	
@@ -412,15 +412,15 @@ public class Board {
 		return theAnswer;
 	}
 	public void setSolution(String person, String weapon, String room) {
-		Card personCard = new Card();
-		Card weaponCard = new Card();
-		Card roomCard = new Card();
-		personCard.setCardName(person);
-		personCard.setType(CardType.PERSON);
-		weaponCard.setCardName(weapon);
-		weaponCard.setType(CardType.WEAPON);
-		roomCard.setCardName(room);
-		roomCard.setType(CardType.ROOM);
+		Card personCard = new Card(person, CardType.PERSON);
+		Card weaponCard = new Card(weapon, CardType.WEAPON);
+		Card roomCard = new Card(room, CardType.ROOM);
+//		personCard.setCardName(person);
+//		personCard.setType(CardType.PERSON);
+//		weaponCard.setCardName(weapon);
+//		weaponCard.setType(CardType.WEAPON);
+//		roomCard.setCardName(room);
+//		roomCard.setType(CardType.ROOM);
 		theAnswer.setPerson(personCard);
 		theAnswer.setWeapon(weaponCard);
 		theAnswer.setRoom(roomCard);
