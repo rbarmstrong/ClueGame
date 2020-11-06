@@ -54,7 +54,7 @@ public class GameSolutionTest {
 		}
 		
 		@Test
-		public void testDisproveSuggestion() {
+		public void testDisproveSuggestion() { //This test works because although there are random elements, the seed is constant
 			Player player = new Human();
 			Card bart = new Card("Bartholomew", CardType.PERSON);
 			Card bat = new Card("Bat", CardType.WEAPON);
@@ -66,14 +66,14 @@ public class GameSolutionTest {
 			player.updateHand(knife);
 			player.updateHand(sunRoom);
 			
-			Solution suggestion1 = new Solution(bart, bat, sunRoom);
-			assertEquals(sunRoom, player.disproveSuggestion(suggestion1));
+			Solution suggestion1 = new Solution(philip, diningRoom, bat);
+			assertEquals(philip, player.disproveSuggestion(suggestion1)); 
 			
-			Solution suggestion2 = new Solution(knife, diningRoom, bart);
+			Solution suggestion2 = new Solution(bart, diningRoom, knife);
 			assertEquals(knife, player.disproveSuggestion(suggestion2));
 			
-			Solution suggestion3 = new Solution(bat, philip, sunRoom);
-			assertEquals(philip, player.disproveSuggestion(suggestion3));
+			Solution suggestion3 = new Solution(philip, sunRoom, bat);
+			assertEquals(sunRoom, player.disproveSuggestion(suggestion3));
 		}
 		
 		@Test
