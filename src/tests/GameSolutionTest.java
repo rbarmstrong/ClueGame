@@ -32,6 +32,7 @@ public class GameSolutionTest {
 		@Test
 		public void testCheckAccusation() {
 			board.setSolution("Jordan", "Taser", "Office");
+			
 			Card jordan = new Card("Jordan", CardType.PERSON);
 			Card kathy = new Card("Kathy", CardType.PERSON);
 			Card taser = new Card("Taser", CardType.WEAPON);

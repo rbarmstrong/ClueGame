@@ -27,6 +27,9 @@ public class Card {
 //	}
 
 	public boolean equals(Card target) {
+		if((target.getCardName() == this.cardName) && (this.type == target.getType())) {
+			return true;
+		}
 		return false;
 	}
 }

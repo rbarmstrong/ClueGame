@@ -415,12 +415,6 @@ public class Board {
 		Card personCard = new Card(person, CardType.PERSON);
 		Card weaponCard = new Card(weapon, CardType.WEAPON);
 		Card roomCard = new Card(room, CardType.ROOM);
-//		personCard.setCardName(person);
-//		personCard.setType(CardType.PERSON);
-//		weaponCard.setCardName(weapon);
-//		weaponCard.setType(CardType.WEAPON);
-//		roomCard.setCardName(room);
-//		roomCard.setType(CardType.ROOM);
 		theAnswer.setPerson(personCard);
 		theAnswer.setWeapon(weaponCard);
 		theAnswer.setRoom(roomCard);
