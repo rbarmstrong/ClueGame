@@ -294,7 +294,7 @@ public class Board {
 		visited.add(startCell);
 		findAllTargets(startCell, pathlength);
 	}
-	//TODO
+
 	public void deal() { //deals cards not in solution to the players
 		generateSolution();
 		Random rand = new Random();
@@ -364,6 +364,16 @@ public class Board {
 		tempCard.setCardName(name);
 		tempCard.setType(type);
 		deck.add(tempCard);
+	}
+	
+	public boolean checkAccusation(Card[] accusation) { //TODO dont know if this works
+		boolean found = true;
+		for(int i = 0; i < 3; i++) {
+			if(!(accusation[i].equals(theAnswer.person) || accusation[i].equals(theAnswer.room) || accusation[i].equals(theAnswer.weapon))) {
+				found = false;
+			}
+		}
+		return found;
 	}
 
 	public Set<BoardCell> getTargets() {

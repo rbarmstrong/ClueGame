@@ -8,14 +8,28 @@ public abstract class Player {
 	private Color color;
 	protected int row, col;
 	private ArrayList<Card> hand;
-	
+	private ArrayList<Card> cardsSeen;
+	private Card[] test = new Card[3];
 	
 	public Player() {
 		hand = new ArrayList<>();
 	}
 
-	void updateHand(Card card) {
+	public void updateHand(Card card) {
 		hand.add(card);
+	}
+	
+	public void updateSeen(Card card) {
+		cardsSeen.add(card);
+	}
+	
+	public Card disproveSuggestion(Card[] card) {
+		for(int i = 0; i < 3; i++) {
+			if(hand.contains(card[i])) {
+				return card[i];
+			}
+		}
+		return null;
 	}
 	
 	public void setName(String name) {
