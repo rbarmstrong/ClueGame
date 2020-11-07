@@ -1,5 +1,6 @@
 	package clueGame;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Computer extends Player {
@@ -23,7 +24,7 @@ public class Computer extends Player {
 			suggestion.setRoom(tempCard);
 		}
 		
-		while(needPerson || needWeapon || needRoom) {
+		while(needPerson || needWeapon) {
 			tempCard = filtered.get(rand.nextInt(filtered.size()));
 			if((tempCard.getType() == CardType.PERSON) && needPerson) {
 				suggestion.setPerson(tempCard);
@@ -33,12 +34,20 @@ public class Computer extends Player {
 				suggestion.setWeapon(tempCard);
 				needWeapon = false;
 				filtered.remove(tempCard);
-			}else if((tempCard.getType() == CardType.ROOM) && needRoom) {
-				suggestion.setRoom(tempCard);
-				needRoom = false;
-				filtered.remove(tempCard);
 			}
 		}
+	}
+	
+	public Room selectTargetRoom() {
+		Random rand = new Random();
+		filtered = filterChoices();
+		ArrayList<Card> visitedRooms = new ArrayList<>();
+		for(Card c: filtered) {
+			if(c.getType() == CardType.ROOM) {
+				visitedRooms.add(c);
+			}
+		}
+		return Board.getInstance().getRoom(visitedRooms.get(rand.nextInt(visitedRooms.size())).getRoomChar());
 	}
 
 }

@@ -11,7 +11,7 @@ public class Board {
 	private BoardCell[][] grid;
 	private Set<BoardCell> targets;
 	private Set<BoardCell> visited;
-	private static HashMap<Character, Room> rooms;
+	protected static HashMap<Character, Room> rooms;
 	private static String layoutConfigFile;
 	private static String setupConfigFile;
 	protected static ArrayList<Card> deck;
@@ -128,7 +128,7 @@ public class Board {
 					tempChar = currLine.charAt(currLine.length() - 1);
 					tempLabel = currLine.substring(6, currLine.lastIndexOf(","));
 					rooms.put(tempChar, new Room(tempLabel,tempChar,true));
-					addToDeck(tempLabel, CardType.ROOM);
+					addToDeck(tempLabel, CardType.ROOM, tempChar);
 				}else if(currLine.contains("Space")){
 					tempChar = currLine.charAt(currLine.length() - 1);
 					tempLabel = currLine.substring(7, currLine.lastIndexOf(","));
@@ -366,6 +366,13 @@ public class Board {
 		deck.add(tempCard);
 	}
 	
+	public void addToDeck(String name, CardType type, char roomChar) { //creates a room card and adds to deck.
+		Card tempCard = new Card(name, type, roomChar);
+		//tempCard.setCardName(name);
+		//tempCard.setType(type);
+		deck.add(tempCard);
+	}
+	
 	public boolean checkAccusation(Card[] accusation) { //TODO dont know if this works
 		boolean found = true;
 		for(int i = 0; i < 3; i++) {
@@ -376,12 +383,21 @@ public class Board {
 		return found;
 	}
 	
-	public boolean handleSuggestion(Solution suggestion) {
-		for(int i = 0; i < players.size(); i++) {
-			if()
-			for(int j = 0; j < players.get(i).getHand().size(); j++)
-				if(players.get(i).getHand().get(j)
+	public Card handleSuggestion(Player player, Solution suggestion) {
+		int playerIndex = players.indexOf(player) + 1;
+		if (playerIndex >= players.size()) {
+			playerIndex = 0;
 		}
+		while (playerIndex != players.indexOf(player)) {
+			if(players.get(playerIndex).disproveSuggestion(suggestion) != null) {
+				return players.get(playerIndex).disproveSuggestion(suggestion);
+			}
+			playerIndex++;
+			if (playerIndex >= players.size()) {
+				playerIndex = 0;
+			}
+		}
+		return null;
 	}
 
 	public Set<BoardCell> getTargets() {
@@ -429,5 +445,14 @@ public class Board {
 	}
 	public ArrayList<Card> getDealer() {
 		return dealer;
+	}
+	public void setTestPlayers() {
+		players = new ArrayList<Player>();
+		Player humanPlayer = new Human();
+		Player compPlayer1 = new Computer();
+		Player compPlayer2 = new Computer();
+		players.add(humanPlayer);
+		players.add(compPlayer1);
+		players.add(compPlayer2);
 	}
 }

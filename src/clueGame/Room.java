@@ -2,6 +2,7 @@ package clueGame;
 
 public class Room {
 	private String name;
+	private char letter;
 	private boolean isRoom;
 	private BoardCell centerCell;
 	private BoardCell labelCell;
@@ -16,6 +17,7 @@ public class Room {
 		super();
 		this.name = name;
 		this.isRoom = isRoom;
+		this.letter = letter;
 	}
 	
 	public void setCenterCell(BoardCell cell) {
@@ -41,7 +43,10 @@ public class Room {
 	public boolean getIsRoom() {
 		return isRoom;
 	}
-
+	
+	public char getLetter() {
+		return letter;
+	}
 	
 
 }
