@@ -9,7 +9,7 @@ public abstract class Player {
 	private Color color;
 	protected int row, col;
 	private ArrayList<Card> hand;
-	private ArrayList<Card> cardsSeen;
+	public ArrayList<Card> cardsSeen;
 	protected ArrayList<Card> filtered;
 	protected Solution suggestion;
 	protected int pathLength;
@@ -17,6 +17,7 @@ public abstract class Player {
 	public Player() {
 		hand = new ArrayList<>();
 		cardsSeen = new ArrayList<>();
+		suggestion = new Solution();
 	}
 	
 	public Player(int length) {
@@ -55,12 +56,18 @@ public abstract class Player {
 	
 	public ArrayList<Card> filterChoices(){
 		filtered = new ArrayList<>();
+		boolean seen;
 		for(int i = 0; i < Board.deck.size(); i++) {
-			filtered.add(Board.deck.get(i));
-		}
-		for(int i = 0; i < cardsSeen.size(); i++) {
-			filtered.remove(cardsSeen.get(i));
-		}
+			seen = false;
+			for (int j = 0; j < cardsSeen.size(); j++) {
+				if (Board.deck.get(i).getCardName().equals(cardsSeen.get(j).getCardName())) {
+					seen = true;
+				}
+			}
+			if (!seen) {
+				filtered.add(Board.deck.get(i));
+			}
+		}		
 		return filtered;
 	}
 	

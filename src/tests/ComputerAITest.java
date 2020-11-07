@@ -45,15 +45,17 @@ public class ComputerAITest {
 			
 			board.setTestPlayers();
 
-			board.getPlayers().get(1).updateHand(kitchen);
-			board.getPlayers().get(1).updateHand(diningRoom);
-			board.getPlayers().get(1).updateHand(jordan);
+			
 			
 			Computer compPlayer = (Computer) board.getPlayers().get(1);
-
+			
+			compPlayer.updateHand(kitchen);
+			compPlayer.updateHand(diningRoom);
+			compPlayer.updateHand(jordan);
+			
 			//if room in list and not in hand
-			board.calcTargets(board.getCell(7,  20), 2);
-			assertEquals(board.getCell(6, 19), compPlayer.selectTargets());
+			board.calcTargets(board.getCell(6,  20), 2);
+			assertEquals(board.getCell(3, 20), compPlayer.selectTargets());
 			
 			//if no rooms in list
 			Set<BoardCell> visitedCells = new HashSet<BoardCell>();
@@ -69,17 +71,17 @@ public class ComputerAITest {
 			assertTrue(visitedCells.contains(board.getCell(7, 23)));
 
 			//if only room in list is room in hand
-			visitedCells = new HashSet<BoardCell>();
+			Set<BoardCell> visitedCellsSequel = new HashSet<BoardCell>();
 			for (int i = 0; i < 100; i++) {
-				board.calcTargets(board.getCell(7, 16), 2);
-				visitedCells.add(compPlayer.selectTargets());
+				board.calcTargets(board.getCell(8, 18), 2);
+				visitedCellsSequel.add(compPlayer.selectTargets());
 			}
-			assertTrue(visitedCells.contains(board.getCell(8, 17)));
-			assertTrue(visitedCells.contains(board.getCell(6, 17)));
-			assertTrue(visitedCells.contains(board.getCell(5, 16)));
-			assertTrue(visitedCells.contains(board.getCell(6, 15)));
-			assertTrue(visitedCells.contains(board.getCell(7, 14)));
-			assertTrue(visitedCells.contains(board.getCell(8, 15)));
+			assertTrue(visitedCellsSequel.contains(board.getCell(12, 20)));
+			assertTrue(visitedCellsSequel.contains(board.getCell(6, 18)));
+			assertTrue(visitedCellsSequel.contains(board.getCell(7, 17)));
+			assertTrue(visitedCellsSequel.contains(board.getCell(7, 19)));
+			assertTrue(visitedCellsSequel.contains(board.getCell(8, 16)));
+			assertTrue(visitedCellsSequel.contains(board.getCell(8, 20)));
 		}
 		@Test
 		public void computerPlayerCreateSuggestion() {
@@ -104,17 +106,40 @@ public class ComputerAITest {
 			Computer compPlayer = (Computer) board.getPlayers().get(1);
 			compPlayer.setLocation(3, 20);
 			
+			Set<String> chosenWeapons = new HashSet<String>();
+			Set<String> chosenPersons = new HashSet<String>();
+			for (int i = 0; i < 100; i++) {
+				Solution suggestion = compPlayer.createSuggestion();
+				chosenWeapons.add(suggestion.getWeapon().getCardName());
+				chosenPersons.add(suggestion.getPerson().getCardName());
+			}
 			
+			assertTrue(chosenWeapons.contains("Gun"));
+			assertTrue(chosenWeapons.contains("Knife"));
+			assertTrue(chosenWeapons.contains("Bat"));
+			assertTrue(chosenWeapons.contains("Sword"));
+			assertTrue(chosenWeapons.contains("Taser"));
+			assertTrue(chosenWeapons.contains("Hammer"));
+			assertTrue(chosenPersons.contains("You"));
+			assertTrue(chosenPersons.contains("Jordan"));
+			assertTrue(chosenPersons.contains("Henry"));
+			assertTrue(chosenPersons.contains("Kathy"));
+			assertTrue(chosenPersons.contains("Philip"));
+			assertTrue(chosenPersons.contains("Bartholomew"));
 			
 			for(int i = 0; i < board.getDeck().size(); i++) {
-				if(board.getDeck().get(i).equals(hammer) || (board.getDeck().get(i).equals(henry))) {
+				if(!(board.getDeck().get(i).getCardName().equals("Hammer")) && !(board.getDeck().get(i).getCardName().equals("Henry"))) {
+					
 					compPlayer.updateHand(board.getDeck().get(i));
 				}
 			}
 			Solution test1 = compPlayer.createSuggestion();
-			Solution answer1 = new Solution(henry,office,hammer);
-			assertTrue(test1.equals(answer1));
-			
+			board.setSolution("Henry","Office","Hammer");
+			Card[] solutionArray = new Card[] {test1.person, test1.room, test1.weapon};
+			assertTrue(test1.person.getCardName().equals("Henry"));
+			assertTrue(test1.room.getCardName().equals("Office"));
+			assertTrue(test1.weapon.getCardName().equals("Hammer"));
+
 		}
 
 }
