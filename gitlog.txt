@@ -1,3 +1,111 @@
+commit 71574ee01e5db48e0373f8f902cd702831c31cfa
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Nov 6 22:13:01 2020 -0700
+
+    All tests pass
+
+commit 0f7fdf7398aee5ed743df20d84bcebcdf395d3bd
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Nov 6 20:31:16 2020 -0700
+
+    testSelectTarget Passes
+
+commit 7fb623809d740864c86a814b69ea0346ee6235bb
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Nov 6 18:35:24 2020 -0700
+
+    testSelectTargets fais
+
+commit a6727be5e2069e29f2ce48c0eb7cdacb6507a48a
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Nov 6 18:06:50 2020 -0700
+
+    testHandleSuggestion passes
+
+commit 7c9efd008d8421900e38bf7791865ab9a0a48589
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Nov 6 16:45:29 2020 -0700
+
+    commit so partner can work
+
+commit b06ec36e0e2bd25f8d1773ee56a52f55245c585d
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Nov 6 16:07:59 2020 -0700
+
+    Final update on testDisproveSuggestion. everything working
+
+commit 1281c0dfb97f35a4475baa4e02f43603f7e2bf01
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Nov 6 16:01:44 2020 -0700
+
+    added random element to returned card in suggestion. updated tests
+
+commit b84329ed0ce2dd9eb262df54d03750a358e6d73f
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Nov 6 15:38:56 2020 -0700
+
+    createSuggestion function created
+
+commit 7a68603977b4dfb638fff68ee61011ab117b2967
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Nov 6 15:15:17 2020 -0700
+
+    testHandleSuggestion fails
+
+commit 67636c37a4042ba64e7ce431629b8f73d35b7a05
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Nov 6 14:52:44 2020 -0700
+
+    testDisproveSuggest passes
+
+commit 3e19a96d813436f20975fe5c55d400ff2876c98b
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Nov 6 14:21:28 2020 -0700
+
+    testCheckAccusation passes testDisprovesuggest created
+
+commit e737f313fe2122677754d7731a02dc67f1fe5b8b
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Nov 6 14:16:01 2020 -0700
+
+    testCheckAccusation fails
+
+commit 8f0f18d697b900cd2a7a313819b9370fb8f45974
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Nov 6 14:06:12 2020 -0700
+
+    created testCheckAccusation
+
+commit b5a69030a8c35aa0076c7ca92d3b98071655520f
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Fri Nov 6 13:59:02 2020 -0700
+
+    Started on testCheckAccusation, commented out setters for Card and added constructor to replace them
+
+commit ee5f352040333ae186709dd0e9eb9f826ca19eca
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Fri Nov 6 13:39:19 2020 -0700
+
+    Added setSolution method, created blank classes for GameSolutionTest and ComputerAITest
+
+commit 3087146cfce669844ae1ec395f4d17b6d00837eb
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Nov 6 12:31:10 2020 -0700
+
+    created some functions
+
+commit 0f2316811965aa440c7cd1e86fed87681d142267
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Nov 2 15:39:02 2020 -0700
+
+    added files
+
+commit 92ca7ce8d2c7f4f001baa1c599e83e18f47adb78
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Nov 2 15:03:42 2020 -0700
+
+    Gitlog updated
+
 commit dabfe9e487e900879e3624761e2b5a968aa34997
 Author: Andrew Taylor <astaylor@mines.edu>
 Date:   Mon Nov 2 15:03:09 2020 -0700

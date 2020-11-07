@@ -86,29 +86,13 @@ public class ComputerAITest {
 		@Test
 		public void computerPlayerCreateSuggestion() {
 			
-			Card office = new Card("Office", CardType.ROOM, 'O');
-			
-			Card you = new Card("You", CardType.PERSON);
-			Card jordan = new Card("Jordan", CardType.PERSON);
-			Card henry = new Card("Henry", CardType.PERSON);
-			Card kathy = new Card("Kathy", CardType.PERSON);
-			Card philip = new Card("Philip", CardType.PERSON);
-			Card bart = new Card("Bartholomew", CardType.PERSON);
-
-			Card gun = new Card("Gun", CardType.WEAPON);
-			Card knife = new Card("Knife", CardType.WEAPON);
-			Card bat = new Card("Bat", CardType.WEAPON);
-			Card sword = new Card("Sword", CardType.WEAPON);
-			Card taser = new Card("Taser", CardType.WEAPON);
-			Card hammer = new Card("Hammer", CardType.WEAPON);
-			
 			board.setTestPlayers();
 			Computer compPlayer = (Computer) board.getPlayers().get(1);
 			compPlayer.setLocation(3, 20);
 			
 			Set<String> chosenWeapons = new HashSet<String>();
 			Set<String> chosenPersons = new HashSet<String>();
-			for (int i = 0; i < 100; i++) {
+			for (int i = 0; i < 100; i++) { //tests
 				Solution suggestion = compPlayer.createSuggestion();
 				chosenWeapons.add(suggestion.getWeapon().getCardName());
 				chosenPersons.add(suggestion.getPerson().getCardName());

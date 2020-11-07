@@ -33,7 +33,7 @@ public class GameSolutionTest {
 		}
 		
 		@Test
-		public void testCheckAccusation() {
+		public void testCheckAccusation() { //Checks accusations;
 			board.setSolution("Jordan", "Taser", "Office");
 			
 			Card jordan = new Card("Jordan", CardType.PERSON);
