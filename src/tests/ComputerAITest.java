@@ -30,6 +30,9 @@ public class ComputerAITest {
 		
 		@Test
 		public void testSelectTargets() {
-			
+			Card office = new Card("Office", CardType.ROOM, 'O');
+			Card kitchen = new Card("Kitchen", CardType.ROOM, 'K');
+			Card diningRoom = new Card("Dining Room", CardType.ROOM, 'D');
+			Card sunRoom = new Card("Sun Room", CardType.ROOM, 'S');
 		}
 }

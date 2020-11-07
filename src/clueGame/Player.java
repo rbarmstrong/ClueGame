@@ -12,10 +12,15 @@ public abstract class Player {
 	private ArrayList<Card> cardsSeen;
 	protected ArrayList<Card> filtered;
 	protected Solution suggestion;
+	protected int pathLength;
 	
 	public Player() {
 		hand = new ArrayList<>();
 		cardsSeen = new ArrayList<>();
+	}
+	
+	public Player(int length) {
+		pathLength = length;
 	}
 
 	public void updateHand(Card card) {
