@@ -454,5 +454,6 @@ public class Board {
 		players.add(humanPlayer);
 		players.add(compPlayer1);
 		players.add(compPlayer2);
+		
 	}
 }
