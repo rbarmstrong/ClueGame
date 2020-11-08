@@ -1,5 +1,6 @@
 	package clueGame;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Set;
@@ -9,6 +10,14 @@ public class Computer extends Player {
 	public Computer() {
 		super();
 
+	}
+	
+	public Computer(String name, int row, int col, Color color) {
+		super();
+		this.name = name;
+		this.row = row;
+		this.col = col;
+		this.setColor(color);
 	}
 	
 	public Solution createSuggestion() {

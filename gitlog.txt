@@ -1,3 +1,10 @@
+#ALL DONE WITH PAIRED PROGRAMMING
+commit e02de31bfd07e823fc8a1e4dd4701e19efd97e46
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Nov 6 22:18:59 2020 -0700
+
+    added comments
+
 commit 71574ee01e5db48e0373f8f902cd702831c31cfa
 Author: Andrew Taylor <astaylor@mines.edu>
 Date:   Fri Nov 6 22:13:01 2020 -0700

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public abstract class Player {
-	private String name;
+	protected String name;
 	private Color color;
 	protected int row, col;
 	private ArrayList<Card> hand;
@@ -78,6 +78,7 @@ public abstract class Player {
 	public void setColor(Color color) {
 		this.color = color;
 	}
+	
 
 	public String getName() {
 		return name;
