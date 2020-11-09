@@ -20,7 +20,7 @@ public class GameControlPanel extends JPanel{
 	private JTextField guess;
 	private JTextField guessResult;
 
-	public GameControlPanel() {
+	public GameControlPanel() { //Constructor 
 		// Create a layout with 2 rows
 		setLayout(new GridLayout(2,0));
 		JPanel panel = createTopPanel();
@@ -29,7 +29,7 @@ public class GameControlPanel extends JPanel{
 		add(panel);
 	}
 
-	private JPanel createTopPanel() {
+	private JPanel createTopPanel() { //Creates the top panel and calls functions to make sub panel
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(1,4));
 		panel.add(createTurnPanel());
@@ -40,7 +40,7 @@ public class GameControlPanel extends JPanel{
 		return panel;
 	}
 
-	private JPanel createTurnPanel() {
+	private JPanel createTurnPanel() { //Sub panel that shows whos turn it is
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(2,0));
 		JLabel turnLabel = new JLabel("Whose turn?");
@@ -51,7 +51,7 @@ public class GameControlPanel extends JPanel{
 		return panel;
 	}
 
-	private JPanel createRollPanel() {
+	private JPanel createRollPanel() { //Sub panel that shows the roll
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(1,2));
 		JLabel turnLabel = new JLabel("Roll: ");
@@ -69,7 +69,7 @@ public class GameControlPanel extends JPanel{
 		return panel;
 	}
 
-	private JPanel createAccusationButton() {
+	private JPanel createAccusationButton() { //sub panel that creates accusation button
 		JButton button = new JButton("Make Accusation");
 		button.setFont(new Font("Font", Font.BOLD, 15));
 		JPanel panel = new JPanel();
@@ -78,7 +78,7 @@ public class GameControlPanel extends JPanel{
 		return panel;
 	}
 
-	private JPanel createNextButton() {
+	private JPanel createNextButton() { //sub panel that creates next turn button
 		JButton button = new JButton("NEXT!");
 		button.setFont(new Font("Font", Font.PLAIN, 30));
 		JPanel panel = new JPanel();
@@ -88,7 +88,7 @@ public class GameControlPanel extends JPanel{
 	}
 
 
-	private JPanel createBottomPanel() { //TODO
+	private JPanel createBottomPanel() { //creates bottom panel and calls functions to make sub panels
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(0,2));
 		panel.add(createGuessPanel());
@@ -96,43 +96,45 @@ public class GameControlPanel extends JPanel{
 		return panel;
 	}
 
-	private JPanel createGuessPanel() {
+	private JPanel createGuessPanel() { //creates panel to display guess
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(1,0));
 		guess = new JTextField(20);
+		guess.setEditable(false);
 		panel.setBorder(new TitledBorder (new EtchedBorder(), "Guess"));
 		panel.add(guess);
 		return panel;
 	}
 	
-	private JPanel createGuessResultPanel() {
+	private JPanel createGuessResultPanel() { //creates panel to display result of guess
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(1,0));
 		guessResult = new JTextField(20);
+		guessResult.setEditable(false);
 		panel.setBorder(new TitledBorder (new EtchedBorder(), "Guess Result"));
 		panel.add(guessResult);
 		return panel;
 	}
 	
-	public void setTurn(Player player, int rollVal) {
+	public void setTurn(Player player, int rollVal) { //sets turn, updates displayed name and color, along with roll
 		currName.setText(player.getName());
 		currName.setBackground(player.getColor());
 		roll.setText(Integer.toString(rollVal));
 	}
 	
-	public void setGuess(String guess) {
+	public void setGuess(String guess) { //setter
 		this.guess.setText(guess);
 	}
 
-	public void setGuessResult(String guessResult) {
+	public void setGuessResult(String guessResult) { //setter
 		this.guessResult.setText(guessResult);
 	}
 	
-	public void setCurrName(String name) {
+	public void setCurrName(String name) { //setter
 		currName.setText(name);
 	}
 	
-	public void setRoll(int rollVal) {
+	public void setRoll(int rollVal) { //setter
 		roll.setText(Integer.toString(rollVal));
 	}
 
