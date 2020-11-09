@@ -1,4 +1,27 @@
-#ALL DONE WITH PAIRED PROGRAMMING
+commit 4d49cae2f6e1a7d53087e4afa81df7739512ea0f
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Sun Nov 8 17:09:30 2020 -0700
+
+    Added comments
+
+commit 16cc90d70cd9990014b9e0f66be44ce4061e3b23
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Sun Nov 8 17:04:22 2020 -0700
+
+    Changed Make Accusation button to bold font
+
+commit 01a932a3f34b2102fa2375d03a8f9903051cbcaf
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Sun Nov 8 17:01:30 2020 -0700
+
+    GameControlPanel created and working
+
+commit 687f83ddd0c1e550834132998a416d42ee744ce1
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Sun Nov 8 16:34:21 2020 -0700
+
+    GameControlPanel basic functions working. Asthetic needs work
+
 commit e02de31bfd07e823fc8a1e4dd4701e19efd97e46
 Author: Andrew Taylor <astaylor@mines.edu>
 Date:   Fri Nov 6 22:18:59 2020 -0700
