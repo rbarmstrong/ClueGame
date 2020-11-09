@@ -71,7 +71,7 @@ public class GameControlPanel extends JPanel{
 
 	private JPanel createAccusationButton() {
 		JButton button = new JButton("Make Accusation");
-		button.setFont(new Font("Font", Font.PLAIN, 15));
+		button.setFont(new Font("Font", Font.BOLD, 15));
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(1,0));
 		panel.add(button);
