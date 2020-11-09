@@ -2,6 +2,7 @@ package clueGame;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
@@ -9,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
@@ -53,23 +55,34 @@ public class GameControlPanel extends JPanel{
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(1,2));
 		JLabel turnLabel = new JLabel("Roll: ");
+		turnLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		
+		turnLabel.setFont(new Font("Font", Font.PLAIN, 30));
+		
 		panel.add(turnLabel);
 		roll = new JTextField(20);
+		
+		roll.setFont(new Font("Font", Font.PLAIN, 30));
 		roll.setEditable(false);
+		
 		panel.add(roll);
 		return panel;
 	}
 
 	private JPanel createAccusationButton() {
 		JButton button = new JButton("Make Accusation");
+		button.setFont(new Font("Font", Font.PLAIN, 15));
 		JPanel panel = new JPanel();
+		panel.setLayout(new GridLayout(1,0));
 		panel.add(button);
 		return panel;
 	}
 
 	private JPanel createNextButton() {
 		JButton button = new JButton("NEXT!");
+		button.setFont(new Font("Font", Font.PLAIN, 30));
 		JPanel panel = new JPanel();
+		panel.setLayout(new GridLayout(1,0));
 		panel.add(button);
 		return panel;
 	}
@@ -114,6 +127,14 @@ public class GameControlPanel extends JPanel{
 	public void setGuessResult(String guessResult) {
 		this.guessResult.setText(guessResult);
 	}
+	
+	public void setCurrName(String name) {
+		currName.setText(name);
+	}
+	
+	public void setRoll(int rollVal) {
+		roll.setText(Integer.toString(rollVal));
+	}
 
 	public static void main(String[] args) {
 		GameControlPanel panel = new GameControlPanel();  // create the panel
@@ -122,9 +143,6 @@ public class GameControlPanel extends JPanel{
 		frame.setSize(750, 180);  // size the frame
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // allow it to close
 		frame.setVisible(true); // make it visible
-
-		GameControlPanel gui = new GameControlPanel();
-		frame.add(gui, BorderLayout.CENTER);
 
 
 		// test filling in the data
