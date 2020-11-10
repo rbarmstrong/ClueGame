@@ -448,12 +448,11 @@ public class Board {
 	}
 	public void setTestPlayers() {
 		players = new ArrayList<Player>();
-		Player humanPlayer = new Human();
-		Player compPlayer1 = new Computer();
-		Player compPlayer2 = new Computer();
+		Player humanPlayer = new Human(Color.CYAN);
+		Player compPlayer1 = new Computer(Color.RED);
+		Player compPlayer2 = new Computer(Color.GREEN);
 		players.add(humanPlayer);
 		players.add(compPlayer1);
 		players.add(compPlayer2);
-		
 	}
 }

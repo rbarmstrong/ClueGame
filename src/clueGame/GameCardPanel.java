@@ -26,8 +26,13 @@ public class GameCardPanel extends JPanel {
 	private int sizePeoplePanel;
 	private int sizeRoomsPanel;
 	private int sizeWeaponsPanel;
+	private Player player;
+	private ArrayList<Player> players;
 	
-	public GameCardPanel() {
+	public GameCardPanel(Player player, ArrayList<Player> players) {
+		this.player = player;
+		this.players = players;
+		lookAtCards();
 		setLayout(new GridLayout(1,0));
 		JPanel panel = createCardPanel();
 		panel.setBorder(new TitledBorder(new EtchedBorder(), "Known Cards"));
@@ -45,7 +50,7 @@ public class GameCardPanel extends JPanel {
 	
 	private JPanel createPeoplePanel() {
 		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(sizePeoplePanel,0));
+		panel.setLayout(new GridLayout(sizePeoplePanel,1));
 		panel.setBorder(new TitledBorder(new EtchedBorder(), "People"));
 		JLabel handLabel = new JLabel("In Hand:");
 		JLabel seenLabel = new JLabel("Seen:");
@@ -62,7 +67,7 @@ public class GameCardPanel extends JPanel {
 	
 	private JPanel createRoomsPanel() {
 		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(sizeRoomsPanel,0));
+		panel.setLayout(new GridLayout(sizeRoomsPanel,1));
 		panel.setBorder(new TitledBorder(new EtchedBorder(), "Rooms"));
 		JLabel handLabel = new JLabel("In Hand:");
 		JLabel seenLabel = new JLabel("Seen:");
@@ -79,7 +84,7 @@ public class GameCardPanel extends JPanel {
 	
 	private JPanel createWeaponsPanel() {
 		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(sizeWeaponsPanel,0));
+		panel.setLayout(new GridLayout(sizeWeaponsPanel,1));
 		panel.setBorder(new TitledBorder(new EtchedBorder(), "People"));
 		JLabel handLabel = new JLabel("In Hand:");
 		JLabel seenLabel = new JLabel("Seen:");
@@ -94,7 +99,7 @@ public class GameCardPanel extends JPanel {
 		return panel;
 	}
 	
-	public void countCards(Player player) {
+	public void lookAtCards() {
 		int numPeopleHand = 0;
 		int numRoomsHand = 0;
 		int numWeaponsHand = 0;
@@ -104,34 +109,63 @@ public class GameCardPanel extends JPanel {
 		sizePeoplePanel = 2;
 		sizeRoomsPanel = 2;
 		sizeWeaponsPanel = 2;
+		JTextField text;
+		handPeople = new ArrayList<JTextField>();
+		seenPeople = new ArrayList<JTextField>();
+		handRooms = new ArrayList<JTextField>();
+		seenRooms = new ArrayList<JTextField>();
+		handWeapons = new ArrayList<JTextField>();
+		seenWeapons = new ArrayList<JTextField>();
 		
 		for (Card card : player.getHand()) {
+			text = new JTextField();
+			text.setText(card.getCardName());
+			text.setEditable(false);
+			text.setBackground(player.getColor());
 			if (card.getType() == CardType.PERSON) {
 				numPeopleHand++;
+				handPeople.add(text);
 			}
 			if (card.getType() == CardType.ROOM) {
 				numRoomsHand++;
+				handRooms.add(text);
 			}
 			if (card.getType() == CardType.WEAPON) {
 				numWeaponsHand++;
+				handWeapons.add(text);
 			}
 		}
 		
 		for (Card card: player.getCardsSeen()) {
-			if (card.getType() == CardType.PERSON) {
-				numPeopleSeen++;
-			}
-			if (card.getType() == CardType.ROOM) {
-				numRoomsSeen++;
-			}
-			if (card.getType() == CardType.WEAPON) {
-				numWeaponsSeen++;
+			if (!player.getHand().contains(card)) {
+				Color ownerColor = Color.GRAY;
+				for (Player player : players) {
+					if (player.getHand().contains(card)) {
+						ownerColor = player.getColor();
+					}
+				}
+				text = new JTextField();
+				text.setText(card.getCardName());
+				text.setEditable(false);
+				text.setBackground(ownerColor);
+				if (card.getType() == CardType.PERSON) {
+					numPeopleSeen++;
+					seenPeople.add(text);
+				}
+				if (card.getType() == CardType.ROOM) {
+					numRoomsSeen++;
+					seenRooms.add(text);
+				}
+				if (card.getType() == CardType.WEAPON) {
+					numWeaponsSeen++;
+					seenWeapons.add(text);
+				}
 			}
 		}
 		
 		int numPeople[] = {numPeopleHand, numPeopleSeen};
-		int numRooms[] = {numPeopleHand, numPeopleSeen};
-		int numWeapons[] = {numPeopleHand, numPeopleSeen};
+		int numRooms[] = {numRoomsHand, numRoomsSeen};
+		int numWeapons[] = {numWeaponsHand, numWeaponsSeen};
 		
 		for (int numCards : numPeople) {
 			if (numCards == 0) {
@@ -162,12 +196,54 @@ public class GameCardPanel extends JPanel {
 	}
 	
 	public static void main(String[] args) {
+		Card jordan = new Card("Jordan", CardType.PERSON);
+		Card kathy = new Card("Kathy", CardType.PERSON);
+		Card taser = new Card("Taser", CardType.WEAPON);
+		Card gun = new Card("Gun", CardType.WEAPON);
+		Card office = new Card("Office", CardType.ROOM);
+		Card kitchen = new Card("Kitchen", CardType.ROOM);
+		Card bart = new Card("Bartholomew", CardType.PERSON);
+		Card bat = new Card("Bat", CardType.WEAPON);
+		Card diningRoom = new Card("Dining Room", CardType.ROOM);
+		Card philip = new Card("Philip", CardType.PERSON);
+		Card knife = new Card("Knife", CardType.WEAPON);
+		Card sunRoom = new Card("Sun Room", CardType.ROOM);
+		
+		Player dummy = new Human (Color.CYAN);
+		Player cpu1 = new Computer(Color.RED);
+		Player cpu2 = new Computer(Color.GREEN);
+		
+		dummy.updateHand(jordan);
+		dummy.updateHand(kathy);
+		dummy.updateHand(office);
+		dummy.updateSeen(taser);
+		dummy.updateSeen(gun);
+		dummy.updateSeen(kitchen);
+		dummy.updateSeen(knife);
+		dummy.updateSeen(bat);
+		
+		cpu1.updateHand(taser);
+		cpu1.updateHand(knife);
+		cpu1.updateHand(philip);
+
+		
+		cpu2.updateHand(gun);
+		cpu2.updateHand(kitchen);
+		cpu2.updateHand(bat);
+		
+		ArrayList<Player> players = new ArrayList<Player>();
+		players.add(dummy);
+		players.add(cpu1);
+		players.add(cpu2);
+		
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		GameCardPanel cardDisplay = new GameCardPanel();
+		GameCardPanel cardDisplay = new GameCardPanel(dummy, players);
 		frame.add(cardDisplay, BorderLayout.CENTER);
 		frame.setSize(180, 700);
 		frame.setVisible(true);
+		
+		
 	}
 
 }

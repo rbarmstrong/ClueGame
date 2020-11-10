@@ -12,6 +12,11 @@ public class Computer extends Player {
 
 	}
 	
+	public Computer(Color color) {
+		super();
+		this.setColor(color);
+	}
+	
 	public Computer(String name, int row, int col, Color color) {
 		super();
 		this.name = name;
