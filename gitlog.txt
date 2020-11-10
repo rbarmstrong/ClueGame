@@ -1,3 +1,29 @@
+Pair Programmed this assignment
+
+commit d0bf6887e38c5103797fc21a64161d775e29c249
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Mon Nov 9 20:43:53 2020 -0700
+
+    Added comments, refactored, added None text field when necessary
+
+commit cf8c655c162bb7ce6f7c744c711cb63a51df2ca9
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Mon Nov 9 20:01:37 2020 -0700
+
+    GameCardPanel complete, just need to add comments
+
+commit 0a67fb2527331250d4f2168d9432df80d40e86b1
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Mon Nov 9 16:01:57 2020 -0700
+
+    Got about halfway done with GameCardPanel.java, made some adjustments/refactored stuff here and there
+
+commit f9976a39d5d4e3ad376877c2d1d7425fdb8bf310
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Sun Nov 8 17:10:16 2020 -0700
+
+    Updated gitlog.txt
+
 commit 4d49cae2f6e1a7d53087e4afa81df7739512ea0f
 Author: Andrew Taylor <astaylor@mines.edu>
 Date:   Sun Nov 8 17:09:30 2020 -0700
