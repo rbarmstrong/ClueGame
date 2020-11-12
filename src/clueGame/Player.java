@@ -9,7 +9,7 @@ public abstract class Player {
 	private Color color;
 	protected int row, col;
 	private ArrayList<Card> hand;
-	public ArrayList<Card> cardsSeen;
+	private ArrayList<Card> cardsSeen;
 	protected ArrayList<Card> filtered;
 	protected Solution suggestion;
 	protected int pathLength;
@@ -100,5 +100,9 @@ public abstract class Player {
 	
 	public ArrayList<Card> getHand() {
 		return hand;
+	}
+	
+	public ArrayList<Card> getCardsSeen() {
+		return cardsSeen;
 	}
 }

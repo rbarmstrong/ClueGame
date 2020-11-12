@@ -1,7 +1,6 @@
 package tests;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.HashSet;
@@ -15,7 +14,6 @@ import clueGame.BoardCell;
 import clueGame.Card;
 import clueGame.CardType;
 import clueGame.Computer;
-import clueGame.Player;
 import clueGame.Solution;
 
 public class ComputerAITest {
@@ -38,14 +36,10 @@ public class ComputerAITest {
 		public void testSelectTargets() {
 			
 			Card jordan = new Card("Jordan", CardType.PERSON);
-			Card office = new Card("Office", CardType.ROOM, 'O');
 			Card kitchen = new Card("Kitchen", CardType.ROOM, 'K');
 			Card diningRoom = new Card("Dining Room", CardType.ROOM, 'D');
-			Card sunRoom = new Card("Sun Room", CardType.ROOM, 'S');
 			
 			board.setTestPlayers();
-
-			
 			
 			Computer compPlayer = (Computer) board.getPlayers().get(1);
 			
@@ -119,7 +113,6 @@ public class ComputerAITest {
 			}
 			Solution test1 = compPlayer.createSuggestion();
 			board.setSolution("Henry","Office","Hammer");
-			Card[] solutionArray = new Card[] {test1.person, test1.room, test1.weapon};
 			assertTrue(test1.person.getCardName().equals("Henry"));
 			assertTrue(test1.room.getCardName().equals("Office"));
 			assertTrue(test1.weapon.getCardName().equals("Hammer"));

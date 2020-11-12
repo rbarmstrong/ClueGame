@@ -14,7 +14,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
-public class GameControlPanel extends JPanel{
+public class GameControlPanel extends JPanel {
 	private JTextField currName;
 	private JTextField roll;
 	private JTextField guess;
@@ -62,6 +62,7 @@ public class GameControlPanel extends JPanel{
 		panel.add(turnLabel);
 		roll = new JTextField(20);
 		
+		roll.setHorizontalAlignment(SwingConstants.CENTER);
 		roll.setFont(new Font("Font", Font.PLAIN, 30));
 		roll.setEditable(false);
 		
