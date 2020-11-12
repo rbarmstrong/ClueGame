@@ -21,7 +21,7 @@ Weapon, Taser
 //players
 Player, Human, You, Red, 1, 7
 Player, Computer, Henry, Blue, 1, 16
-Player, Computer, Kathy, Yellow, 11, 3
+Player, Computer, Kathy, White, 11, 3
 Player, Computer, Jordan, Green, 16, 20
 Player, Computer, Bartholomew, Purple, 22, 7
 Player, Computer, Philip, Orange, 18, 13

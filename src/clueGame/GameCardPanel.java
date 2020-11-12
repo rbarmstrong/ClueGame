@@ -29,6 +29,7 @@ public class GameCardPanel extends JPanel {
 	public GameCardPanel(Player player, ArrayList<Player> players) { // Constructor (ArrayList object is only there for now so that tests will work)
 		this.player = player;
 		this.players = players;
+		setSize(400, 700);
 		lookAtCards(); // Cards loaded and sorted before panel is made
 		setLayout(new GridLayout(1,0));
 		JPanel panel = createCardPanel();
@@ -56,14 +57,18 @@ public class GameCardPanel extends JPanel {
 			panel.add(person);
 		}
 		if (handPeople.size() == 0) { // If there are no cards to be displayed in this section, display "None"
-			panel.add(new JTextField("None"));
+			JTextField none = new JTextField("None	");
+			none.setEditable(false);
+			panel.add(none);
 		}
 		panel.add(seenLabel);
 		for (JTextField person : seenPeople) {
 			panel.add(person);
 		}
 		if (seenPeople.size() == 0) {
-			panel.add(new JTextField("None"));
+			JTextField none = new JTextField("None	");
+			none.setEditable(false);
+			panel.add(none);
 		}
 		return panel;
 	}
@@ -79,18 +84,22 @@ public class GameCardPanel extends JPanel {
 			panel.add(room);
 		}
 		if (handRooms.size() == 0) {
-			panel.add(new JTextField("None"));
+			JTextField none = new JTextField("None	");
+			none.setEditable(false);
+			panel.add(none);
 		}
 		panel.add(seenLabel);
 		for (JTextField room : seenRooms) {
 			panel.add(room);
 		}
 		if (seenRooms.size() == 0) {
-			panel.add(new JTextField("None"));
+			JTextField none = new JTextField("None	");
+			none.setEditable(false);
+			panel.add(none);
 		}
 		return panel;
 	}
-	
+
 	private JPanel createWeaponsPanel() { // Panel showing info on weapon cards
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(sizeWeaponsPanel,1));
@@ -102,14 +111,18 @@ public class GameCardPanel extends JPanel {
 			panel.add(weapon);
 		}
 		if (handWeapons.size() == 0) {
-			panel.add(new JTextField("None"));
+			JTextField none = new JTextField("None	");
+			none.setEditable(false);
+			panel.add(none);
 		}
 		panel.add(seenLabel);
 		for (JTextField weapon : seenWeapons) {
 			panel.add(weapon);
 		}
 		if (seenWeapons.size() == 0) {
-			panel.add(new JTextField("None"));
+			JTextField none = new JTextField("None	");
+			none.setEditable(false);
+			panel.add(none);
 		}
 		return panel;
 	}

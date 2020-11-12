@@ -1,6 +1,7 @@
 package clueGame;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -69,6 +70,15 @@ public abstract class Player {
 			}
 		}		
 		return filtered;
+	}
+	
+	public void drawSelf(int height, int width, Graphics g) {
+		int row = getLocation()[0];
+		int col = getLocation()[1];
+		g.setColor(getColor());
+		g.fillOval(col * height, row * width, height, width);
+		g.setColor(Color.BLACK);
+		g.drawOval(col * height, row * width, height, width);
 	}
 	
 	public void setName(String name) {

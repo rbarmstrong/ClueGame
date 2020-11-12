@@ -1,7 +1,10 @@
 package clueGame;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.util.*;
 
-public class BoardCell {
+public class BoardCell{
 
 	private int row, col;
 	private char secretPassage, roomChar;
@@ -20,6 +23,49 @@ public class BoardCell {
 		isRoom = false;
 		doorDirection = DoorDirection.NONE;
 		isSecretPassage = false;
+	}
+	
+	public void drawSelf(int x, int y, int width, int height, Graphics g) {
+		if(isRoom) {
+			g.setColor(Color.GRAY);
+			g.fillRect(x, y, width, height);
+		}else if(roomChar == 'X') {
+			g.setColor(Color.BLACK);
+			g.fillRect(x, y, width, height);
+		}else {
+			g.setColor(Color.YELLOW);
+			g.fillRect(x, y, width, height);
+			g.setColor(Color.BLACK);
+			g.drawRect(x, y, width, height);
+		}
+	}
+	
+	public void drawDoorway(int x, int y, int width, int height, Graphics g) {
+		g.setColor(Color.BLUE);
+		int doorDivide = 6;
+		switch(doorDirection) {
+		case DOWN:
+			g.fillRect(x, y+height, width, height/doorDivide);
+			break;
+		case UP:
+			g.fillRect(x, y - (height/doorDivide), width, height/doorDivide);
+			break;
+		case LEFT:
+			g.fillRect(x - (width / doorDivide), y, width/doorDivide, height);
+			break;
+		case RIGHT:
+			g.fillRect(x + width, y, width/doorDivide, height);
+			break;
+		default:
+			break;
+		}
+	}
+	
+	public void drawRoomName(int x, int y, Graphics g) {
+		g.setColor(Color.BLUE);
+		Font font = new Font("font", Font.BOLD, 13);
+		g.setFont(font);
+		g.drawString(Board.getInstance().getRoom(roomChar).getName(), x, y);
 	}
 
 	public void addToAdjList(BoardCell cell) {

@@ -1,11 +1,15 @@
 package clueGame;
 import java.awt.Color;
+import java.awt.Graphics;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
+import javax.swing.JPanel;
 
-public class Board {
+
+
+public class Board extends JPanel{
 	private static int rows;
 	private static int cols;
 	private BoardCell[][] grid;
@@ -355,6 +359,8 @@ public class Board {
 			return Color.MAGENTA;
 		case "Magenta":
 			return Color.MAGENTA;
+		case "White":
+			return Color.WHITE;
 		default:
 			throw new BadConfigFormatException();
 		}
@@ -399,6 +405,43 @@ public class Board {
 		}
 		return null;
 	}
+	
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		int cellWidth = Board.getInstance().getHeight() / Board.getInstance().getNumRows();
+		int cellHeight = Board.getInstance().getWidth() / Board.getInstance().getNumColumns();
+		for(int i = 0; i < grid.length; i++) { //Draw Cells
+			for(int j = 0; j < grid[i].length; j++) {
+				grid[i][j].drawSelf( j * cellHeight, i * cellWidth, cellHeight, cellWidth, g);
+			}
+		}
+		
+		for(int i = 0; i < grid.length; i++) { //Draw Doorways
+			for(int j = 0; j < grid[i].length; j++) {
+				if(grid[i][j].isDoorway()) {
+					grid[i][j].drawDoorway(j * cellHeight, i * cellWidth, cellHeight, cellWidth, g);
+				}
+			}
+		}
+		
+		for(int i = 0; i < grid.length; i++) { //Draw Room Labels
+			for(int j = 0; j < grid[i].length; j++) {
+				if(grid[i][j].isLabel()) {
+					grid[i][j].drawRoomName(j * cellHeight, i * cellWidth, g);
+				}
+			}
+		}
+		
+		for(int i = 0; i < players.size(); i++) { //Draw Players
+			players.get(i).drawSelf(cellHeight, cellWidth, g);
+		}
+	}
+	
+	
+	
+	
+	
+	
 
 	public Set<BoardCell> getTargets() {
 		//gets the targets last created by calcTargets()
