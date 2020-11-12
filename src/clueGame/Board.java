@@ -437,12 +437,6 @@ public class Board extends JPanel{
 		}
 	}
 	
-	
-	
-	
-	
-	
-
 	public Set<BoardCell> getTargets() {
 		//gets the targets last created by calcTargets()
 		return targets;
