@@ -2,14 +2,16 @@ package clueGame;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 
 public class ClueBoardDisplay extends JFrame{
 	Board board;
 	GameCardPanel cardPanel;
 	GameControlPanel controlPanel;
+	JOptionPane splash;
 
 	public ClueBoardDisplay(){
 		setSize(800, 800);
@@ -17,11 +19,18 @@ public class ClueBoardDisplay extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		board = Board.getInstance();
 		cardPanel = new GameCardPanel(board.getPlayers().get(0), board.getPlayers());
-		controlPanel = new GameControlPanel();
+		Player startingPlayer = Board.getInstance().getFirstTurn();
+		controlPanel = new GameControlPanel(startingPlayer);
 		add(board, BorderLayout.CENTER);
 		//cardPanel
 		add(cardPanel, BorderLayout.EAST);
 		add(controlPanel, BorderLayout.SOUTH);
+		splash = new JOptionPane();
+		Object[] options = {"OK"};
+		JOptionPane.showOptionDialog(null, "You are " + startingPlayer.getName() + ". Can you find the solution before the Computer players?", "Welcome To Clue", JOptionPane.PLAIN_MESSAGE, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+		
+		
+
 	}
 	
 	public static void main(String[] args) {
@@ -33,5 +42,6 @@ public class ClueBoardDisplay extends JFrame{
 		board.initialize();
 		ClueBoardDisplay game = new ClueBoardDisplay();
 		game.setVisible(true);
+		
 	}
 }

@@ -467,6 +467,17 @@ public class Board extends JPanel{
 	public ArrayList<Player> getPlayers() {
 		return players;
 	}
+	public Player getFirstTurn() {
+		boolean randomFirstTurn = false;
+		if(randomFirstTurn) {
+			Random rand = new Random();
+			turn = rand.nextInt(players.size());
+			return players.get(turn);
+		}else {
+			turn = 0;
+			return players.get(turn);
+		}
+	}
 	public Player getNextPlayerTurn() {
 		turn++;
 		if(turn >= players.size()) {

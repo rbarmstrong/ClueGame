@@ -31,6 +31,17 @@ public class GameControlPanel extends JPanel implements ActionListener{
 		panel = createBottomPanel();
 		add(panel);
 	}
+	
+	public GameControlPanel(Player start) { //Constructor 
+		// Create a layout with 2 rows
+		setLayout(new GridLayout(2,0));
+		JPanel panel = createTopPanel();
+		add(panel);
+		panel = createBottomPanel();
+		add(panel);
+		Random rand = new Random();
+		setTurn(start,rand.nextInt(7));
+	}
 
 	private JPanel createTopPanel() { //Creates the top panel and calls functions to make sub panel
 		JPanel panel = new JPanel();
