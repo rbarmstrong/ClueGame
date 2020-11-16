@@ -19,7 +19,7 @@ Weapon, Bat
 Weapon, Sword
 Weapon, Taser
 //players
-Player, Human, You, Red, 1, 7
+Player, Human, Laura, Red, 1, 7
 Player, Computer, Henry, Blue, 1, 16
 Player, Computer, Kathy, White, 11, 3
 Player, Computer, Jordan, Green, 16, 20

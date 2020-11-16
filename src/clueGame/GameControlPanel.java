@@ -4,6 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,12 +17,12 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
-public class GameControlPanel extends JPanel {
+public class GameControlPanel extends JPanel implements ActionListener{
 	private JTextField currName;
 	private JTextField roll;
 	private JTextField guess;
 	private JTextField guessResult;
-
+	
 	public GameControlPanel() { //Constructor 
 		// Create a layout with 2 rows
 		setLayout(new GridLayout(2,0));
@@ -84,6 +87,7 @@ public class GameControlPanel extends JPanel {
 		button.setFont(new Font("Font", Font.PLAIN, 30));
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(1,0));
+		button.addActionListener(this);
 		panel.add(button);
 		return panel;
 	}
@@ -152,6 +156,13 @@ public class GameControlPanel extends JPanel {
 		panel.setTurn(new Computer( "Col. Mustard", 0, 0, Color.ORANGE), 5);
 		panel.setGuess( "I have no guess!");
 		panel.setGuessResult( "So you have nothing?");
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Random rand = new Random();
+		setTurn(Board.getInstance().getNextPlayerTurn(),rand.nextInt(7));
+		
 	}
 
 

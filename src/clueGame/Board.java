@@ -22,6 +22,7 @@ public class Board extends JPanel{
 	private static ArrayList<Player> players;
 	private static ArrayList<Card> dealer;
 	private Solution theAnswer;
+	protected int turn = 0;
 
 	/*
 	 * variable and methods used for singleton pattern
@@ -354,7 +355,7 @@ public class Board extends JPanel{
 		case "Green":
 			return Color.GREEN;
 		case "Blue":
-			return Color.BLUE;
+			return Color.CYAN;
 		case "Purple":
 			return Color.MAGENTA;
 		case "Magenta":
@@ -379,7 +380,7 @@ public class Board extends JPanel{
 		deck.add(tempCard);
 	}
 	
-	public boolean checkAccusation(Card[] accusation) { //TODO dont know if this works
+	public boolean checkAccusation(Card[] accusation) {
 		boolean found = true;
 		for(int i = 0; i < 3; i++) {
 			if(!(accusation[i].equals(theAnswer.person) || accusation[i].equals(theAnswer.room) || accusation[i].equals(theAnswer.weapon))) {
@@ -465,6 +466,13 @@ public class Board extends JPanel{
 	}
 	public ArrayList<Player> getPlayers() {
 		return players;
+	}
+	public Player getNextPlayerTurn() {
+		turn++;
+		if(turn >= players.size()) {
+			turn = 0;
+		}
+		return players.get(turn);
 	}
 	public ArrayList<Card> getDeck() {
 		return deck;
