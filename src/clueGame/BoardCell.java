@@ -29,7 +29,11 @@ public class BoardCell{
 	
 	public void drawSelf(int x, int y, int width, int height, Graphics g) {
 		if(isRoom) {
-			g.setColor(Color.GRAY);
+			if(highlight) {
+				g.setColor(Color.ORANGE);
+			}else {
+				g.setColor(Color.GRAY);
+			}
 			g.fillRect(x, y, width, height);
 		}else if(roomChar == 'X') {
 			g.setColor(Color.BLACK);

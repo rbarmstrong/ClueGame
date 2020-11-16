@@ -98,7 +98,7 @@ public class ComputerAITest {
 			assertTrue(chosenWeapons.contains("Sword"));
 			assertTrue(chosenWeapons.contains("Taser"));
 			assertTrue(chosenWeapons.contains("Hammer"));
-			assertTrue(chosenPersons.contains("You"));
+			assertTrue(chosenPersons.contains("Lisa"));
 			assertTrue(chosenPersons.contains("Jordan"));
 			assertTrue(chosenPersons.contains("Henry"));
 			assertTrue(chosenPersons.contains("Kathy"));

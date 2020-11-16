@@ -15,7 +15,7 @@ public abstract class Player {
 	protected Solution suggestion;
 	protected int pathLength;
 	protected boolean finishedTurn;
-	
+	protected boolean movedThisTurn;
 	
 	public Player() {
 		hand = new ArrayList<>();
@@ -111,6 +111,8 @@ public abstract class Player {
 	public void setLocation(int row, int col) {
 		this.row = row;
 		this.col = col;
+		finishedTurn = true;
+		movedThisTurn = true;
 	}
 	
 	public void setPathLength(int length) {

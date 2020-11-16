@@ -1,6 +1,8 @@
 package clueGame;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.*;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -24,7 +26,7 @@ public class Board extends JPanel{
 	private static ArrayList<Card> dealer;
 	private Solution theAnswer;
 	protected int turn = 0;
-
+	private boolean test306;
 	/*
 	 * variable and methods used for singleton pattern
 	 */
@@ -32,6 +34,9 @@ public class Board extends JPanel{
 	// constructor is private to ensure only one can be created
 	private Board() {
 		super() ;
+		addMouseListener(new MouseWatch());
+
+
 	}
 	// this method returns the only Board
 	public static Board getInstance() {
@@ -80,7 +85,7 @@ public class Board extends JPanel{
 	private BoardCell secretPassageCalc(BoardCell cell) {
 		return rooms.get(cell.getSecretPassage()).getCenterCell();
 	}
-	
+
 	private BoardCell doorCalc(BoardCell cell) {
 		DoorDirection direction = cell.getDoorDirection();
 		int row = cell.getRow();
@@ -101,7 +106,7 @@ public class Board extends JPanel{
 		layoutConfigFile = csv;
 		setupConfigFile = txt;
 	}
-	
+
 	public void loadConfigFiles() {
 		try {
 			loadSetupConfig();
@@ -118,7 +123,7 @@ public class Board extends JPanel{
 			System.out.println("Error. BadConfigFormatException in: " + layoutConfigFile);
 		}
 	}
-	
+
 	public void loadSetupConfig() throws FileNotFoundException, BadConfigFormatException {
 		rooms = new HashMap<Character, Room>();
 		deck = new ArrayList<>();
@@ -139,7 +144,9 @@ public class Board extends JPanel{
 					tempChar = currLine.charAt(currLine.length() - 1);
 					tempLabel = currLine.substring(7, currLine.lastIndexOf(","));
 					rooms.put(tempChar, new Room(tempLabel,tempChar,false));
+					test306 = true;
 				}else if(currLine.contains("Weapon")){
+					test306 = false;
 					tempLabel = currLine.substring(8);
 					addToDeck(tempLabel, CardType.WEAPON);
 				}else if(currLine.contains("Player")) {
@@ -163,7 +170,7 @@ public class Board extends JPanel{
 					tempPlayer.setLocation(Integer.parseInt(currLine.substring(0,currLine.indexOf(","))),Integer.parseInt(currLine.substring(currLine.indexOf(",") + 2)));
 					addToDeck(tempLabel, CardType.PERSON);
 					players.add(tempPlayer);
-					
+
 				}else {
 					throw new BadConfigFormatException();
 				}
@@ -211,7 +218,7 @@ public class Board extends JPanel{
 		}
 
 	}
-	
+
 	private void readLine(String currLine, int i) throws BadConfigFormatException {
 
 		Scanner scan = new Scanner(currLine);
@@ -234,11 +241,11 @@ public class Board extends JPanel{
 				scan.close();
 				throw new BadConfigFormatException();
 			}
-			
+
 			BoardCell tempCell = grid[i][j];
 			tempCell.setRoomChar(currChar); //sets the character in the created grid
 			tempCell.setIsRoom(rooms.get(currChar).getIsRoom()); //sets whether each cell is a room
-			
+
 			if(currVal.length() > 1) {
 				switch(currVal.charAt(1)) {
 				case '*':
@@ -276,7 +283,7 @@ public class Board extends JPanel{
 		scan.close();
 	}
 
-	
+
 	private void findAllTargets(BoardCell thisCell, int numSteps) {
 		for (BoardCell adjCell : thisCell.getAdjList()) { //loop through each adj cell
 			if (!visited.contains(adjCell) && (!adjCell.getOccupied() || adjCell.getIsRoom())) {//as long as not visited or occupied
@@ -303,20 +310,22 @@ public class Board extends JPanel{
 	}
 
 	public void deal() { //deals cards not in solution to the players
-		generateSolution();
-		Random rand = new Random();
-		int playerCounter = 0;
-		while(dealer.size() != 0) {
-			Card currCard = dealer.get(rand.nextInt(dealer.size()));
-			players.get(playerCounter).updateHand(currCard);
-			dealer.remove(currCard);
-			playerCounter++;
-			if(playerCounter >= players.size()) {
-				playerCounter = 0;
+		if(!test306) {
+			generateSolution();
+			Random rand = new Random();
+			int playerCounter = 0;
+			while(dealer.size() != 0) {
+				Card currCard = dealer.get(rand.nextInt(dealer.size()));
+				players.get(playerCounter).updateHand(currCard);
+				dealer.remove(currCard);
+				playerCounter++;
+				if(playerCounter >= players.size()) {
+					playerCounter = 0;
+				}
 			}
 		}
 	}
-	
+
 	public void generateSolution() { //copies the deck to be used for dealing, chose 3 random cards for the solution
 		dealer = new ArrayList<Card>();
 		for (Card card : deck) {
@@ -345,7 +354,7 @@ public class Board extends JPanel{
 			}
 		}
 	}
-	
+
 	public Color calcColor(String input) throws BadConfigFormatException { //changes a color string to a color type
 		switch(input) {
 		case "Red":
@@ -374,14 +383,14 @@ public class Board extends JPanel{
 		//tempCard.setType(type);
 		deck.add(tempCard);
 	}
-	
+
 	public void addToDeck(String name, CardType type, char roomChar) { //creates a room card and adds to deck.
 		Card tempCard = new Card(name, type, roomChar);
 		//tempCard.setCardName(name);
 		//tempCard.setType(type);
 		deck.add(tempCard);
 	}
-	
+
 	public boolean checkAccusation(Card[] accusation) {
 		boolean found = true;
 		for(int i = 0; i < 3; i++) {
@@ -391,7 +400,7 @@ public class Board extends JPanel{
 		}
 		return found;
 	}
-	
+
 	public Card handleSuggestion(Player player, Solution suggestion) {
 		int playerIndex = players.indexOf(player) + 1;
 		if (playerIndex >= players.size()) {
@@ -408,7 +417,7 @@ public class Board extends JPanel{
 		}
 		return null;
 	}
-	
+
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		int cellWidth = Board.getInstance().getHeight() / Board.getInstance().getNumRows();
@@ -418,7 +427,7 @@ public class Board extends JPanel{
 				grid[i][j].drawSelf( j * cellHeight, i * cellWidth, cellHeight, cellWidth, g);
 			}
 		}
-		
+
 		for(int i = 0; i < grid.length; i++) { //Draw Doorways
 			for(int j = 0; j < grid[i].length; j++) {
 				if(grid[i][j].isDoorway()) {
@@ -426,7 +435,7 @@ public class Board extends JPanel{
 				}
 			}
 		}
-		
+
 		for(int i = 0; i < grid.length; i++) { //Draw Room Labels
 			for(int j = 0; j < grid[i].length; j++) {
 				if(grid[i][j].isLabel()) {
@@ -434,13 +443,13 @@ public class Board extends JPanel{
 				}
 			}
 		}
-		
+
 		for(int i = 0; i < players.size(); i++) { //Draw Players
 			players.get(i).drawSelf(cellHeight, cellWidth, g);
 		}
 	}
-	
-	
+
+
 	public Set<BoardCell> getTargets() {
 		//gets the targets last created by calcTargets()
 		return targets;
@@ -450,14 +459,14 @@ public class Board extends JPanel{
 		//returns the cell from the board at row, col
 		return grid[row][col];
 	}
-	
+
 	public Room getRoom(BoardCell cell) {
 		return rooms.get(cell.getRoomChar());
 	}
 	public Room getRoom(char letter) {
 		return rooms.get(letter);
 	}
-	
+
 	public int getNumRows() {
 		return rows;
 	}
@@ -471,29 +480,31 @@ public class Board extends JPanel{
 		return players;
 	}
 	public String getFirstTurnName() { //TODO
-			turn = 0;
-			return players.get(turn).getName();
+		turn = 0;
+		return players.get(turn).getName();
 	}
-	
+
 	public void firstTurn(){
 		Random rand = new Random();
 		int roll = rand.nextInt(7);
 		GameControlPanel.setTurn(players.get(turn), roll);
+		players.get(turn).movedThisTurn = false;
 		calcTargets(players.get(turn).getLocationCell(),roll);
 	}
-	
+
 	public void nextTurn() { //TODO
 		Random rand = new Random();
 		if(players.get(turn).finishedTurn) {
 			int roll = rand.nextInt(7);
 			GameControlPanel.setTurn(getNextPlayerTurn(),roll);
 			calcTargets(players.get(turn).getLocationCell(),roll);
+			players.get(turn).movedThisTurn = false;
 		}else {
 			Object[] options = {"OK"};
 			JOptionPane.showOptionDialog(null, "Error: You must complete your turn before pressing NEXT", "ERROR", JOptionPane.PLAIN_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
 		}
 	}
-	
+
 	public Player getNextPlayerTurn() { //TODO
 		turn++;
 		if(turn >= players.size()) {
@@ -531,5 +542,38 @@ public class Board extends JPanel{
 		players.add(humanPlayer);
 		players.add(compPlayer1);
 		players.add(compPlayer2);
+	}
+	private class MouseWatch implements MouseListener {
+		//  Empty definitions for unused event methods.
+		public void mousePressed (MouseEvent event) {}  
+		public void mouseReleased (MouseEvent event) {}  
+		public void mouseEntered (MouseEvent event) {}  
+		public void mouseExited (MouseEvent event) {}  
+		public void mouseClicked (MouseEvent event) {  
+			int cellWidth = Board.getInstance().getHeight() / Board.getInstance().getNumRows();
+			int cellHeight = Board.getInstance().getWidth() / Board.getInstance().getNumColumns();
+			getCell(event.getX() / cellHeight, event.getY() / cellWidth);
+			boolean inTargets = false;
+			for(BoardCell cell : targets) {
+				if(cell.getCol() == event.getX() / cellHeight && cell.getRow() == event.getY() / cellWidth) {
+					inTargets = true;
+				}
+			}
+			if(players.get(turn).movedThisTurn) {
+				Object[] options = {"OK"};
+				JOptionPane.showOptionDialog(null, "Error: You have already moved this turn", "ERROR", JOptionPane.PLAIN_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
+			}else {
+				if(inTargets) {
+					players.get(turn).setLocation(event.getY() / cellWidth, event.getX() / cellHeight);
+					for(BoardCell cell: targets) {
+						cell.highlight = false;
+					}
+					repaint();
+				}else {
+					Object[] options = {"OK"};
+					JOptionPane.showOptionDialog(null, "Error: This is not a valid space", "ERROR", JOptionPane.PLAIN_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
+				}
+			}
+		} 
 	}
 }

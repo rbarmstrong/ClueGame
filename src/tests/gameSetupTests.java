@@ -43,12 +43,12 @@ public class gameSetupTests {
 			assertEquals("clueGame.Computer", board.getPlayers().get(4).getClass().getName());
 			assertEquals("clueGame.Computer", board.getPlayers().get(5).getClass().getName());
 			//Test Names
-			assertEquals("You", board.getPlayers().get(0).getName());
+			assertEquals("Lisa", board.getPlayers().get(0).getName());
 			assertEquals("Kathy", board.getPlayers().get(2).getName());
 			assertEquals("Philip", board.getPlayers().get(5).getName());
 			//Test Colors
 			assertEquals(Color.ORANGE, board.getPlayers().get(5).getColor());
-			assertEquals(Color.BLUE, board.getPlayers().get(1).getColor());
+			assertEquals(Color.CYAN, board.getPlayers().get(1).getColor());
 			assertEquals(Color.RED, board.getPlayers().get(0).getColor());
 			//Test Location
 			assertEquals(1, board.getPlayers().get(0).getLocation()[0]);
