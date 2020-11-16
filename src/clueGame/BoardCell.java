@@ -11,6 +11,7 @@ public class BoardCell{
 	private DoorDirection doorDirection;
 	private boolean roomLabel, roomCenter, isDoorway, occupied, isRoom, isSecretPassage;
 	private Set<BoardCell> adjList;
+	boolean highlight;
 
 	public BoardCell(int row, int col) {
 		adjList = new HashSet<BoardCell>();
@@ -23,6 +24,7 @@ public class BoardCell{
 		isRoom = false;
 		doorDirection = DoorDirection.NONE;
 		isSecretPassage = false;
+		highlight = false;
 	}
 	
 	public void drawSelf(int x, int y, int width, int height, Graphics g) {
@@ -33,7 +35,11 @@ public class BoardCell{
 			g.setColor(Color.BLACK);
 			g.fillRect(x, y, width, height);
 		}else {
-			g.setColor(Color.YELLOW);
+			if(highlight) {
+				g.setColor(Color.ORANGE);
+			}else {
+				g.setColor(Color.YELLOW);
+			}
 			g.fillRect(x, y, width, height);
 			g.setColor(Color.BLACK);
 			g.drawRect(x, y, width, height);

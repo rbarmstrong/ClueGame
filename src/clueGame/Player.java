@@ -14,6 +14,8 @@ public abstract class Player {
 	protected ArrayList<Card> filtered;
 	protected Solution suggestion;
 	protected int pathLength;
+	protected boolean finishedTurn;
+	
 	
 	public Player() {
 		hand = new ArrayList<>();
@@ -102,10 +104,17 @@ public abstract class Player {
 		int[] location = {row, col};
 		return location;
 	}
+	public BoardCell getLocationCell() {
+		return Board.getInstance().getCell(row,col);
+	}
 	
 	public void setLocation(int row, int col) {
 		this.row = row;
 		this.col = col;
+	}
+	
+	public void setPathLength(int length) {
+		pathLength = length;
 	}
 	
 	public ArrayList<Card> getHand() {

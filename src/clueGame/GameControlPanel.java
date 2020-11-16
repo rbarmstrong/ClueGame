@@ -11,6 +11,7 @@ import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -18,8 +19,8 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 public class GameControlPanel extends JPanel implements ActionListener{
-	private JTextField currName;
-	private JTextField roll;
+	private static JTextField currName;
+	private static JTextField roll;
 	private JTextField guess;
 	private JTextField guessResult;
 	
@@ -40,7 +41,9 @@ public class GameControlPanel extends JPanel implements ActionListener{
 		panel = createBottomPanel();
 		add(panel);
 		Random rand = new Random();
-		setTurn(start,rand.nextInt(7));
+		int length = rand.nextInt(7);
+		start.setPathLength(length);
+		setTurn(start,length);
 	}
 
 	private JPanel createTopPanel() { //Creates the top panel and calls functions to make sub panel
@@ -132,7 +135,7 @@ public class GameControlPanel extends JPanel implements ActionListener{
 		return panel;
 	}
 	
-	public void setTurn(Player player, int rollVal) { //sets turn, updates displayed name and color, along with roll
+	public static void setTurn(Player player, int rollVal) { //sets turn, updates displayed name and color, along with roll
 		currName.setText(player.getName());
 		currName.setBackground(player.getColor());
 		roll.setText(Integer.toString(rollVal));
@@ -164,16 +167,14 @@ public class GameControlPanel extends JPanel implements ActionListener{
 
 
 		// test filling in the data
-		panel.setTurn(new Computer( "Col. Mustard", 0, 0, Color.ORANGE), 5);
+		GameControlPanel.setTurn(new Computer( "Col. Mustard", 0, 0, Color.ORANGE), 5);
 		panel.setGuess( "I have no guess!");
 		panel.setGuessResult( "So you have nothing?");
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Random rand = new Random();
-		setTurn(Board.getInstance().getNextPlayerTurn(),rand.nextInt(7));
-		
+		Board.getInstance().nextTurn();
 	}
 
 

@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 
@@ -282,6 +283,7 @@ public class Board extends JPanel{
 				visited.add(adjCell); //add cell to visited
 				if (numSteps == 1 || adjCell.getIsRoom()) { //if no steps remaining or in a room
 					targets.add(adjCell); //add cell to targets
+					adjCell.highlight = true;
 				}
 				else {
 					findAllTargets(adjCell, numSteps-1); //else call recursive function
@@ -438,6 +440,7 @@ public class Board extends JPanel{
 		}
 	}
 	
+	
 	public Set<BoardCell> getTargets() {
 		//gets the targets last created by calcTargets()
 		return targets;
@@ -467,21 +470,39 @@ public class Board extends JPanel{
 	public ArrayList<Player> getPlayers() {
 		return players;
 	}
-	public Player getFirstTurn() {
-		boolean randomFirstTurn = false;
-		if(randomFirstTurn) {
-			Random rand = new Random();
-			turn = rand.nextInt(players.size());
-			return players.get(turn);
-		}else {
+	public String getFirstTurnName() { //TODO
 			turn = 0;
-			return players.get(turn);
+			return players.get(turn).getName();
+	}
+	
+	public void firstTurn(){
+		Random rand = new Random();
+		int roll = rand.nextInt(7);
+		GameControlPanel.setTurn(players.get(turn), roll);
+		calcTargets(players.get(turn).getLocationCell(),roll);
+	}
+	
+	public void nextTurn() { //TODO
+		Random rand = new Random();
+		if(players.get(turn).finishedTurn) {
+			int roll = rand.nextInt(7);
+			GameControlPanel.setTurn(getNextPlayerTurn(),roll);
+			calcTargets(players.get(turn).getLocationCell(),roll);
+		}else {
+			Object[] options = {"OK"};
+			JOptionPane.showOptionDialog(null, "Error: You must complete your turn before pressing NEXT", "ERROR", JOptionPane.PLAIN_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
 		}
 	}
-	public Player getNextPlayerTurn() {
+	
+	public Player getNextPlayerTurn() { //TODO
 		turn++;
 		if(turn >= players.size()) {
 			turn = 0;
+		}
+		if(players.get(turn).getClass().getName() == "clueGame.Human") {
+			players.get(turn).finishedTurn = false;
+		}else {
+			players.get(turn).finishedTurn = true;
 		}
 		return players.get(turn);
 	}

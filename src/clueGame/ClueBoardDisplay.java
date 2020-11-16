@@ -19,15 +19,14 @@ public class ClueBoardDisplay extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		board = Board.getInstance();
 		cardPanel = new GameCardPanel(board.getPlayers().get(0), board.getPlayers());
-		Player startingPlayer = Board.getInstance().getFirstTurn();
-		controlPanel = new GameControlPanel(startingPlayer);
+		controlPanel = new GameControlPanel();
 		add(board, BorderLayout.CENTER);
 		//cardPanel
 		add(cardPanel, BorderLayout.EAST);
 		add(controlPanel, BorderLayout.SOUTH);
 		splash = new JOptionPane();
 		Object[] options = {"OK"};
-		JOptionPane.showOptionDialog(null, "You are " + startingPlayer.getName() + ". Can you find the solution before the Computer players?", "Welcome To Clue", JOptionPane.PLAIN_MESSAGE, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+		JOptionPane.showOptionDialog(null, "You are " + Board.getInstance().getFirstTurnName() + ". Can you find the solution before the Computer players?", "Welcome To Clue", JOptionPane.PLAIN_MESSAGE, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
 		
 		
 
@@ -41,6 +40,7 @@ public class ClueBoardDisplay extends JFrame{
 		// Initialize will load config files 
 		board.initialize();
 		ClueBoardDisplay game = new ClueBoardDisplay();
+		board.firstTurn();
 		game.setVisible(true);
 		
 	}
