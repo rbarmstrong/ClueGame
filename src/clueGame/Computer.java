@@ -9,7 +9,6 @@ public class Computer extends Player {
 
 	public Computer() {
 		super();
-
 	}
 	
 	public Computer(Color color) {

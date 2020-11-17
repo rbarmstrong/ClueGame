@@ -298,6 +298,7 @@ public class Board extends JPanel{
 				visited.remove(adjCell);
 			}
 		}
+		repaint();
 	}
 
 	//calculates legal targets for a move from startCell of length pathlength 
@@ -489,6 +490,7 @@ public class Board extends JPanel{
 		int roll = rand.nextInt(7);
 		GameControlPanel.setTurn(players.get(turn), roll);
 		players.get(turn).movedThisTurn = false;
+		players.get(turn).finishedTurn = false;
 		calcTargets(players.get(turn).getLocationCell(),roll);
 	}
 
@@ -499,6 +501,13 @@ public class Board extends JPanel{
 			GameControlPanel.setTurn(getNextPlayerTurn(),roll);
 			calcTargets(players.get(turn).getLocationCell(),roll);
 			players.get(turn).movedThisTurn = false;
+			if (players.get(turn).getClass().getName() == "clueGame.Computer") {
+				Computer compPlayer = (Computer) players.get(turn);
+				compPlayer.setLocation(compPlayer.selectTargets().getRow(), compPlayer.selectTargets().getCol());
+				for(BoardCell cell: targets) {
+					cell.highlight = false;
+				}
+			}
 		}else {
 			Object[] options = {"OK"};
 			JOptionPane.showOptionDialog(null, "Error: You must complete your turn before pressing NEXT", "ERROR", JOptionPane.PLAIN_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
@@ -517,6 +526,11 @@ public class Board extends JPanel{
 		}
 		return players.get(turn);
 	}
+	
+	public void computerMove() {
+		
+	}
+	
 	public ArrayList<Card> getDeck() {
 		return deck;
 	}
@@ -543,6 +557,9 @@ public class Board extends JPanel{
 		players.add(compPlayer1);
 		players.add(compPlayer2);
 	}
+	public int getTurn() {
+		return turn;
+	}
 	private class MouseWatch implements MouseListener {
 		//  Empty definitions for unused event methods.
 		public void mousePressed (MouseEvent event) {}  
@@ -550,30 +567,36 @@ public class Board extends JPanel{
 		public void mouseEntered (MouseEvent event) {}  
 		public void mouseExited (MouseEvent event) {}  
 		public void mouseClicked (MouseEvent event) {  
-			int cellWidth = Board.getInstance().getHeight() / Board.getInstance().getNumRows();
-			int cellHeight = Board.getInstance().getWidth() / Board.getInstance().getNumColumns();
-			getCell(event.getX() / cellHeight, event.getY() / cellWidth);
-			boolean inTargets = false;
-			for(BoardCell cell : targets) {
-				if(cell.getCol() == event.getX() / cellHeight && cell.getRow() == event.getY() / cellWidth) {
-					inTargets = true;
-				}
-			}
-			if(players.get(turn).movedThisTurn) {
+			if (players.get(turn).getClass().getName() == "clueGame.Computer") {
 				Object[] options = {"OK"};
-				JOptionPane.showOptionDialog(null, "Error: You have already moved this turn", "ERROR", JOptionPane.PLAIN_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
-			}else {
-				if(inTargets) {
-					players.get(turn).setLocation(event.getY() / cellWidth, event.getX() / cellHeight);
-					for(BoardCell cell: targets) {
-						cell.highlight = false;
+				JOptionPane.showOptionDialog(null, "Error: It is not your turn", "ERROR", JOptionPane.PLAIN_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
+			}
+			else {
+				int cellWidth = Board.getInstance().getHeight() / Board.getInstance().getNumRows();
+				int cellHeight = Board.getInstance().getWidth() / Board.getInstance().getNumColumns();
+				getCell(event.getX() / cellHeight, event.getY() / cellWidth);
+				boolean inTargets = false;
+				for(BoardCell cell : targets) {
+					if(cell.getCol() == event.getX() / cellHeight && cell.getRow() == event.getY() / cellWidth) {
+						inTargets = true;
 					}
-					repaint();
-				}else {
+				}
+				if(players.get(turn).movedThisTurn) {
 					Object[] options = {"OK"};
-					JOptionPane.showOptionDialog(null, "Error: This is not a valid space", "ERROR", JOptionPane.PLAIN_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
+					JOptionPane.showOptionDialog(null, "Error: You have already moved this turn", "ERROR", JOptionPane.PLAIN_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
+				}else {
+					if(inTargets) {
+						players.get(turn).setLocation(event.getY() / cellWidth, event.getX() / cellHeight);
+						for(BoardCell cell: targets) {
+							cell.highlight = false;
+						}
+						repaint();
+					}else {
+						Object[] options = {"OK"};
+						JOptionPane.showOptionDialog(null, "Error: This is not a valid space", "ERROR", JOptionPane.PLAIN_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
+					}
 				}
 			}
-		} 
+		}
 	}
 }
