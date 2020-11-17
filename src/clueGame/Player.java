@@ -83,6 +83,16 @@ public abstract class Player {
 		g.drawOval(col * height, row * width, height, width);
 	}
 	
+//	public void drawSelf(int height, int width, Graphics g, ArrayList<Player> players) {
+//		int row = getLocation()[0];
+//		int col = getLocation()[1];
+//		int offset = 2;
+//		g.setColor(getColor());
+//		g.fillOval(col * height + offset*numPlayers, row * width + offset*numPlayers, height, width);
+//		g.setColor(Color.BLACK);
+//		g.drawOval(col * height + offser*numPlayers, row * width + offset*numPlayers, height, width);
+//	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}

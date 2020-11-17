@@ -444,7 +444,6 @@ public class Board extends JPanel{
 				}
 			}
 		}
-
 		for(int i = 0; i < players.size(); i++) { //Draw Players
 			players.get(i).drawSelf(cellHeight, cellWidth, g);
 		}
@@ -480,41 +479,42 @@ public class Board extends JPanel{
 	public ArrayList<Player> getPlayers() {
 		return players;
 	}
-	public String getFirstTurnName() { //TODO
+	public String getFirstTurnName() { // Get name of the human to display initial message
 		turn = 0;
 		return players.get(turn).getName();
 	}
 
-	public void firstTurn(){
+	public void firstTurn(){ // Set up the first turn of the game
 		Random rand = new Random();
-		int roll = rand.nextInt(7);
+		int roll = rand.nextInt(6) + 1;
 		GameControlPanel.setTurn(players.get(turn), roll);
 		players.get(turn).movedThisTurn = false;
 		players.get(turn).finishedTurn = false;
 		calcTargets(players.get(turn).getLocationCell(),roll);
 	}
 
-	public void nextTurn() { //TODO
+	public void nextTurn() { // Called when the next button is pressed, either sets up the next turn or displays an error
 		Random rand = new Random();
 		if(players.get(turn).finishedTurn) {
-			int roll = rand.nextInt(7);
+			int roll = rand.nextInt(6) + 1;
 			GameControlPanel.setTurn(getNextPlayerTurn(),roll);
 			calcTargets(players.get(turn).getLocationCell(),roll);
 			players.get(turn).movedThisTurn = false;
-			if (players.get(turn).getClass().getName() == "clueGame.Computer") {
+			if (players.get(turn).getClass().getName() == "clueGame.Computer") { // Computer players move on their own
 				Computer compPlayer = (Computer) players.get(turn);
-				compPlayer.setLocation(compPlayer.selectTargets().getRow(), compPlayer.selectTargets().getCol());
+				BoardCell selection = compPlayer.selectTargets();
+				compPlayer.setLocation(selection.getRow(), selection.getCol());
 				for(BoardCell cell: targets) {
 					cell.highlight = false;
 				}
 			}
-		}else {
+		}else { // Cannot go to next turn until human player has moved
 			Object[] options = {"OK"};
 			JOptionPane.showOptionDialog(null, "Error: You must complete your turn before pressing NEXT", "ERROR", JOptionPane.PLAIN_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
 		}
 	}
 
-	public Player getNextPlayerTurn() { //TODO
+	public Player getNextPlayerTurn() { // Update turn status
 		turn++;
 		if(turn >= players.size()) {
 			turn = 0;
@@ -525,10 +525,6 @@ public class Board extends JPanel{
 			players.get(turn).finishedTurn = true;
 		}
 		return players.get(turn);
-	}
-	
-	public void computerMove() {
-		
 	}
 	
 	public ArrayList<Card> getDeck() {
@@ -586,6 +582,8 @@ public class Board extends JPanel{
 					JOptionPane.showOptionDialog(null, "Error: You have already moved this turn", "ERROR", JOptionPane.PLAIN_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
 				}else {
 					if(inTargets) {
+						//if(getCell(event.getX() / cellHeight, event.getY() / cellWidth)) //TODO
+						//getRoom(getCell(event.getX() / cellHeight, event.getY() / cellWidth));
 						players.get(turn).setLocation(event.getY() / cellWidth, event.getX() / cellHeight);
 						for(BoardCell cell: targets) {
 							cell.highlight = false;

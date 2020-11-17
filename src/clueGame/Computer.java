@@ -88,6 +88,7 @@ public class Computer extends Player {
 		for (BoardCell target : targetList) {
 			targetListArray.add(target);
 		}
-		return targetListArray.get(rand.nextInt(targetListArray.size()));		
+		int selection = rand.nextInt(targetListArray.size());
+		return targetListArray.get(selection);		
 	}
 }

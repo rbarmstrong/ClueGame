@@ -6,7 +6,7 @@ public class Room {
 	private boolean isRoom;
 	private BoardCell centerCell;
 	private BoardCell labelCell;
-	
+	protected int numPlayers;
 	
 	
 	public Room() {
@@ -18,6 +18,7 @@ public class Room {
 		this.name = name;
 		this.isRoom = isRoom;
 		this.letter = letter;
+		numPlayers = 0;
 	}
 	
 	public void setCenterCell(BoardCell cell) {
