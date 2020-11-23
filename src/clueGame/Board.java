@@ -199,6 +199,7 @@ public class Board extends JPanel{
 		}
 		rows = numLines;
 		cols = numCols;
+		System.out.println(rows + " " + cols);
 		grid = new BoardCell[rows][cols]; //initialize grid to the provided dimensions
 		//fill grid with empty cells
 		for(int i = 0; i < rows; i++) {
@@ -594,7 +595,6 @@ public class Board extends JPanel{
 			else {
 				int cellWidth = Board.getInstance().getHeight() / Board.getInstance().getNumRows();
 				int cellHeight = Board.getInstance().getWidth() / Board.getInstance().getNumColumns();
-				getCell(event.getX() / cellHeight, event.getY() / cellWidth);
 				boolean inTargets = false;
 				for(BoardCell cell : targets) {
 					if(cell.getCol() == event.getX() / cellHeight && cell.getRow() == event.getY() / cellWidth) {
