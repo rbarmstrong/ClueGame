@@ -199,7 +199,6 @@ public class Board extends JPanel{
 		}
 		rows = numLines;
 		cols = numCols;
-		System.out.println(rows + " " + cols);
 		grid = new BoardCell[rows][cols]; //initialize grid to the provided dimensions
 		//fill grid with empty cells
 		for(int i = 0; i < rows; i++) {
@@ -414,7 +413,20 @@ public class Board extends JPanel{
 		return found;
 	}
 
-	public Card handleSuggestion(Player player, Solution suggestion) {
+	public Card handleSuggestion(Player player, Solution suggestion) { //TODO
+		for(Player person : players) { //Puts correct player in room
+			if(person.getName().compareTo(suggestion.person.getCardName()) == 0) {
+				BoardCell tempCell = getRoom(suggestion.room.getRoomChar()).getCenterCell();
+				if(person.getInRoom()) {
+					getRoom(person.getLocationCell()).leaveRoom(person);
+				}
+				person.setInRoom(true);
+				getRoom(suggestion.room.getRoomChar()).enterRoom(person);
+				person.setLocation(tempCell.getRow(), tempCell.getCol());
+				break;
+			}
+		}
+		
 		int playerIndex = players.indexOf(player) + 1;
 		if (playerIndex >= players.size()) {
 			playerIndex = 0;
