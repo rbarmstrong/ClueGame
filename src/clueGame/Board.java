@@ -288,9 +288,20 @@ public class Board extends JPanel{
 		for (BoardCell adjCell : thisCell.getAdjList()) { //loop through each adj cell
 			if (!visited.contains(adjCell) && (!adjCell.getOccupied() || adjCell.getIsRoom())) {//as long as not visited or occupied
 				visited.add(adjCell); //add cell to visited
-				if (numSteps == 1 || adjCell.getIsRoom()) { //if no steps remaining or in a room
+				if (adjCell.getIsRoom()) { //if in a room
 					targets.add(adjCell); //add cell to targets
 					adjCell.highlight = true;
+				}else if(numSteps == 1) {//if no steps remaining
+					boolean blocked = false;
+					for(Player player : players) { //check to see if cell is occupied
+						if(player.getLocationCell().getCol() == adjCell.getCol() && player.getLocationCell().getRow() == adjCell.getRow()) {
+							blocked = true;
+						}
+					}
+					if(!blocked) { //if not occupied
+						targets.add(adjCell); //add cell to targets
+						adjCell.highlight = true;
+					}
 				}
 				else {
 					findAllTargets(adjCell, numSteps-1); //else call recursive function
@@ -445,7 +456,16 @@ public class Board extends JPanel{
 			}
 		}
 		for(int i = 0; i < players.size(); i++) { //Draw Players
-			players.get(i).drawSelf(cellHeight, cellWidth, g);
+			int playerRoomCount = 0;
+			if(players.get(i).getInRoom()) {
+				for(Player roomPlayer : getRoom(players.get(i).getLocationCell()).getPlayers()) {
+					if(roomPlayer.getName().compareTo(players.get(i).getName()) == 0) {
+						break;
+					}
+					playerRoomCount++;
+				}
+			}
+			players.get(i).drawSelf(cellHeight, cellWidth, g, playerRoomCount);
 		}
 	}
 
@@ -526,7 +546,7 @@ public class Board extends JPanel{
 		}
 		return players.get(turn);
 	}
-	
+
 	public ArrayList<Card> getDeck() {
 		return deck;
 	}
@@ -543,6 +563,10 @@ public class Board extends JPanel{
 	}
 	public ArrayList<Card> getDealer() {
 		return dealer;
+	}
+	
+	public Player getCurrPlayer() {
+		return players.get(turn);
 	}
 	public void setTestPlayers() {
 		players = new ArrayList<Player>();
@@ -582,11 +606,18 @@ public class Board extends JPanel{
 					JOptionPane.showOptionDialog(null, "Error: You have already moved this turn", "ERROR", JOptionPane.PLAIN_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
 				}else {
 					if(inTargets) {
-						//if(getCell(event.getX() / cellHeight, event.getY() / cellWidth)) //TODO
-						//getRoom(getCell(event.getX() / cellHeight, event.getY() / cellWidth));
+						if(players.get(turn).getInRoom()) {
+							players.get(turn).setInRoom(false);
+							getRoom(players.get(turn).getLocationCell()).leaveRoom(players.get(turn));
+						}
 						players.get(turn).setLocation(event.getY() / cellWidth, event.getX() / cellHeight);
 						for(BoardCell cell: targets) {
 							cell.highlight = false;
+						}
+		
+						if(getCell(event.getY() / cellWidth, event.getX() / cellHeight).isRoomCenter()) {
+							getRoom(getCell(event.getY() / cellWidth, event.getX() / cellHeight).getRoomChar()).enterRoom(players.get(turn));
+							players.get(turn).setInRoom(true);
 						}
 						repaint();
 					}else {

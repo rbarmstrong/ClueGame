@@ -103,7 +103,7 @@ public class GameCardPanel extends JPanel {
 	private JPanel createWeaponsPanel() { // Panel showing info on weapon cards
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(sizeWeaponsPanel,1));
-		panel.setBorder(new TitledBorder(new EtchedBorder(), "People"));
+		panel.setBorder(new TitledBorder(new EtchedBorder(), "Weapons"));
 		JLabel handLabel = new JLabel("In Hand:");
 		JLabel seenLabel = new JLabel("Seen:");
 		panel.add(handLabel);

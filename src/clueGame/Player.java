@@ -16,11 +16,13 @@ public abstract class Player {
 	protected int pathLength;
 	protected boolean finishedTurn;
 	protected boolean movedThisTurn;
+	private boolean inRoom;
 	
 	public Player() {
 		hand = new ArrayList<>();
 		cardsSeen = new ArrayList<>();
 		suggestion = new Solution();
+		inRoom = false;
 	}
 	
 	public Player(int length) {
@@ -83,15 +85,15 @@ public abstract class Player {
 		g.drawOval(col * height, row * width, height, width);
 	}
 	
-//	public void drawSelf(int height, int width, Graphics g, ArrayList<Player> players) {
-//		int row = getLocation()[0];
-//		int col = getLocation()[1];
-//		int offset = 2;
-//		g.setColor(getColor());
-//		g.fillOval(col * height + offset*numPlayers, row * width + offset*numPlayers, height, width);
-//		g.setColor(Color.BLACK);
-//		g.drawOval(col * height + offser*numPlayers, row * width + offset*numPlayers, height, width);
-//	}
+	public void drawSelf(int height, int width, Graphics g, int numPlayers) {
+		int row = getLocation()[0];
+		int col = getLocation()[1];
+		int offset = height;
+		g.setColor(getColor());
+		g.fillOval(col * height + offset*numPlayers, row * width , height, width);
+		g.setColor(Color.BLACK);
+		g.drawOval(col * height + offset*numPlayers, row * width , height, width);
+	}
 	
 	public void setName(String name) {
 		this.name = name;
@@ -131,6 +133,14 @@ public abstract class Player {
 	
 	public ArrayList<Card> getHand() {
 		return hand;
+	}
+	
+	public void setInRoom(boolean set) {
+		inRoom = set;
+	}
+	
+	public boolean getInRoom() {
+		return inRoom;
 	}
 	
 	public ArrayList<Card> getCardsSeen() {

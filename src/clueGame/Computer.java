@@ -73,7 +73,6 @@ public class Computer extends Player {
 				for(int i = 0; i < notVisitedRooms.size(); i++) {
 
 					if(target.getRoomChar() == notVisitedRooms.get(i).getRoomChar()) {
-						//System.out.println(target.getRoomChar());
 						validRooms.add(target);
 					}
 				}
@@ -81,7 +80,13 @@ public class Computer extends Player {
 			
 		}
 		if(validRooms.size() != 0) {
-			return validRooms.get(rand.nextInt(validRooms.size()));
+			int randInt = rand.nextInt(validRooms.size());
+			if(Board.getInstance().getCurrPlayer().getInRoom()) {
+				Board.getInstance().getRoom(Board.getInstance().getCurrPlayer().getLocationCell()).leaveRoom(Board.getInstance().getCurrPlayer());
+			}
+			Board.getInstance().getRoom(validRooms.get(randInt)).enterRoom(Board.getInstance().getCurrPlayer());
+			Board.getInstance().getCurrPlayer().setInRoom(true);
+			return validRooms.get(randInt);
 		}
 		
 		ArrayList<BoardCell> targetListArray = new ArrayList<>();
@@ -89,6 +94,11 @@ public class Computer extends Player {
 			targetListArray.add(target);
 		}
 		int selection = rand.nextInt(targetListArray.size());
-		return targetListArray.get(selection);		
+		if(Board.getInstance().getCurrPlayer().getInRoom()) {
+			Board.getInstance().getCurrPlayer().setInRoom(false);
+			//Player is removed from the list of players in room
+			Board.getInstance().getRoom(Board.getInstance().getCurrPlayer().getLocationCell()).leaveRoom(Board.getInstance().getCurrPlayer()); 
+		}
+		return targetListArray.get(selection);
 	}
 }
