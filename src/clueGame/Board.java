@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -21,7 +22,7 @@ public class Board extends JPanel{
 	protected static HashMap<Character, Room> rooms;
 	private static String layoutConfigFile;
 	private static String setupConfigFile;
-	protected static ArrayList<Card> deck;
+	private static ArrayList<Card> deck;
 	private static ArrayList<Player> players;
 	private static ArrayList<Card> dealer;
 	private Solution theAnswer;
@@ -640,6 +641,10 @@ public class Board extends JPanel{
 						if(getCell(event.getY() / cellWidth, event.getX() / cellHeight).isRoomCenter()) {
 							getRoom(getCell(event.getY() / cellWidth, event.getX() / cellHeight).getRoomChar()).enterRoom(players.get(turn));
 							players.get(turn).setInRoom(true);
+							repaint();
+							JPanel suggestion = new Dropdown(false);
+							Object[] options = {"Submit", "Cancel"};
+							JOptionPane.showOptionDialog(null, suggestion, "Make Suggestion", JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
 						}
 						repaint();
 					}else {

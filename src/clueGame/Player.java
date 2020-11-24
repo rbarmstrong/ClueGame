@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.JPanel;
+
 public abstract class Player {
 	protected String name;
 	private Color color;
@@ -68,15 +70,15 @@ public abstract class Player {
 	public ArrayList<Card> filterChoices(){
 		filtered = new ArrayList<>();
 		boolean seen;
-		for(int i = 0; i < Board.deck.size(); i++) {
+		for(int i = 0; i < Board.getInstance().getDeck().size(); i++) {
 			seen = false;
 			for (int j = 0; j < cardsSeen.size(); j++) {
-				if (Board.deck.get(i).getCardName().equals(cardsSeen.get(j).getCardName())) {
+				if (Board.getInstance().getDeck().get(i).getCardName().equals(cardsSeen.get(j).getCardName())) {
 					seen = true;
 				}
 			}
 			if (!seen) {
-				filtered.add(Board.deck.get(i));
+				filtered.add(Board.getInstance().getDeck().get(i));
 			}
 		}		
 		return filtered;
@@ -125,7 +127,9 @@ public abstract class Player {
 	public BoardCell getLocationCell() {
 		return Board.getInstance().getCell(row,col);
 	}
-	
+	public Room getRoom() {
+		return Board.getInstance().getRoom(getLocationCell());
+	}
 	public void setLocation(int row, int col) {
 		this.row = row;
 		this.col = col;
@@ -141,7 +145,7 @@ public abstract class Player {
 		return hand;
 	}
 	
-	public void setInRoom(boolean set) { //TODO
+	public void setInRoom(boolean set) {
 		inRoom = set;
 	}
 	
