@@ -21,8 +21,8 @@ import javax.swing.border.TitledBorder;
 public class GameControlPanel extends JPanel implements ActionListener{
 	private static JTextField currName;
 	private static JTextField roll;
-	private JTextField guess;
-	private JTextField guessResult;
+	private static JTextField guess;
+	private static JTextField guessResult;
 	
 	public GameControlPanel() { //Constructor 
 		// Create a layout with 2 rows
@@ -141,12 +141,12 @@ public class GameControlPanel extends JPanel implements ActionListener{
 		roll.setText(Integer.toString(rollVal));
 	}
 	
-	public void setGuess(String guess) { //setter
-		this.guess.setText(guess);
+	public static void setGuess(String guessMade) { //setter
+		guess.setText(guessMade);
 	}
 
-	public void setGuessResult(String guessResult) { //setter
-		this.guessResult.setText(guessResult);
+	public static void setGuessResult(String result) { //setter
+		guessResult.setText(result);
 	}
 	
 	public void setCurrName(String name) { //setter

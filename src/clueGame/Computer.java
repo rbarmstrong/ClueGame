@@ -40,8 +40,6 @@ public class Computer extends Player {
 			}
 		}
 		
-
-		
 		while(needPerson || needWeapon) {
 			tempCard = filtered.get(rand.nextInt(filtered.size()));
 			if((tempCard.getType() == CardType.PERSON) && needPerson) {

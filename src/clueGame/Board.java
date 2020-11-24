@@ -426,7 +426,7 @@ public class Board extends JPanel{
 				break;
 			}
 		}
-		
+		GameControlPanel.setGuess(player.getName() + " suggested: " + suggestion.person.getCardName() + " with " + suggestion.weapon.getCardName() + " in " + suggestion.room.getCardName());		
 		int playerIndex = players.indexOf(player) + 1;
 		if (playerIndex >= players.size()) {
 			playerIndex = 0;
@@ -537,6 +537,10 @@ public class Board extends JPanel{
 				Computer compPlayer = (Computer) players.get(turn);
 				BoardCell selection = compPlayer.selectTargets();
 				compPlayer.setLocation(selection.getRow(), selection.getCol());
+				if(compPlayer.inRoom) {
+					Solution newSuggestion = compPlayer.createSuggestion();
+					GameControlPanel.setGuessResult(handleSuggestion(compPlayer, newSuggestion).getCardName());
+				}
 				for(BoardCell cell: targets) {
 					cell.highlight = false;
 				}

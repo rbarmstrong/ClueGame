@@ -16,7 +16,7 @@ public abstract class Player {
 	protected int pathLength;
 	protected boolean finishedTurn;
 	protected boolean movedThisTurn;
-	private boolean inRoom;
+	protected boolean inRoom;
 	
 	public Player() {
 		hand = new ArrayList<>();
@@ -135,7 +135,7 @@ public abstract class Player {
 		return hand;
 	}
 	
-	public void setInRoom(boolean set) {
+	public void setInRoom(boolean set) { //TODO
 		inRoom = set;
 	}
 	
