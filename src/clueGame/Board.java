@@ -539,7 +539,7 @@ public class Board extends JPanel{
 				compPlayer.setLocation(selection.getRow(), selection.getCol());
 				if(compPlayer.inRoom) {
 					Solution newSuggestion = compPlayer.createSuggestion();
-					GameControlPanel.setGuessResult(handleSuggestion(compPlayer, newSuggestion).getCardName());
+					players.get(turn).updateHand(handleSuggestion(compPlayer, newSuggestion));
 				}
 				for(BoardCell cell: targets) {
 					cell.highlight = false;

@@ -55,7 +55,13 @@ public abstract class Player {
 		if(temp.size() == 0) {
 			return null;
 		}
-		return temp.get(rand.nextInt(temp.size()));
+		int randVal = rand.nextInt(temp.size());
+		if(Board.getInstance().getPlayers().get(Board.getInstance().turn).getClass().getName().equals("clueGame.Human")) {
+			GameControlPanel.setGuessResult(name + " disproved with " + temp.get(randVal));
+		}else {
+			GameControlPanel.setGuessResult(name + " disproved.");
+		}		
+		return temp.get(randVal);
 		
 	}
 	
