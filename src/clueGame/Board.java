@@ -539,7 +539,13 @@ public class Board extends JPanel{
 				compPlayer.setLocation(selection.getRow(), selection.getCol());
 				if(compPlayer.inRoom) {
 					Solution newSuggestion = compPlayer.createSuggestion();
-					players.get(turn).updateHand(handleSuggestion(compPlayer, newSuggestion));
+					Card disproveCard = handleSuggestion(compPlayer, newSuggestion);
+					if(disproveCard != null) {
+						players.get(turn).updateHand(disproveCard);
+					}else {
+						GameControlPanel.setGuessResult("Suggestion not disproven");
+					}
+					
 				}
 				for(BoardCell cell: targets) {
 					cell.highlight = false;
