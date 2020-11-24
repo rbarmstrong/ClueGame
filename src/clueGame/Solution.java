@@ -14,6 +14,7 @@ public class Solution {
 	public Solution() {
 		
 	}
+	
 	public Card getPerson() {
 		return person;
 	}
@@ -33,5 +34,8 @@ public class Solution {
 		this.weapon = weapon;
 	}
 	
+	public String stringSolution() {
+		return (weapon.getCardName() + " " + person.getCardName() + " " + room.getCardName());
+	}
 	
 }

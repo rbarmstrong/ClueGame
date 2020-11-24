@@ -11,8 +11,9 @@ import javax.swing.JOptionPane;
 
 
 public class ClueBoardDisplay extends JFrame{
-	Board board;
-	GameCardPanel cardPanel;
+	static Board board;
+	static GameCardPanel cardPanel;
+	protected static ClueBoardDisplay game;
 	GameControlPanel controlPanel;
 
 	public ClueBoardDisplay(){
@@ -27,10 +28,15 @@ public class ClueBoardDisplay extends JFrame{
 		add(cardPanel, BorderLayout.EAST);
 		add(controlPanel, BorderLayout.SOUTH);
 		Object[] options = {"OK"};
-		JOptionPane.showOptionDialog(null, "You are " + Board.getInstance().getFirstTurnName() + ". Can you find the solution before the Computer players?", "Welcome To Clue", JOptionPane.PLAIN_MESSAGE, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
-		
-		
-
+		JOptionPane.showOptionDialog(null, "You are " + Board.getInstance().getFirstTurnName() + ". Can you find the solution before the Computer players?",
+				"Welcome To Clue", JOptionPane.PLAIN_MESSAGE, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+	}
+	
+	public void refreshCardPanel() {
+		remove(cardPanel);
+		cardPanel = new GameCardPanel(board.getPlayers().get(0), board.getPlayers());
+		add(cardPanel, BorderLayout.EAST);
+		revalidate();
 	}
 	
 	public static void main(String[] args) {
@@ -40,7 +46,7 @@ public class ClueBoardDisplay extends JFrame{
 		board.setConfigFiles("data/ClueLayout.csv", "data/ClueSetup.txt");		
 		// Initialize will load config files 
 		board.initialize();
-		ClueBoardDisplay game = new ClueBoardDisplay();
+		game = new ClueBoardDisplay();
 		board.firstTurn();
 		game.setVisible(true);
 		

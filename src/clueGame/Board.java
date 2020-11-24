@@ -28,6 +28,8 @@ public class Board extends JPanel{
 	private Solution theAnswer;
 	protected int turn = 0;
 	private boolean test306;
+	private Solution newSuggestion ;
+	protected boolean testMode = false;
 	/*
 	 * variable and methods used for singleton pattern
 	 */
@@ -35,6 +37,7 @@ public class Board extends JPanel{
 	// constructor is private to ensure only one can be created
 	private Board() {
 		super() ;
+		newSuggestion = new Solution();
 		addMouseListener(new MouseWatch());
 
 
@@ -284,6 +287,9 @@ public class Board extends JPanel{
 		scan.close();
 	}
 
+	public void setTestMode() {
+		testMode = true;
+	}
 
 	private void findAllTargets(BoardCell thisCell, int numSteps) {
 		for (BoardCell adjCell : thisCell.getAdjList()) { //loop through each adj cell
@@ -415,19 +421,21 @@ public class Board extends JPanel{
 	}
 
 	public Card handleSuggestion(Player player, Solution suggestion) { //TODO
-		for(Player person : players) { //Puts correct player in room
-			if(person.getName().compareTo(suggestion.person.getCardName()) == 0) {
-				BoardCell tempCell = getRoom(suggestion.room.getRoomChar()).getCenterCell();
-				if(person.getInRoom()) {
-					getRoom(person.getLocationCell()).leaveRoom(person);
+		if(!testMode) {
+			for(Player person : players) { //Puts correct player in room
+				if(person.getName().compareTo(suggestion.person.getCardName()) == 0) {
+					BoardCell tempCell = getRoom(suggestion.room.getRoomChar()).getCenterCell();
+					if(person.getInRoom()) {
+						getRoom(person.getLocationCell()).leaveRoom(person);
+					}
+					person.setInRoom(true);
+					getRoom(suggestion.room.getRoomChar()).enterRoom(person);
+					person.setLocation(tempCell.getRow(), tempCell.getCol());
+					break;
 				}
-				person.setInRoom(true);
-				getRoom(suggestion.room.getRoomChar()).enterRoom(person);
-				person.setLocation(tempCell.getRow(), tempCell.getCol());
-				break;
 			}
+			GameControlPanel.setGuess(player.getName() + " suggested: " + suggestion.person.getCardName() + " with " + suggestion.weapon.getCardName() + " in " + suggestion.room.getCardName());		
 		}
-		GameControlPanel.setGuess(player.getName() + " suggested: " + suggestion.person.getCardName() + " with " + suggestion.weapon.getCardName() + " in " + suggestion.room.getCardName());		
 		int playerIndex = players.indexOf(player) + 1;
 		if (playerIndex >= players.size()) {
 			playerIndex = 0;
@@ -542,11 +550,11 @@ public class Board extends JPanel{
 					Solution newSuggestion = compPlayer.createSuggestion();
 					Card disproveCard = handleSuggestion(compPlayer, newSuggestion);
 					if(disproveCard != null) {
-						players.get(turn).updateHand(disproveCard);
+						players.get(turn).updateSeen(disproveCard);
 					}else {
 						GameControlPanel.setGuessResult("Suggestion not disproven");
 					}
-					
+
 				}
 				for(BoardCell cell: targets) {
 					cell.highlight = false;
@@ -588,7 +596,7 @@ public class Board extends JPanel{
 	public ArrayList<Card> getDealer() {
 		return dealer;
 	}
-	
+
 	public Player getCurrPlayer() {
 		return players.get(turn);
 	}
@@ -604,6 +612,21 @@ public class Board extends JPanel{
 	public int getTurn() {
 		return turn;
 	}
+
+	public void setSuggestion(String room, String person, String weapon) { //TODO
+		for(Card card : deck) {
+			if(card.getCardName().equals(room)) {
+				newSuggestion.setRoom(card);
+			}
+			if(card.getCardName().equals(person)) {
+				newSuggestion.setPerson(card);
+			}
+			if(card.getCardName().equals(weapon)) {
+				newSuggestion.setWeapon(card);
+			}
+		}
+	}
+
 	private class MouseWatch implements MouseListener {
 		//  Empty definitions for unused event methods.
 		public void mousePressed (MouseEvent event) {}  
@@ -637,14 +660,31 @@ public class Board extends JPanel{
 						for(BoardCell cell: targets) {
 							cell.highlight = false;
 						}
-		
+
 						if(getCell(event.getY() / cellWidth, event.getX() / cellHeight).isRoomCenter()) {
 							getRoom(getCell(event.getY() / cellWidth, event.getX() / cellHeight).getRoomChar()).enterRoom(players.get(turn));
 							players.get(turn).setInRoom(true);
 							repaint();
-							JPanel suggestion = new Dropdown(false);
+							JPanel suggestionDD = new Dropdown(false);
 							Object[] options = {"Submit", "Cancel"};
-							JOptionPane.showOptionDialog(null, suggestion, "Make Suggestion", JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+							int result = JOptionPane.showOptionDialog(null, suggestionDD, "Make Suggestion", JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+							if(result == 0) {
+								Card disproveCard = handleSuggestion(players.get(turn), newSuggestion);
+								if(disproveCard != null) {
+									boolean alreadySeen = false;
+									for(Card seenCard : players.get(turn).getCardsSeen()) {
+										if(seenCard.getCardName().equals(disproveCard.getCardName())) {
+											alreadySeen = true;
+										}
+									}
+									if(!alreadySeen) {
+										players.get(turn).updateSeen(disproveCard);
+									}
+								}else {
+									GameControlPanel.setGuessResult("Suggestion not disproven");
+								}
+								ClueBoardDisplay.game.refreshCardPanel();
+							}
 						}
 						repaint();
 					}else {

@@ -30,6 +30,7 @@ public class GameSolutionTest {
 			board.setConfigFiles("data/ClueLayout.csv", "data/ClueSetup.txt");		
 			// Initialize will load config files 
 			board.initialize();
+			board.setTestMode();
 		}
 		
 		@Test

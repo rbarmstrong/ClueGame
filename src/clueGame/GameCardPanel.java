@@ -14,15 +14,15 @@ import javax.swing.border.TitledBorder;
 
 public class GameCardPanel extends JPanel {
 	
-	private ArrayList<JTextField> handPeople;
-	private ArrayList<JTextField> seenPeople;
-	private ArrayList<JTextField> handRooms;
-	private ArrayList<JTextField> seenRooms;
-	private ArrayList<JTextField> handWeapons;
-	private ArrayList<JTextField> seenWeapons;
-	private int sizePeoplePanel;
-	private int sizeRoomsPanel;
-	private int sizeWeaponsPanel;
+	private static ArrayList<JTextField> handPeople;
+	private static ArrayList<JTextField> seenPeople;
+	private static ArrayList<JTextField> handRooms;
+	private static ArrayList<JTextField> seenRooms;
+	private static ArrayList<JTextField> handWeapons;
+	private static ArrayList<JTextField> seenWeapons;
+	private static int sizePeoplePanel;
+	private static int sizeRoomsPanel;
+	private static int sizeWeaponsPanel;
 	private Player player;
 	private ArrayList<Player> players;
 	
@@ -220,6 +220,7 @@ public class GameCardPanel extends JPanel {
 			}
 		}
 	}
+	
 	
 	public static void main(String[] args) { // Test the card panel using some arbitrary players with cards in their hand and cards seen
 		Card jordan = new Card("Jordan", CardType.PERSON);

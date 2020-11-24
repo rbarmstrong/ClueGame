@@ -37,6 +37,10 @@ public class Card {
 	public char getRoomChar() {
 		return roomChar;
 	}
+	
+	public void setRoomChar(char roomChar) {
+		this.roomChar = roomChar;
+	}
 
 	public boolean equals(Card target) {
 		if((target.getCardName() == this.cardName) && (this.type == target.getType())) {

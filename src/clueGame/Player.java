@@ -19,14 +19,14 @@ public abstract class Player {
 	protected boolean finishedTurn;
 	protected boolean movedThisTurn;
 	protected boolean inRoom;
-	
+
 	public Player() {
 		hand = new ArrayList<>();
 		cardsSeen = new ArrayList<>();
 		suggestion = new Solution();
 		inRoom = false;
 	}
-	
+
 	public Player(int length) {
 		pathLength = length;
 	}
@@ -35,16 +35,18 @@ public abstract class Player {
 		hand.add(card);
 		cardsSeen.add(card);
 	}
-	
+
 	public void updateSeen(Card card) {
 		cardsSeen.add(card);
 	}
-	
+
 	public Card disproveSuggestion(Solution suggestion) {
 		Random rand  = new Random();
-		rand.setSeed(5); //TODO SEED
+		if(Board.getInstance().testMode) {
+			rand.setSeed(5);
+		}
 		ArrayList<Card> temp = new ArrayList<>();
-		
+
 		if(hand.contains(suggestion.person)) {
 			temp.add(suggestion.person);
 		}
@@ -58,15 +60,17 @@ public abstract class Player {
 			return null;
 		}
 		int randVal = rand.nextInt(temp.size());
-		if(Board.getInstance().getPlayers().get(Board.getInstance().turn).getClass().getName().equals("clueGame.Human")) {
-			GameControlPanel.setGuessResult(name + " disproved with " + temp.get(randVal));
-		}else {
-			GameControlPanel.setGuessResult(name + " disproved.");
-		}		
+		if(!Board.getInstance().testMode) {
+			if(Board.getInstance().getPlayers().get(Board.getInstance().turn).getClass().getName().equals("clueGame.Human")) {
+				GameControlPanel.setGuessResult(name + " disproved with " + temp.get(randVal).getCardName());
+			}else {
+				GameControlPanel.setGuessResult(name + " disproved.");
+			}		
+		}
 		return temp.get(randVal);
-		
+
 	}
-	
+
 	public ArrayList<Card> filterChoices(){
 		filtered = new ArrayList<>();
 		boolean seen;
@@ -83,7 +87,7 @@ public abstract class Player {
 		}		
 		return filtered;
 	}
-	
+
 	public void drawSelf(int height, int width, Graphics g) {
 		int row = getLocation()[0];
 		int col = getLocation()[1];
@@ -92,7 +96,7 @@ public abstract class Player {
 		g.setColor(Color.BLACK);
 		g.drawOval(col * height, row * width, height, width);
 	}
-	
+
 	public void drawSelf(int height, int width, Graphics g, int numPlayers) {
 		int row = getLocation()[0];
 		int col = getLocation()[1];
@@ -102,7 +106,7 @@ public abstract class Player {
 		g.setColor(Color.BLACK);
 		g.drawOval(col * height + offset*numPlayers, row * width , height, width);
 	}
-	
+
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -110,16 +114,16 @@ public abstract class Player {
 	public void setColor(Color color) {
 		this.color = color;
 	}
-	
+
 
 	public String getName() {
 		return name;
 	}
-	
+
 	public Color getColor() {
 		return color;
 	}
-	
+
 	public int[] getLocation() {
 		int[] location = {row, col};
 		return location;
@@ -136,23 +140,23 @@ public abstract class Player {
 		finishedTurn = true;
 		movedThisTurn = true;
 	}
-	
+
 	public void setPathLength(int length) {
 		pathLength = length;
 	}
-	
+
 	public ArrayList<Card> getHand() {
 		return hand;
 	}
-	
+
 	public void setInRoom(boolean set) {
 		inRoom = set;
 	}
-	
+
 	public boolean getInRoom() {
 		return inRoom;
 	}
-	
+
 	public ArrayList<Card> getCardsSeen() {
 		return cardsSeen;
 	}
