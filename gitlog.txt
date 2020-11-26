@@ -1,0 +1,647 @@
+commit 7fc7ca10f28bc91035c7e5b3c86cd2ac0f724c63
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Wed Nov 25 18:17:19 2020 -0700
+
+    Final Commit. Everything working and follows rubric
+
+commit 3a54109b1c69d6ccf18f8e5702af17b210647c8a
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Tue Nov 24 22:17:41 2020 -0700
+
+    save for the night
+
+commit 446e38b142ae4a75b58f3cf3eee71cdf6e081d8a
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Tue Nov 24 16:48:14 2020 -0700
+
+    All suggestions work correctly
+
+commit 428a2a7ecab3196299bcc32e8e335a0a1393233b
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Tue Nov 24 14:06:01 2020 -0700
+
+    Player suggestion dialog popup works. Doesnt read input
+
+commit 62cd9802719fbee96602d4d8cc8f5574547577c9
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Tue Nov 24 00:04:55 2020 -0700
+
+    Save point
+
+commit c86c8bd64620eb8aeab34213b0c00ad2ff3bbeab
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Nov 23 23:56:34 2020 -0700
+
+    Guess result should be displayed properly. Result is added to hand
+
+commit 2fdcd0db7622730e0666c1e4c45e1d8ca9c5ea7e
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Nov 23 23:40:34 2020 -0700
+
+    Computer suggestions should be working and displaying properly
+
+commit 01182975fa73db0faf7abc1e75af077bd58ef524
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Sun Nov 22 21:11:13 2020 -0700
+
+    save place
+
+commit a68ac03cbfecebd60558392ec6fbd095a7a59222
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Sun Nov 22 18:55:27 2020 -0700
+
+    Fixed players not being able to move to bottom row
+
+commit 31584dd4b0cbc53ccc0bac1520ab908e4912b4ee
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Sun Nov 22 18:50:12 2020 -0700
+
+    Fixed players being able to step on same space as another
+
+commit e5ef70b42fb108659372502424eaaca4b42a1d9c
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Nov 16 23:52:40 2020 -0700
+
+    Last commit
+
+commit c5aa6a4d30d6f52cedd709d220d5060b8fd15272
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Mon Nov 16 23:11:40 2020 -0700
+
+    Got computer movement working, made sure player cannot go to next turn before moving, fixed target display
+
+commit 7e7ba4aa9109f1e20e1e99ae0778836f3364a4fc
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Nov 16 15:21:04 2020 -0700
+
+    Got player movement working
+
+commit 3045cee99cd37228599e1dadef8fc53232d01236
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Nov 16 13:56:03 2020 -0700
+
+    Highlighting targets works
+
+commit 8e1c12d7af86f69e3d663e0ab3c0b8d6193bfac8
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Nov 16 12:46:19 2020 -0700
+
+    Splash screen works, initializes to starting player
+
+commit bcd0e533c84dc2d1f64d9f5a3dd04399b2c14da8
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Nov 16 11:23:16 2020 -0700
+
+    Next button works
+
+commit dcf61839f41826ce1dbd8384663e42f678282aed
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Thu Nov 12 15:31:02 2020 -0700
+
+    Added comments, final commit for C22A
+
+commit 52a04db5aed977253870b6ab14c4cc1aefdf9205
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Thu Nov 12 15:30:10 2020 -0700
+
+    Clue Board Display working, fixed bugs
+
+commit c69d9c6b67ea184b13b21fa7343ac98e40d8f6c7
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Thu Nov 12 15:29:17 2020 -0700
+
+    Clue Board Display displaying basic functionality
+
+commit 02df15b3c974f6c91000fa96775c088c47d30e5a
+Merge: e54d18a a4fdcf1
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Thu Nov 12 13:52:23 2020 -0700
+
+    merge conflit fix
+
+commit e54d18ae0c1388182e536fa751372889a872faeb
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Thu Nov 12 13:51:17 2020 -0700
+
+    test
+
+commit a4fdcf1a0449dd1312acfa7ba8ca36688da2c0e4
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Mon Nov 9 20:46:51 2020 -0700
+
+    Updated gitlog
+
+commit d0bf6887e38c5103797fc21a64161d775e29c249
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Mon Nov 9 20:43:53 2020 -0700
+
+    Added comments, refactored, added None text field when necessary
+
+commit cf8c655c162bb7ce6f7c744c711cb63a51df2ca9
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Mon Nov 9 20:01:37 2020 -0700
+
+    GameCardPanel complete, just need to add comments
+
+commit 0a67fb2527331250d4f2168d9432df80d40e86b1
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Mon Nov 9 16:01:57 2020 -0700
+
+    Got about halfway done with GameCardPanel.java, made some adjustments/refactored stuff here and there
+
+commit f9976a39d5d4e3ad376877c2d1d7425fdb8bf310
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Sun Nov 8 17:10:16 2020 -0700
+
+    Updated gitlog.txt
+
+commit 4d49cae2f6e1a7d53087e4afa81df7739512ea0f
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Sun Nov 8 17:09:30 2020 -0700
+
+    Added comments
+
+commit 16cc90d70cd9990014b9e0f66be44ce4061e3b23
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Sun Nov 8 17:04:22 2020 -0700
+
+    Changed Make Accusation button to bold font
+
+commit 01a932a3f34b2102fa2375d03a8f9903051cbcaf
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Sun Nov 8 17:01:30 2020 -0700
+
+    GameControlPanel created and working
+
+commit 687f83ddd0c1e550834132998a416d42ee744ce1
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Sun Nov 8 16:34:21 2020 -0700
+
+    GameControlPanel basic functions working. Asthetic needs work
+
+commit e02de31bfd07e823fc8a1e4dd4701e19efd97e46
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Nov 6 22:18:59 2020 -0700
+
+    added comments
+
+commit 71574ee01e5db48e0373f8f902cd702831c31cfa
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Nov 6 22:13:01 2020 -0700
+
+    All tests pass
+
+commit 0f7fdf7398aee5ed743df20d84bcebcdf395d3bd
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Nov 6 20:31:16 2020 -0700
+
+    testSelectTarget Passes
+
+commit 7fb623809d740864c86a814b69ea0346ee6235bb
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Nov 6 18:35:24 2020 -0700
+
+    testSelectTargets fais
+
+commit a6727be5e2069e29f2ce48c0eb7cdacb6507a48a
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Nov 6 18:06:50 2020 -0700
+
+    testHandleSuggestion passes
+
+commit 7c9efd008d8421900e38bf7791865ab9a0a48589
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Nov 6 16:45:29 2020 -0700
+
+    commit so partner can work
+
+commit b06ec36e0e2bd25f8d1773ee56a52f55245c585d
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Nov 6 16:07:59 2020 -0700
+
+    Final update on testDisproveSuggestion. everything working
+
+commit 1281c0dfb97f35a4475baa4e02f43603f7e2bf01
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Nov 6 16:01:44 2020 -0700
+
+    added random element to returned card in suggestion. updated tests
+
+commit b84329ed0ce2dd9eb262df54d03750a358e6d73f
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Nov 6 15:38:56 2020 -0700
+
+    createSuggestion function created
+
+commit 7a68603977b4dfb638fff68ee61011ab117b2967
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Nov 6 15:15:17 2020 -0700
+
+    testHandleSuggestion fails
+
+commit 67636c37a4042ba64e7ce431629b8f73d35b7a05
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Nov 6 14:52:44 2020 -0700
+
+    testDisproveSuggest passes
+
+commit 3e19a96d813436f20975fe5c55d400ff2876c98b
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Nov 6 14:21:28 2020 -0700
+
+    testCheckAccusation passes testDisprovesuggest created
+
+commit e737f313fe2122677754d7731a02dc67f1fe5b8b
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Nov 6 14:16:01 2020 -0700
+
+    testCheckAccusation fails
+
+commit 8f0f18d697b900cd2a7a313819b9370fb8f45974
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Nov 6 14:06:12 2020 -0700
+
+    created testCheckAccusation
+
+commit b5a69030a8c35aa0076c7ca92d3b98071655520f
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Fri Nov 6 13:59:02 2020 -0700
+
+    Started on testCheckAccusation, commented out setters for Card and added constructor to replace them
+
+commit ee5f352040333ae186709dd0e9eb9f826ca19eca
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Fri Nov 6 13:39:19 2020 -0700
+
+    Added setSolution method, created blank classes for GameSolutionTest and ComputerAITest
+
+commit 3087146cfce669844ae1ec395f4d17b6d00837eb
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Nov 6 12:31:10 2020 -0700
+
+    created some functions
+
+commit 0f2316811965aa440c7cd1e86fed87681d142267
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Nov 2 15:39:02 2020 -0700
+
+    added files
+
+commit 92ca7ce8d2c7f4f001baa1c599e83e18f47adb78
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Nov 2 15:03:42 2020 -0700
+
+    Gitlog updated
+
+commit dabfe9e487e900879e3624761e2b5a968aa34997
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Nov 2 15:03:09 2020 -0700
+
+    Code refactored into smaller functions for redability
+
+commit eba02143ab8f9356127146ccb03e5099c5807a06
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Nov 2 14:49:19 2020 -0700
+
+    All tests working and passed
+
+commit b8e6a23f3c8fe8612f9780713e430eccea8ce780
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Nov 2 14:38:25 2020 -0700
+
+    testSolutionDealt and testCardsDealt finished, failing.
+
+commit f2b78f845d47a290620cee883b8d7670db6adcdd
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Nov 2 14:34:50 2020 -0700
+
+    testCardLoad passed
+
+commit fc47e52d7e3bf6e5b65594a762e040d5a023c001
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Nov 2 14:13:09 2020 -0700
+
+    Test testCardLoad created
+
+commit 594045e8609d25725d2861bb03897d5cea139fe0
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Nov 2 13:59:46 2020 -0700
+
+    People and Weapons loaded in correctly, test passes.
+
+commit 9bcc0c7873f3d7a8ad08b533b570343f19b355ef
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Nov 2 13:11:25 2020 -0700
+
+    First test created, Fails
+
+commit 31924c84469beed595e3cbc3cfb96722b1ec196f
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Nov 2 12:29:53 2020 -0700
+
+    Weapons and Players added to clue setup. New classes made
+
+commit 9f64734afc22b763fe1c92810044d7f1ec389dee
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Oct 30 17:13:10 2020 -0600
+
+    updated gitlog
+
+commit fd5c110aa3e6b18a5b66ae1b056894e63c9e640e
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Oct 30 17:08:07 2020 -0600
+
+    instead of hard refrencing, changed to variable for redability
+
+commit 524d7f9a4d40ade41d26ecdf791ccda6edaca2d8
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Oct 30 17:04:06 2020 -0600
+
+    Removed unused imports from files
+
+commit 530872ac082dd48fe2cb09bac14c10fa4ffdec6f
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Oct 30 17:02:40 2020 -0600
+
+    changed ROWS and COLS to rows and cols, not final anymore
+
+commit ece892ebaca07927729bb20a8506641d23d57fa4
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Oct 30 16:55:02 2020 -0600
+
+    removed unused entrances array in room.java
+
+commit ee6eb238b5e747c988522ea0f97753ab7f96952b
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Oct 30 16:54:05 2020 -0600
+
+    Removed unused letter variable in room.java
+
+commit 7dc9a593d5c36b68d10e87fc1f036c2366de90a5
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Oct 30 16:52:13 2020 -0600
+
+    added serial version ID to fix an error
+
+commit 73726a1380903f66583edd2081aa68c1521724c2
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Oct 30 16:47:09 2020 -0600
+
+    Closed scanner to fix resource leak
+
+commit 396ddaf5dfddcdb4d67d61da7b27d13a71e65ec9
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Oct 30 16:42:07 2020 -0600
+
+    added some code to fix a reader error
+
+commit f16bd126045ae936e1e9710531364d8a8abeb136
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Oct 30 14:00:54 2020 -0600
+
+    Removed unnessary section of code
+
+commit 28ab6a67e8977d684d27ff25c9f27f5bd15a1ca9
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Fri Oct 16 19:56:35 2020 -0600
+
+    Updated gitlog.txt
+
+commit 13dd01098f7414cb848414f62f19c17d553df61e
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Fri Oct 16 19:55:20 2020 -0600
+
+    Fixed BoardAdjTargetTest.java tests to test for the correct things. All tests in the tests package now pass.
+
+commit 5d07b88dbe8e1bad8bc192a186f554ed55871250
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Oct 16 14:34:32 2020 -0600
+
+    All BoardAdjTargetTest306 passed. Non 306 still has errors
+
+commit 7406f66aeaf342561d55ee6f00de1e07a620964e
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Oct 16 14:21:01 2020 -0600
+
+    8 of 9 tests working on test306
+
+commit 040b92a455ffaaa680b1ec7034949ad5942c2e54
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Oct 16 13:05:13 2020 -0600
+
+    Created doorCalc function
+
+commit 08f0f1046bafc29289de048755b0ef16a7f86517
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Oct 12 23:55:12 2020 -0600
+
+    Got most tests working
+
+commit 104abc27374b3c041e2e7d9ceec41c69c0fa6fb1
+Merge: c66cd6f c153558
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Oct 12 22:45:00 2020 -0600
+
+    Merge branch 'main' of https://github.com/rbarmstrong/ClueGame into main
+
+commit c66cd6f59671014b6c94d0fd94d4a596e391b21d
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Oct 12 22:44:41 2020 -0600
+
+    Redesigned loadLayoutConfig into two seperate functions
+
+commit c15355830a9102d4216d80c5f538d00500a58fad
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Mon Oct 12 22:44:23 2020 -0600
+
+    updated gitlog.txt
+
+commit 5319c77ba3059fa252873d9e55f212ce04e890a0
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Mon Oct 12 22:37:26 2020 -0600
+
+    Finished clue layout with test plans as well as all target tests
+
+commit 5e970a94cb5605e2649cbb89e38405fee5a843e5
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Mon Oct 12 22:08:30 2020 -0600
+
+    Finished adjacency tests, working on target tests
+
+commit 0b31fc645dc555ee4356c326a23a70ad8ecae14e
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Oct 12 16:10:24 2020 -0600
+
+    Where I left off
+
+commit 6883d9f6e20d547b80d26ceedc518669087fdb9d
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Oct 12 16:04:46 2020 -0600
+
+    Checkpoint. Fixed an error with CSV and newlines
+
+commit ca69480e807aad1aae69b9451cd9210f16115c26
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Oct 12 15:02:39 2020 -0600
+
+    Changed loadLayoutConfig a bit. Debugging test rooms
+
+commit 75433c27e8bbdc408b7d3716989d3cbbcb0c2366
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Oct 12 14:36:50 2020 -0600
+
+    testBoardDimensions working
+
+commit 3fb73cbf584a6dc6b6b3b719c97490389ea0ac24
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Oct 12 12:50:33 2020 -0600
+
+    Got read functions working
+
+commit 32f21cfd8eb66d613d425df28e4002e6145b1896
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Mon Oct 12 00:21:19 2020 -0600
+
+    Got testRoomLabels test working
+
+commit a3cf7c51a54055ee0c361d04b8076fb962ad0156
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Oct 9 18:00:15 2020 -0600
+
+    Fixed some mistakes in test code. All working now
+
+commit 95e7505d881a05c33d50098c4fd4311238b75a40
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Oct 9 17:54:10 2020 -0600
+
+    tests.txt file finished
+
+commit 4b135e4577b9e9f34bbc93b486f952b6fd4f7b46
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Fri Oct 9 17:39:28 2020 -0600
+
+    Added and completed FileInitTests. Started tracking files
+
+commit 17b26720ae15eba423f84b8ac28e932ba26192c4
+Merge: 0b8c535 8fef347
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Fri Oct 9 16:27:36 2020 -0600
+
+    Merge branch 'main' of https://github.com/rbarmstrong/ClueGame into main
+
+commit 0b8c53553c0d5a823aaa2e4377b7415d4587f952
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Fri Oct 9 16:27:20 2020 -0600
+
+    Reverted changes
+
+commit 8fef3475e66213600fa5e5a90f3fe6c8c0b331e2
+Author: astaylor347 <70915974+astaylor347@users.noreply.github.com>
+Date:   Fri Oct 9 16:19:42 2020 -0600
+
+    Update README.md
+    
+    Added comment about paired programming
+
+commit 48866f148c548523248824592d9c4eea256f3a12
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Fri Oct 9 16:14:07 2020 -0600
+
+    Added data folder and two new test classes
+
+commit e4fc5c48b1ea5f623e070ac07b6dd1e188f2839b
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Thu Oct 8 18:01:32 2020 -0600
+
+    Mentioned pair programming in gitlog.txt
+
+commit 4aa92eb4d5da88031cc8e4dffb0561f2e2eb3f62
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Thu Oct 8 17:59:26 2020 -0600
+
+    Updated gitlog.txt
+
+commit e502f5cf0489ba76c189c9d716e65d0865a6b31f
+Merge: e3284e5 4d4222f
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Thu Oct 8 17:58:39 2020 -0600
+
+    Added comments
+
+commit e3284e5d315b93ede9612857834a7624d2434446
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Thu Oct 8 17:57:16 2020 -0600
+
+    Added comments
+
+commit 4d4222f4992aaa19202e58cfd72aa1625757d2e3
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Thu Oct 8 17:51:41 2020 -0600
+
+    Updated gitlog
+
+commit d348ea9ef2dede2dde4e504b4d04ad78c6d6513a
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Thu Oct 8 17:46:58 2020 -0600
+
+    All tests passed and gitlog added
+
+commit 2cb49c9fcd60e001e15e658c58aaf5f33fd27584
+Author: Andrew Taylor <astaylor@mines.edu>
+Date:   Thu Oct 8 17:39:57 2020 -0600
+
+    All tests passed
+
+commit b422172dd47e7f1e6cd9727777c5fecec4bfaeb0
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Thu Oct 8 17:25:33 2020 -0600
+
+    Started work on calcTargets
+
+commit 7a5039e476740d7d3a12499b2a5d4d793f9df359
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Thu Oct 8 17:15:30 2020 -0600
+
+    Successfully implemented creation of adjacency lists
+
+commit 89c6f8cf430161c643ce9ffcfccee36ccb71feb7
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Mon Oct 5 01:07:02 2020 -0600
+
+    Fixed gitlog.txt
+
+commit b6c175742504b986989199cc441c16a10c161b50
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Mon Oct 5 01:01:54 2020 -0600
+
+    Added gitlog.txt
+
+commit b46b1f1fe15487796103dbe970607e6bf473f9e7
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Mon Oct 5 01:00:31 2020 -0600
+
+    Updated README
+
+commit 03f6c6aa7b2f119373b7e9e4624a376f2456b896
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Mon Oct 5 00:55:12 2020 -0600
+
+    Created method stubs for each class, added 9 JUnit tests, 4 that test adjacency lists and 5 that test calcTarget. All tests fail with no errors.
+
+commit e26d6c615bad663c2b4a6c8da49c2fec6df02fca
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Sun Oct 4 21:47:56 2020 -0600
+
+    Added blank classes
+
+commit b4042c929a3081434f3770a48c7e72f811cdc74d
+Author: Ryan Armstrong <rbarmstrong@mymail.mines.edu>
+Date:   Sun Oct 4 21:43:35 2020 -0600
+
+    Initial commit
+
+commit fdc7a88f37d7a4a4cb34e26bca7ff64287de3887
+Author: rbarmstrong <71060527+rbarmstrong@users.noreply.github.com>
+Date:   Sun Oct 4 21:36:14 2020 -0600
+
+    Initial commit
