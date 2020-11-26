@@ -43,7 +43,7 @@ public class ClueBoardDisplay extends JFrame{
 		Board board;
 		board = Board.getInstance();
 		// set the file names to use my config files
-		board.setConfigFiles("data/ClueLayout.csv", "data/ClueSetup.txt");		
+		board.setConfigFiles("data/ClueLayout.csv", "data/ClueSetup.txt");
 		// Initialize will load config files 
 		board.initialize();
 		game = new ClueBoardDisplay();

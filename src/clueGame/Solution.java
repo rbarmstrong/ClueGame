@@ -35,7 +35,7 @@ public class Solution {
 	}
 	
 	public String stringSolution() {
-		return (weapon.getCardName() + " " + person.getCardName() + " " + room.getCardName());
+		return (person.getCardName() + " with " + weapon.getCardName() + " in " + room.getCardName());
 	}
 	
 }

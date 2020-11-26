@@ -19,6 +19,7 @@ public abstract class Player {
 	protected boolean finishedTurn;
 	protected boolean movedThisTurn;
 	protected boolean inRoom;
+	protected boolean stayInRoom;
 
 	public Player() {
 		hand = new ArrayList<>();
@@ -60,7 +61,7 @@ public abstract class Player {
 			return null;
 		}
 		int randVal = rand.nextInt(temp.size());
-		if(!Board.getInstance().testMode) {
+		if(!Board.getInstance().testMode) { //Guess result in control panel is updated depending on the result of suggestion and who suggested
 			if(Board.getInstance().getPlayers().get(Board.getInstance().turn).getClass().getName().equals("clueGame.Human")) {
 				GameControlPanel.setGuessResult(name + " disproved with " + temp.get(randVal).getCardName());
 			}else {
@@ -100,7 +101,7 @@ public abstract class Player {
 	public void drawSelf(int height, int width, Graphics g, int numPlayers) {
 		int row = getLocation()[0];
 		int col = getLocation()[1];
-		int offset = height;
+		int offset = height*3/4;
 		g.setColor(getColor());
 		g.fillOval(col * height + offset*numPlayers, row * width , height, width);
 		g.setColor(Color.BLACK);

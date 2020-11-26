@@ -23,6 +23,8 @@ public class GameControlPanel extends JPanel implements ActionListener{
 	private static JTextField roll;
 	private static JTextField guess;
 	private static JTextField guessResult;
+	private JButton nextButton;
+	private JButton accuseButton;
 	
 	public GameControlPanel() { //Constructor 
 		// Create a layout with 2 rows
@@ -88,21 +90,22 @@ public class GameControlPanel extends JPanel implements ActionListener{
 	}
 
 	private JPanel createAccusationButton() { //sub panel that creates accusation button
-		JButton button = new JButton("Make Accusation");
-		button.setFont(new Font("Font", Font.BOLD, 15));
+		accuseButton = new JButton("Make Accusation");
+		accuseButton.setFont(new Font("Font", Font.BOLD, 15));
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(1,0));
-		panel.add(button);
+		accuseButton.addActionListener(this);
+		panel.add(accuseButton);
 		return panel;
 	}
 
 	private JPanel createNextButton() { //sub panel that creates next turn button
-		JButton button = new JButton("NEXT!");
-		button.setFont(new Font("Font", Font.PLAIN, 30));
+		nextButton = new JButton("NEXT!");
+		nextButton.setFont(new Font("Font", Font.PLAIN, 30));
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(1,0));
-		button.addActionListener(this);
-		panel.add(button);
+		nextButton.addActionListener(this);
+		panel.add(nextButton);
 		return panel;
 	}
 
@@ -168,13 +171,18 @@ public class GameControlPanel extends JPanel implements ActionListener{
 
 		// test filling in the data
 		GameControlPanel.setTurn(new Computer( "Col. Mustard", 0, 0, Color.ORANGE), 5);
-		panel.setGuess( "I have no guess!");
-		panel.setGuessResult( "So you have nothing?");
+		panel.setGuess("I have no guess!");
+		panel.setGuessResult("So you have nothing?");
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Board.getInstance().nextTurn();
+		if(e.getSource() == nextButton) {
+			Board.getInstance().nextTurn();
+		}if(e.getSource() == accuseButton) {
+			Board.getInstance().newAccusation();
+		}
+		
 	}
 
 

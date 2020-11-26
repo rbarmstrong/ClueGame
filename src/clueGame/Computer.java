@@ -6,6 +6,7 @@ import java.util.Random;
 import java.util.Set;
 
 public class Computer extends Player {
+	boolean accuseNext;
 
 	public Computer() {
 		super();
@@ -14,6 +15,7 @@ public class Computer extends Player {
 	public Computer(Color color) {
 		super();
 		this.setColor(color);
+		accuseNext = false;
 	}
 	
 	public Computer(String name, int row, int col, Color color) {
@@ -22,9 +24,11 @@ public class Computer extends Player {
 		this.row = row;
 		this.col = col;
 		this.setColor(color);
+		accuseNext = false;
 	}
 	
 	public Solution createSuggestion() {
+		accuseNext = false;
 		filtered = filterChoices();
 		Random rand = new Random();
 		boolean needPerson = true;
@@ -56,6 +60,10 @@ public class Computer extends Player {
 	}
 	
 	public BoardCell selectTargets() {
+		if(accuseNext) { //Computer will accuse on this turn if it has solved the mystery. accuseNext is changed in Board nextTurn function
+			Board.getInstance().clearHighlight();
+			Board.getInstance().computerAccusation();
+		}
 		Random rand = new Random();
 		filtered = filterChoices(); 
 		ArrayList<Card> notVisitedRooms = new ArrayList<>();
@@ -98,5 +106,9 @@ public class Computer extends Player {
 			Board.getInstance().getRoom(Board.getInstance().getCurrPlayer().getLocationCell()).leaveRoom(Board.getInstance().getCurrPlayer()); 
 		}
 		return targetListArray.get(selection);
+	}
+	
+	public void accuseNext() {
+		accuseNext = true;
 	}
 }

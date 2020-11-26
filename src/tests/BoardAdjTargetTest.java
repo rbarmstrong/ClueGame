@@ -24,6 +24,7 @@ public class BoardAdjTargetTest {
 		board.setConfigFiles("data/ClueLayout.csv", "data/ClueSetup.txt");		
 		// Initialize will load config files 
 		board.initialize();
+		board.setTestMode();
 	}
 
 	// Ensure that player does not move around within room
@@ -35,7 +36,7 @@ public class BoardAdjTargetTest {
 		Set<BoardCell> testList = board.getAdjList(2, 2);
 		assertEquals(2, testList.size());
 		assertTrue(testList.contains(board.getCell(4, 6)));
-		assertTrue(testList.contains(board.getCell(21, 20)));
+		assertTrue(testList.contains(board.getCell(21, 19)));
 		
 		// test room but not center of room
 		testList = board.getAdjList(2, 20);
@@ -54,7 +55,7 @@ public class BoardAdjTargetTest {
 		assertTrue(testList.contains(board.getCell(7, 11)));
 		assertTrue(testList.contains(board.getCell(7, 13)));
 		assertTrue(testList.contains(board.getCell(8, 12)));
-		assertTrue(testList.contains(board.getCell(4, 11)));
+		assertTrue(testList.contains(board.getCell(3, 10)));
 	}
 	
 	// Test a variety of walkway scenarios
@@ -113,7 +114,7 @@ public class BoardAdjTargetTest {
 	@Test
 	public void testTargetsLeaveRoomPassage() {
 		// test a roll of 2
-		board.calcTargets(board.getCell(21, 20), 2);
+		board.calcTargets(board.getCell(21, 19), 2);
 		Set<BoardCell> targets= board.getTargets();
 		assertEquals(6, targets.size());
 		assertTrue(targets.contains(board.getCell(2, 2)));
@@ -135,7 +136,7 @@ public class BoardAdjTargetTest {
 		assertTrue(targets.contains(board.getCell(23, 15)));
 		assertTrue(targets.contains(board.getCell(24, 16)));	
 		assertTrue(targets.contains(board.getCell(18, 16)));	
-		assertTrue(targets.contains(board.getCell(22, 11)));	
+		assertTrue(targets.contains(board.getCell(22, 10)));	
 	}
 
 	//tests targets on walkways with various rolls

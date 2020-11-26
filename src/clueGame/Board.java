@@ -290,6 +290,14 @@ public class Board extends JPanel{
 	public void setTestMode() {
 		testMode = true;
 	}
+	
+	public void clearHighlight() {
+		for(int i = 0; i < rows; i++) {
+			for(int j = 0; j < cols; j++) {
+				grid[i][j].highlight = false;
+			}
+		}
+	}
 
 	private void findAllTargets(BoardCell thisCell, int numSteps) {
 		for (BoardCell adjCell : thisCell.getAdjList()) { //loop through each adj cell
@@ -325,7 +333,14 @@ public class Board extends JPanel{
 		visited = new HashSet<BoardCell>();
 		targets = new HashSet<BoardCell>();
 		visited.add(startCell);
-		findAllTargets(startCell, pathlength);
+		findAllTargets(startCell, pathlength); 
+		if(!testMode) {
+			if(players.get(turn).stayInRoom){
+				targets.add(startCell);
+				startCell.highlight = true;
+				players.get(turn).stayInRoom = false;
+			}
+		}
 	}
 
 	public void deal() { //deals cards not in solution to the players
@@ -420,9 +435,42 @@ public class Board extends JPanel{
 		return found;
 	}
 
-	public Card handleSuggestion(Player player, Solution suggestion) { //TODO
+	public void newAccusation() {
+		if(players.get(turn).movedThisTurn == false) { //If its the beginner of the players turn they can make a suggestion, otherwise error message pops up
+			JPanel accusationDD = new Dropdown(true);
+			Object[] accuseOptions = {"Submit", "Cancel"};
+			int result = JOptionPane.showOptionDialog(null, accusationDD, "Make Accusation", JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, accuseOptions, accuseOptions[0]);
+			if(result == 0) {
+				boolean playerWon = checkAccusation(new Card[] {newSuggestion.person,newSuggestion.room,newSuggestion.weapon});
+				if(playerWon) { //Different outputs depending on whether player won or lost, then game is ended.
+					Object[] wonOptions = {"OK"};
+					JOptionPane.showOptionDialog(null, "Congratulations! The solution was:\n" + theAnswer.stringSolution() , "You Won!", JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, wonOptions, wonOptions[0]);
+					System.exit(0);
+				}else {
+					Object[] wonOptions = {"OK"};
+					JOptionPane.showOptionDialog(null, "Better Luck Next Time! The solution was:\n" + theAnswer.stringSolution(), "You Lost!", JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, wonOptions, wonOptions[0]);
+					System.exit(0);
+				}
+			}
+		}else {
+			Object[] options = {"OK"};
+			JOptionPane.showOptionDialog(null, "You must accuse before you make a move on your turn!", "Error!", JOptionPane.PLAIN_MESSAGE, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
+		}
+	}
+
+	public void computerAccusation() { //Computer makes suggestion, function called in Computer class
+		Solution compAccusation = players.get(turn).suggestion;
+		boolean compWon = checkAccusation(new Card[] {compAccusation.person,compAccusation.room,compAccusation.weapon});
+		if(compWon) {
+			Object[] wonOptions = {"OK"};
+			JOptionPane.showOptionDialog(null, "Better Luck Next Time! The answer was: \n" + theAnswer.stringSolution(), players.get(turn).getName() + " won!", JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, wonOptions, wonOptions[0]);
+			System.exit(0);
+		}
+	}
+
+	public Card handleSuggestion(Player player, Solution suggestion) {
 		if(!testMode) {
-			for(Player person : players) { //Puts correct player in room
+			for(Player person : players) { //Puts correct player in correct room when they are suggested
 				if(person.getName().compareTo(suggestion.person.getCardName()) == 0) {
 					BoardCell tempCell = getRoom(suggestion.room.getRoomChar()).getCenterCell();
 					if(person.getInRoom()) {
@@ -431,16 +479,17 @@ public class Board extends JPanel{
 					person.setInRoom(true);
 					getRoom(suggestion.room.getRoomChar()).enterRoom(person);
 					person.setLocation(tempCell.getRow(), tempCell.getCol());
+					person.stayInRoom = true;
 					break;
 				}
-			}
-			GameControlPanel.setGuess(player.getName() + " suggested: " + suggestion.person.getCardName() + " with " + suggestion.weapon.getCardName() + " in " + suggestion.room.getCardName());		
+			}//When a player enters a suggestion it is shown on control panel (prove or disprove is handled in player class)
+			GameControlPanel.setGuess(player.getName() + " suggested: " + suggestion.stringSolution());		
 		}
 		int playerIndex = players.indexOf(player) + 1;
 		if (playerIndex >= players.size()) {
 			playerIndex = 0;
 		}
-		while (playerIndex != players.indexOf(player)) {
+		while (playerIndex != players.indexOf(player)) { //Loop through and disprove suggestion
 			if(players.get(playerIndex).disproveSuggestion(suggestion) != null) {
 				return players.get(playerIndex).disproveSuggestion(suggestion);
 			}
@@ -547,12 +596,13 @@ public class Board extends JPanel{
 				BoardCell selection = compPlayer.selectTargets();
 				compPlayer.setLocation(selection.getRow(), selection.getCol());
 				if(compPlayer.inRoom) {
-					Solution newSuggestion = compPlayer.createSuggestion();
+					Solution newSuggestion = compPlayer.createSuggestion(); //Computer player creates suggestion when they are in a room
 					Card disproveCard = handleSuggestion(compPlayer, newSuggestion);
 					if(disproveCard != null) {
 						players.get(turn).updateSeen(disproveCard);
 					}else {
 						GameControlPanel.setGuessResult("Suggestion not disproven");
+						compPlayer.accuseNext(); //If the suggestion is not disproven, computer player will accuse next turn
 					}
 
 				}
@@ -613,7 +663,7 @@ public class Board extends JPanel{
 		return turn;
 	}
 
-	public void setSuggestion(String room, String person, String weapon) { //TODO
+	public void setSuggestion(String room, String person, String weapon) { 
 		for(Card card : deck) {
 			if(card.getCardName().equals(room)) {
 				newSuggestion.setRoom(card);
@@ -665,7 +715,7 @@ public class Board extends JPanel{
 							getRoom(getCell(event.getY() / cellWidth, event.getX() / cellHeight).getRoomChar()).enterRoom(players.get(turn));
 							players.get(turn).setInRoom(true);
 							repaint();
-							JPanel suggestionDD = new Dropdown(false);
+							JPanel suggestionDD = new Dropdown(false); //If cell selected is a room, open suggestion dropdown menu
 							Object[] options = {"Submit", "Cancel"};
 							int result = JOptionPane.showOptionDialog(null, suggestionDD, "Make Suggestion", JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
 							if(result == 0) {
@@ -678,7 +728,7 @@ public class Board extends JPanel{
 										}
 									}
 									if(!alreadySeen) {
-										players.get(turn).updateSeen(disproveCard);
+										players.get(turn).updateSeen(disproveCard); //Card used to disprove suggestion is added to players list of seen cards
 									}
 								}else {
 									GameControlPanel.setGuessResult("Suggestion not disproven");
@@ -695,4 +745,6 @@ public class Board extends JPanel{
 			}
 		}
 	}
+
+
 }
